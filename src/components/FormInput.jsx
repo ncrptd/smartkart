@@ -1,4 +1,3 @@
-import './formInput.css';
 function FormInput(props) {
   return (
     <div>

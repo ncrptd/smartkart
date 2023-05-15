@@ -1,5 +1,3 @@
-import './formCheckbox.css';
-
 function FormCheckbox(props) {
   return (
     <div className="form-checkbox">

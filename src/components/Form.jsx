@@ -1,7 +1,6 @@
-import FormInput from '../forminput/FormInput';
-import FormCheckbox from '../formcheckbox/FormCheckbox';
+import FormInput from './FormInput';
+import FormCheckbox from './FormCheckbox';
 
-import './form.css';
 function Form() {
   return (
     <form className="flex-1">
