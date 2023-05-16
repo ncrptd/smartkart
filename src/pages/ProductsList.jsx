@@ -4,9 +4,10 @@ function ProductsList() {
   const { products } = useData();
   return (
     <div className="md:container md:mx-auto flex flex-wrap justify-center align-center gap-4 p-4">
-      {products.map(({ id, title, price, imageUrl, rating, numReviews }) => (
+      {products.map(({ _id, title, price, imageUrl, rating, numReviews }) => (
         <ProductCard
-          key={id}
+          key={_id}
+          id={_id}
           title={title}
           price={price}
           imageUrl={imageUrl}
