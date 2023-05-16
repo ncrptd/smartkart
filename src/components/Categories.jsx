@@ -1,14 +1,12 @@
-import React from 'react';
-import Banner from './Banner';
+import men from '../assets/images/categoriesImages/men.webp';
+import women from '../assets/images/categoriesImages/women.webp';
+import CategoryCard from './CategoryCard';
 
 function Categories() {
   return (
-    <section className="categories ">
-      <div className="container category">
-        <Banner />
-        <div className="category__women"></div>
-        <div className="category__men"></div>
-      </div>
+    <section className=" md:container md:mx-auto flex flex-col justify-center items-center py-6 space-y-4">
+      <CategoryCard src={men} name="Men's" />
+      <CategoryCard src={women} name="Women's" />
     </section>
   );
 }

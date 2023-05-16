@@ -1,12 +1,12 @@
+import Banner from '../components/Banner';
 import Categories from '../components/Categories';
-import Header from '../components/Header';
 
 function Home() {
   return (
-    <>
-      <Header />
+    <div className="home">
+      <Banner />
       <Categories />
-    </>
+    </div>
   );
 }
 
