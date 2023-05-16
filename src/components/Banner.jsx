@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import banner1 from '../assets/images/bannerImages/banner-1.webp';
 import banner2 from '../assets/images/bannerImages/banner-2.webp';
 import bannerM1 from '../assets/images/bannerImages/mobile/bannerM1.webp';
-import bannerM2 from '../assets/images/bannerImages/mobile/bannerM2.webp';
+import bannerM2 from '../assets/images/bannerImages/mobile/bannerM1.webp';
 
 function Banner() {
   const [img1, setImg1] = useState(false);

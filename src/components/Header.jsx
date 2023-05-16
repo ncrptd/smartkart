@@ -3,7 +3,7 @@ import Searchbar from './Searchbar';
 
 function Header() {
   return (
-    <header className="md:container md:mx-auto p-4 flex justify-between items-center sticky top-0 bg-slate-50">
+    <header className="md:container md:mx-auto p-4 flex justify-between items-center sticky top-0 z-10 bg-slate-50">
       <h1 className="text-xl">
         <Link to="/">SmartKart</Link>
       </h1>
