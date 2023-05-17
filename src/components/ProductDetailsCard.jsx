@@ -37,7 +37,10 @@ export default function ProductDetailsCard({ product }) {
         <p className="font-semibold">
           Sizes:{' '}
           {sizes.map((size) => (
-            <span className="mr-2 last-of-type:mr-0 inline-block font-normal">
+            <span
+              key={size}
+              className="mr-2 last-of-type:mr-0 inline-block font-normal"
+            >
               {size}
             </span>
           ))}

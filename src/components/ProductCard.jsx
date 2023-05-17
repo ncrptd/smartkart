@@ -13,10 +13,10 @@ function ProductCard({ title, price, imageUrl, rating, id }) {
           />
           <FontAwesomeIcon
             icon={faHeart}
-            className="p-2 rounded-full text-white bg-pink-600 inline-block absolute top-5 right-5"
+            className="p-2 rounded-full text-white bg-slate-300 text-gray-700 inline-block absolute top-2 right-2"
           />
           <p
-            className="absolute bottom-0 left-0 py-1 px-2 bg-pink-600 text-white rounded-lg 
+            className="absolute bottom-2 left-2 py-1 px-2 bg-pink-600 text-white rounded-lg 
         "
           >
             <span className="mr-2">&#9733; {rating}</span>
