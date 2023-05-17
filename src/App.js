@@ -1,7 +1,6 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Mockman from 'mockman-js';
-import Signup from './pages/Signup';
 import Home from './pages/Home';
 import ProductsList from './pages/ProductsList';
 import RootLayout from './rootLayout/RootLayout';
@@ -12,10 +11,12 @@ function App() {
       <Routes>
         <Route path="/" element={<RootLayout />}>
           <Route index element={<Home />} />
+          <Route path="/productsList" element={<ProductsList />} />
+          <Route
+            path="/productDetails/:productId"
+            element={<ProductDetails />}
+          />
           <Route path="/mockman" element={<Mockman />} />
-          <Route path="/productslist" element={<ProductsList />} />
-          <Route path="/product/:id" element={<ProductDetails />} />
-          <Route path="/signup" element={<Signup />} />
         </Route>
       </Routes>
     </div>

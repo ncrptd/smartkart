@@ -3,7 +3,7 @@ import Header from '../components/Header';
 
 function RootLayout() {
   return (
-    <div className="root-latyout">
+    <div>
       <Header />
       <main>
         <Outlet />

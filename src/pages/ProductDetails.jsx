@@ -3,13 +3,13 @@ import { useData } from '../contexts/DataContext';
 import ProductDetailsCard from '../components/ProductDetailsCard';
 
 export default function ProductDetails() {
-  const { id } = useParams();
+  const { productId } = useParams();
   const { products } = useData();
-  const product = products.find((item) => id === item._id);
-  console.log(product);
+  const product = products.find(({ id }) => id === productId);
+
   return (
     <section>
-      <div className="container mx-auto">
+      <div className="container mx-auto p-4 flex justify-center items-center md:p-10">
         <ProductDetailsCard product={product} />
       </div>
     </section>

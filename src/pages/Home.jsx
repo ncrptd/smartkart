@@ -3,7 +3,7 @@ import Categories from '../components/Categories';
 
 function Home() {
   return (
-    <div className="home">
+    <div>
       <Banner />
       <Categories />
     </div>

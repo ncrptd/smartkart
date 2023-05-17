@@ -20,7 +20,7 @@ function Banner() {
   }, [img1]);
 
   return (
-    <div className=" md:container md:mx-auto mt-2 ">
+    <div className=" ">
       <Link className="hidden md:block" to="/productslist">
         <img ref={ref} src={img1 ? banner1 : banner2} alt="banner" />
       </Link>
