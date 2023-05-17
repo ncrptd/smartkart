@@ -3,7 +3,7 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
 function ProductCard({ title, price, imageUrl, rating, id }) {
   return (
-    <div className=" shadow-xl rounded-t-xl text-center overflow-hidden flex flex-col justify-between px-2 py-2   text-lg md:text-sm md:w-1/5">
+    <div className=" shadow-lg rounded-t-xl text-center overflow-hidden flex flex-col justify-between px-2 py-2   text-lg md:text-sm md:w-1/5 hover:bg-slate-100 hover:shadow-xl">
       <div className="relative shadow-lg h-3/4 md:h-4/6 ">
         <Link to={`/productDetails/${id}`}>
           <img

@@ -10,6 +10,9 @@ export default function DataProvider({ children }) {
     products: [],
     cart: [],
     wishList: [],
+    priceFilter: null,
+    categoryFilter: { men: true, women: true },
+    ratingsFilter: null,
   };
   const [state, dispatch] = useReducer(dataReducer, initialState);
 

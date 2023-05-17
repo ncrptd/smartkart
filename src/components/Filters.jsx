@@ -1,4 +1,18 @@
+import { useData, useDataDispatch } from '../contexts/DataContext';
+import { ACTIONS } from '../reducer/dataReducer';
+const RATINGS = [4, 3, 2, 1];
 export default function Filters() {
+  const dispatch = useDataDispatch();
+  const { categoryFilter, ratingsFilter } = useData();
+  const handleCategoryFilter = (category, checked) => {
+    dispatch({
+      type: ACTIONS.CATEGORYFILTER,
+      payload: { category: category, checked: checked },
+    });
+  };
+  const handleRatingFilter = (rating) => {
+    dispatch({ type: ACTIONS.RATINGSFILTER, payload: rating });
+  };
   return (
     <div className="container mx-auto  flex flex-col gap-4 text-base w-full px-4">
       <div className="flex justify-between">
@@ -14,39 +28,50 @@ export default function Filters() {
           <span>150</span>
           <span>200</span>
         </div>
-        <input className="w-full" type="range" name="" id="" />
+        <input
+          onChange={(e) => {
+            dispatch({ type: ACTIONS.PRICEFILTER, payload: e.target.value });
+          }}
+          className="w-full"
+          type="range"
+          min={50}
+          max={200}
+        />
       </div>
       {/* Category filter  */}
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-2">
         <p className="font-bold">Category</p>
-        <div className="flex gap-1">
-          <input type="checkbox" name="men" id="men" />
-          <label htmlFor="men">Men Clothing</label>
-        </div>
-        <div className="flex gap-1">
-          <input type="checkbox" name="women" id="women" />
-          <label htmlFor="men">Women Clothing</label>
-        </div>
+        {Object.keys(categoryFilter).map((category) => (
+          <div className="flex gap-1" key={category}>
+            <input
+              type="checkbox"
+              name={category}
+              id={category}
+              value={category}
+              checked={categoryFilter[category]}
+              onChange={(e) => handleCategoryFilter(category, e.target.checked)}
+            />
+            <label htmlFor={category}>{category} Clothing</label>
+          </div>
+        ))}
       </div>
       {/* Rating Filter  */}
       <div className="flex flex-col gap-1">
         <p className="font-bold">Rating</p>
-        <div className="flex gap-1">
-          <input type="radio" name="4" id="4" value={4} />
-          <label htmlFor="4">4 Stars & above</label>
-        </div>
-        <div className="flex gap-1">
-          <input type="radio" name="3" id="3" value={3} />
-          <label htmlFor="3">3 Stars & above</label>
-        </div>
-        <div className="flex gap-1">
-          <input type="radio" name="2" id="2" value={2} />
-          <label htmlFor="2">2 Stars & above</label>
-        </div>
-        <div className="flex gap-1">
-          <input type="radio" name="1" id="1" value={1} />
-          <label htmlFor="1">1 Stars & above</label>
-        </div>
+
+        {RATINGS.map((rating) => (
+          <div className="flex gap-1" key={rating}>
+            <input
+              type="radio"
+              name={rating}
+              id={rating}
+              value={rating}
+              checked={Number(ratingsFilter) === Number(rating)}
+              onChange={() => handleRatingFilter(rating)}
+            />
+            <label htmlFor={rating}>{rating} Stars & above</label>
+          </div>
+        ))}
       </div>
       {/* Sort by  */}
       <div className="flex flex-col gap-1">
