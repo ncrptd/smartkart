@@ -14,6 +14,9 @@ function ProductsList() {
 
   return (
     <div className="text-center flex p-4">
+      <div className="hidden  md:block ">
+        <Filters />
+      </div>
       <div className="md:container md:mx-auto flex flex-wrap justify-center align-center gap-6 p-4 ">
         {products.map(({ id, title, price, imageUrl, rating, numReviews }) => (
           <ProductCard
@@ -27,7 +30,8 @@ function ProductsList() {
           />
         ))}
       </div>
-      <div className=" fixed  bottom-0 left- 0 right-0 w-full bg-slate-100 py-1 text-base">
+
+      <div className=" fixed  bottom-0 left- 0 right-0 w-full bg-slate-100 py-1 text-base md:hidden">
         <div onClick={handleShow}>
           <div className=" flex justify-center">
             <svg
