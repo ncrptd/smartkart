@@ -7,7 +7,9 @@ function ProductsList() {
   const { products, priceFilter, categoryFilter, ratingsFilter, sortBy } =
     useData();
   const [show, setShow] = useState(false);
+
   const handleShow = (e) => {
+    e.preventDefault();
     setShow(!show);
   };
 
@@ -23,9 +25,12 @@ function ProductsList() {
     const selectedCategory = Object.keys(categoryFilter).filter(
       (category) => categoryFilter[category]
     );
-    return products.filter((product) =>
-      selectedCategory.includes(product.category)
-    );
+    if (selectedCategory.length > 0) {
+      return products.filter((product) =>
+        selectedCategory.includes(product.category)
+      );
+    }
+    return products;
   }
   function getRatingsFilteredData(products, rating) {
     if (rating) {
@@ -62,7 +67,7 @@ function ProductsList() {
         <Filters />
       </div>
 
-      <div className="md:container md:mx-auto flex flex-wrap justify-center align-center gap-4 pb-8">
+      <div className="md:container md:mx-auto flex flex-wrap justify-center align-center gap-4 pb-12">
         {visibleData.map(
           ({ id, title, price, imageUrl, rating, numReviews }) => (
             <ProductCard
@@ -78,7 +83,7 @@ function ProductsList() {
         )}
       </div>
 
-      <div className=" fixed  bottom-0 left- 0 right-0 w-full bg-slate-100 text-base md:hidden">
+      <div className=" fixed  bottom-0 left- 0 right-0 w-full bg-slate-100 text-base md:hidden p-2">
         <div onClick={handleShow}>
           <div className=" flex justify-center">
             <svg
@@ -98,7 +103,7 @@ function ProductsList() {
           </div>
           <p>Filter</p>
         </div>
-        <div className={show ? 'hidden' : 'block'}>
+        <div className={`${show ? 'block' : 'hidden'} pb-4`}>
           <Filters />
         </div>
       </div>

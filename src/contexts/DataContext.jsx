@@ -2,19 +2,11 @@ import { createContext, useContext, useEffect, useReducer } from 'react';
 import dataReducer from '../reducer/dataReducer';
 import axios from 'axios';
 import { ACTIONS } from '../reducer/dataReducer';
+import { initialState } from '../reducer/dataReducer';
 const DataContext = createContext();
 const DataDispatchContext = createContext();
 
 export default function DataProvider({ children }) {
-  const initialState = {
-    products: [],
-    cart: [],
-    wishList: [],
-    priceFilter: null,
-    categoryFilter: { men: true, women: true },
-    ratingsFilter: null,
-    sortBy: null,
-  };
   const [state, dispatch] = useReducer(dataReducer, initialState);
 
   const getProductsData = async () => {
