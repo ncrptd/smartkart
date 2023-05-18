@@ -50,12 +50,7 @@ function Login() {
   }
   return (
     <main className="h-screen flex justify-center items-center bg-slate-100 p-6">
-      <form
-        className="container mx-auto flex flex-col justify-center item-center space-y-4 bg-white py-10 px-4  md:w-2/6 rounded-lg shadow-2xl text-base
-
-
-  "
-      >
+      <form className="container mx-auto flex flex-col justify-center item-center space-y-4 bg-white py-10 px-4  md:w-2/6 rounded-lg shadow-2xl text-base">
         <label htmlFor="email">Email address</label>
         <input
           type="email"
