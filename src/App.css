@@ -1,3 +1,11 @@
 input:hover {
   cursor: pointer;
 }
+
+button:active {
+  transform: scale(0.98);
+}
+button:hover,
+button:active {
+  opacity: 0.89;
+}

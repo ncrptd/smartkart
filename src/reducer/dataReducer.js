@@ -1,5 +1,3 @@
-import { categories } from '../backend/db/categories';
-
 export const ACTIONS = {
   INITIALLOAD: 'initial-load',
   PRICEFILTER: 'price-filter',
