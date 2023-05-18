@@ -12,6 +12,7 @@ export default function DataProvider({ children }) {
   const getProductsData = async () => {
     try {
       const res = await axios.get('/api/products');
+      console.log('hello test');
       dispatch({
         type: ACTIONS.INITIALLOAD,
         payload: { products: res.data.products },
@@ -20,9 +21,21 @@ export default function DataProvider({ children }) {
       console.log(error);
     }
   };
+
+  const getCategories = async () => {
+    try {
+      const res = await axios.get('/api/categories');
+      dispatch({
+        type: ACTIONS.INITIALLOAD,
+        payload: { categories: res.data.categories },
+      });
+    } catch (error) {}
+  };
   useEffect(() => {
     getProductsData();
+    getCategories();
   }, []);
+
   return (
     <DataContext.Provider value={state}>
       <DataDispatchContext.Provider value={dispatch}>

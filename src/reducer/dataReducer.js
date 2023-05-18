@@ -1,38 +1,59 @@
+import { categories } from '../backend/db/categories';
+
 export const ACTIONS = {
   INITIALLOAD: 'initial-load',
   PRICEFILTER: 'price-filter',
   CATEGORYFILTER: 'category-filter',
   RATINGSFILTER: 'ratings-filter',
   SORTBY: 'sort-by',
-  CLEARFILTERS: false,
+  CLEARFILTERS: 'clear-filters',
+  AddTOWISHLIST: 'add-to-wishlist',
 };
 export const initialState = {
   products: [],
+  categories: [],
   cart: [],
   wishList: [],
   priceFilter: null,
-  categoryFilter: { men: false, women: false },
+  categoryFilter: { Men: false, Women: false },
   ratingsFilter: null,
   sortBy: null,
 };
-
 export default function dataReducer(state, action) {
   const { type, payload } = action;
   switch (type) {
     case ACTIONS.INITIALLOAD: {
-      return { ...state, products: payload.products };
+      if (payload.products) {
+        console.log('got products', payload.products);
+        return {
+          ...state,
+          products: payload.products,
+        };
+      }
+      if (payload.categories) {
+        return { ...state, categories: payload.categories };
+      }
+      return state;
     }
     case ACTIONS.PRICEFILTER: {
       return { ...state, priceFilter: payload };
     }
     case ACTIONS.CATEGORYFILTER: {
-      return {
-        ...state,
-        categoryFilter: {
-          ...state.categoryFilter,
-          [payload.category]: payload.checked,
-        },
-      };
+      if (payload.category) {
+        return {
+          ...state,
+          categories: categories.map((category) =>
+            category.id === payload.id
+              ? { ...category, checked: true }
+              : category
+          ),
+          categoryFilter: {
+            ...state.categoryFilter,
+            [payload.category]: payload.checked,
+          },
+        };
+      }
+      return state;
     }
     case ACTIONS.RATINGSFILTER: {
       return { ...state, ratingsFilter: payload };
@@ -44,11 +65,23 @@ export default function dataReducer(state, action) {
       return {
         ...state,
         priceFilter: null,
-        categoryFilter: { men: false, women: false },
+        categoryFilter: { Men: false, Women: false },
         ratingsFilter: null,
         sortBy: null,
       };
     }
+    // case ACTIONS.AddTOWISHLIST: {
+    //   const product = state.products.find(({ id }) => id === payload);
+    //   const getWishList = async () => {
+    //     const wishList = await axios.post('/api/user/wishlist', {
+    //       product,
+    //     });
+    //     return wishList;
+    //   };
+    //   const wishlist = getWishList();
+    //   console.log(wishlist);
+    //   return state;
+    // }
     default: {
       return state;
     }

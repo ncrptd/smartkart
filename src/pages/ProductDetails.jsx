@@ -9,7 +9,7 @@ export default function ProductDetails() {
 
   return (
     <section>
-      <div className="container mx-auto p-4 flex justify-center items-center md:p-10">
+      <div className="container mx-auto p-4 flex justify-center items-center md:p-10 ">
         <ProductDetailsCard product={product} />
       </div>
     </section>

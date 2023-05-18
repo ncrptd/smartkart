@@ -25,6 +25,7 @@ function ProductsList() {
     const selectedCategory = Object.keys(categoryFilter).filter(
       (category) => categoryFilter[category]
     );
+    console.log(selectedCategory);
     if (selectedCategory.length > 0) {
       return products.filter((product) =>
         selectedCategory.includes(product.category)
@@ -63,11 +64,11 @@ function ProductsList() {
   const visibleData = sortyByPriceData;
   return (
     <div className="text-center flex p-4">
-      <div className="hidden  md:block">
+      <div className="hidden  md:block w-1/6">
         <Filters />
       </div>
 
-      <div className="md:container md:mx-auto flex flex-wrap justify-center align-center gap-4 pb-12">
+      <div className="container mx-auto flex flex-wrap justify-center md:ml-4  align-center gap-6 pb-12 ">
         {visibleData.map(
           ({ id, title, price, imageUrl, rating, numReviews }) => (
             <ProductCard

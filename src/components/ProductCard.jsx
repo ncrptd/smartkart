@@ -1,9 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
+
 function ProductCard({ title, price, imageUrl, rating, id }) {
   return (
-    <div className=" shadow-lg rounded-t-xl text-center overflow-hidden flex flex-col justify-between px-2 py-2   text-lg md:text-sm md:w-1/5 hover:bg-slate-100 hover:shadow-xl">
+    <div className=" shadow-lg rounded-t-xl text-center overflow-hidden flex flex-col justify-between p-2  text-lg md:text-sm md:w-1/5 hover:bg-slate-100 hover:shadow-xl ">
       <div className="relative shadow-lg h-3/4 md:h-4/6 ">
         <Link to={`/productDetails/${id}`}>
           <img
@@ -11,10 +12,16 @@ function ProductCard({ title, price, imageUrl, rating, id }) {
             alt={title}
             className="rounded-t-xl object-cover h-full w-full"
           />
-          <FontAwesomeIcon
-            icon={faHeart}
-            className="p-2 rounded-full text-white bg-slate-300 text-gray-700 inline-block absolute top-2 right-2"
-          />
+          <div
+          // onClick={() =>
+          //   dispatch({ type: ACTIONS.AddTOWISHLIST, payload: id })
+          // }
+          >
+            <FontAwesomeIcon
+              icon={faHeart}
+              className="p-2 rounded-full bg-slate-300 text-gray-700 inline-block absolute top-2 right-2"
+            />
+          </div>
           <p
             className="absolute bottom-2 left-2 py-1 px-2 bg-pink-600 text-white rounded-lg 
         "
