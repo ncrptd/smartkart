@@ -25,7 +25,6 @@ function ProductsList() {
     const selectedCategory = Object.keys(categoryFilter).filter(
       (category) => categoryFilter[category]
     );
-    console.log(selectedCategory);
     if (selectedCategory.length > 0) {
       return products.filter((product) =>
         selectedCategory.includes(product.category)
@@ -35,15 +34,12 @@ function ProductsList() {
   }
   function getRatingsFilteredData(products, rating) {
     if (rating) {
-      console.log(rating);
       const r = products.filter((product) => product.rating >= rating);
-      console.log(r);
       return r;
     }
     return products;
   }
   function getSortByPriceData(products, sortBy) {
-    console.log(sortBy);
     if (sortBy && sortBy === 'high-to-low') {
       return products.sort((a, b) => b.price - a.price);
     } else if (sortBy && sortBy === 'low-to-high') {

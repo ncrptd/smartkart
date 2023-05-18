@@ -24,7 +24,6 @@ export default function dataReducer(state, action) {
   switch (type) {
     case ACTIONS.INITIALLOAD: {
       if (payload.products) {
-        console.log('got products', payload.products);
         return {
           ...state,
           products: payload.products,
@@ -42,11 +41,7 @@ export default function dataReducer(state, action) {
       if (payload.category) {
         return {
           ...state,
-          categories: categories.map((category) =>
-            category.id === payload.id
-              ? { ...category, checked: true }
-              : category
-          ),
+
           categoryFilter: {
             ...state.categoryFilter,
             [payload.category]: payload.checked,

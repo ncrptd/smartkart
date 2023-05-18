@@ -3,16 +3,14 @@ import { ACTIONS } from '../reducer/dataReducer';
 const RATINGS = [4, 3, 2, 1];
 export default function Filters() {
   const dispatch = useDataDispatch();
-  const { categoryFilter, ratingsFilter } = useData();
-  const handleCategoryFilter = (category, checked) => {
+  const { categoryFilter, ratingsFilter, categories } = useData();
+  const handleCategoryFilter = (categoryName, checked) => {
     dispatch({
       type: ACTIONS.CATEGORYFILTER,
-      payload: { category: category, checked: checked },
+      payload: { category: categoryName, checked: checked },
     });
   };
   const handleRatingFilter = (rating) => {
-    console.log(ratingsFilter);
-
     dispatch({ type: ACTIONS.RATINGSFILTER, payload: rating });
   };
   const handlePriceSort = (sortBy) => {
@@ -60,6 +58,7 @@ export default function Filters() {
           </div>
         ))}
       </div>
+
       {/* Rating Filter  */}
       <div className="flex flex-col gap-1">
         <p className="font-bold">Rating</p>

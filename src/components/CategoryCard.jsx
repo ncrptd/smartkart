@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ACTIONS } from '../reducer/dataReducer';
 import { useDataDispatch } from '../contexts/DataContext';
-function CategoryCard({ src, category, checked, id }) {
+function CategoryCard({ src, category, checked }) {
   const dispatch = useDataDispatch();
   return (
     <Link to="/productsList">
@@ -10,7 +10,7 @@ function CategoryCard({ src, category, checked, id }) {
         onClick={() => {
           dispatch({
             type: ACTIONS.CATEGORYFILTER,
-            payload: { category: category, checked: checked, id },
+            payload: { category: category, checked: checked },
           });
         }}
       >

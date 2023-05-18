@@ -28,14 +28,6 @@ function Categories() {
             key={category._id}
           />
         ))}
-
-        {/* <CategoryCard src={men} name="Men's" category="men" checked={true} />
-        <CategoryCard
-          src={women}
-          name="Women"
-          category="women"
-          checked={true}
-        /> */}
       </div>
     </section>
   );
