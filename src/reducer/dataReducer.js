@@ -3,6 +3,7 @@ export const ACTIONS = {
   PRICEFILTER: 'price-filter',
   CATEGORYFILTER: 'category-filter',
   RATINGSFILTER: 'ratings-filter',
+  SORTBY: 'sort-by',
 };
 export default function dataReducer(state, action) {
   const { type, payload } = action;
@@ -24,6 +25,9 @@ export default function dataReducer(state, action) {
     }
     case ACTIONS.RATINGSFILTER: {
       return { ...state, ratingsFilter: payload };
+    }
+    case ACTIONS.SORTBY: {
+      return { ...state, sortBy: payload };
     }
     default: {
       return state;

@@ -13,6 +13,7 @@ export default function DataProvider({ children }) {
     priceFilter: null,
     categoryFilter: { men: true, women: true },
     ratingsFilter: null,
+    sortBy: null,
   };
   const [state, dispatch] = useReducer(dataReducer, initialState);
 

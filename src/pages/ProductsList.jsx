@@ -4,10 +4,10 @@ import ProductCard from '../components/ProductCard';
 import { useData } from '../contexts/DataContext';
 
 function ProductsList() {
-  const { products, priceFilter, categoryFilter, ratingsFilter } = useData();
+  const { products, priceFilter, categoryFilter, ratingsFilter, sortBy } =
+    useData();
   const [show, setShow] = useState(false);
   const handleShow = (e) => {
-    e.stopPropagation();
     setShow(!show);
   };
 
@@ -29,7 +29,19 @@ function ProductsList() {
   }
   function getRatingsFilteredData(products, rating) {
     if (rating) {
-      return products.filter((product) => product.rating >= rating);
+      console.log(rating);
+      const r = products.filter((product) => product.rating >= rating);
+      console.log(r);
+      return r;
+    }
+    return products;
+  }
+  function getSortByPriceData(products, sortBy) {
+    console.log(sortBy);
+    if (sortBy && sortBy === 'high-to-low') {
+      return products.sort((a, b) => b.price - a.price);
+    } else if (sortBy && sortBy === 'low-to-high') {
+      return products.sort((a, b) => a.price - b.price);
     }
     return products;
   }
@@ -42,7 +54,8 @@ function ProductsList() {
     categoryFilteredData,
     ratingsFilter
   );
-  const visibleData = ratingsFilteredData;
+  const sortyByPriceData = getSortByPriceData(ratingsFilteredData, sortBy);
+  const visibleData = sortyByPriceData;
   return (
     <div className="text-center flex p-4">
       <div className="hidden  md:block">

@@ -124,7 +124,7 @@ export const products = [
     price: '99.99',
     category: 'women',
     imageUrl: `https://res.cloudinary.com/dwghy6c1x/image/upload/v1684297578/Women_s_Sneakers_sxrzxe.webp`,
-    rating: 4.3,
+    rating: 1.2,
     numReviews: '15k',
     colors: ['white', 'black', 'pink'],
     sizes: ['6', '7', '8', '9'],

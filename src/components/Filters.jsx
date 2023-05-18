@@ -3,7 +3,7 @@ import { ACTIONS } from '../reducer/dataReducer';
 const RATINGS = [4, 3, 2, 1];
 export default function Filters() {
   const dispatch = useDataDispatch();
-  const { categoryFilter, ratingsFilter } = useData();
+  const { categoryFilter, ratingsFilter, sortBy } = useData();
   const handleCategoryFilter = (category, checked) => {
     dispatch({
       type: ACTIONS.CATEGORYFILTER,
@@ -11,7 +11,12 @@ export default function Filters() {
     });
   };
   const handleRatingFilter = (rating) => {
+    console.log(ratingsFilter);
+
     dispatch({ type: ACTIONS.RATINGSFILTER, payload: rating });
+  };
+  const handlePriceSort = (sortBy) => {
+    dispatch({ type: ACTIONS.SORTBY, payload: sortBy });
   };
   return (
     <div className="container mx-auto  flex flex-col gap-4 text-base w-full px-4">
@@ -63,10 +68,9 @@ export default function Filters() {
           <div className="flex gap-1" key={rating}>
             <input
               type="radio"
-              name={rating}
+              name="ratings"
               id={rating}
               value={rating}
-              checked={Number(ratingsFilter) === Number(rating)}
               onChange={() => handleRatingFilter(rating)}
             />
             <label htmlFor={rating}>{rating} Stars & above</label>
@@ -82,11 +86,21 @@ export default function Filters() {
           Sort By
         </p>
         <div className="flex gap-1">
-          <input type="radio" name="low-to-high" id="low-to-high" />
+          <input
+            type="radio"
+            name="price-sort"
+            id="low-to-high"
+            onChange={() => handlePriceSort('low-to-high')}
+          />
           <label htmlFor="low-to-high">Low to High</label>
         </div>
         <div className="flex gap-1">
-          <input type="radio" name="high-to-low" id="high-to-lwo" />
+          <input
+            type="radio"
+            name="price-sort"
+            id="high-to-low"
+            onChange={() => handlePriceSort('high-to-low')}
+          />
           <label htmlFor="high-to-low">High to low</label>
         </div>
       </div>
