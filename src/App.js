@@ -6,6 +6,7 @@ import ProductsList from './pages/ProductsList';
 import RootLayout from './rootLayout/RootLayout';
 import ProductDetails from './pages/ProductDetails';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 function App() {
   return (
     <div className="App min-h-screen bg-slate-50 text-2xl">
@@ -18,6 +19,7 @@ function App() {
             element={<ProductDetails />}
           />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/mockman" element={<Mockman />} />
         </Route>
       </Routes>

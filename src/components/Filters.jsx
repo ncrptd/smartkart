@@ -3,7 +3,7 @@ import { ACTIONS } from '../reducer/dataReducer';
 const RATINGS = [4, 3, 2, 1];
 export default function Filters() {
   const dispatch = useDataDispatch();
-  const { categoryFilter } = useData();
+  const { categoryFilter, priceFilter, ratingsFilter, sortBy } = useData();
   const handleCategoryFilter = (categoryName, checked) => {
     dispatch({
       type: ACTIONS.CATEGORYFILTER,
@@ -20,7 +20,12 @@ export default function Filters() {
     <div className="container mx-auto  flex flex-col gap-4 text-base w-full px-4">
       <div className="flex justify-between">
         <h2 className="font-bold">Filters</h2>
-        <button className="font-thin">Clear</button>
+        <button
+          className="font-thin hover:text-slate-500"
+          onClick={() => dispatch({ type: ACTIONS.CLEARFILTERS })}
+        >
+          Clear
+        </button>
       </div>
       {/* price filter  */}
 
@@ -35,6 +40,7 @@ export default function Filters() {
           onChange={(e) => {
             dispatch({ type: ACTIONS.PRICEFILTER, payload: e.target.value });
           }}
+          value={priceFilter}
           className="w-full"
           type="range"
           min={50}
@@ -45,7 +51,7 @@ export default function Filters() {
       <div className="flex flex-col gap-2">
         <p className="font-bold">Category</p>
         {Object.keys(categoryFilter).map((category) => (
-          <div className="flex gap-1" key={category}>
+          <div className="flex gap-2" key={category}>
             <input
               type="checkbox"
               name={category}
@@ -64,27 +70,29 @@ export default function Filters() {
         <p className="font-bold">Rating</p>
 
         {RATINGS.map((rating) => (
-          <div className="flex gap-1" key={rating}>
+          <div className="flex gap-2" key={rating}>
             <input
               type="radio"
               name="ratings"
               id={rating}
               value={rating}
-              onChange={() => handleRatingFilter(rating)}
+              onChange={() => {
+                handleRatingFilter(rating);
+              }}
             />
-            <label htmlFor={rating}>{rating} Stars & above</label>
+            <label htmlFor={rating}>{rating} stars & above</label>
           </div>
         ))}
       </div>
       {/* Sort by  */}
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-2">
         <p
           className="font-bold
         "
         >
           Sort By
         </p>
-        <div className="flex gap-1">
+        <div className="flex gap-2">
           <input
             type="radio"
             name="price-sort"

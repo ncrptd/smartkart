@@ -12,7 +12,7 @@ export const initialState = {
   categories: [],
   cart: [],
   wishList: [],
-  priceFilter: null,
+  priceFilter: 200,
   categoryFilter: { Men: false, Women: false },
   ratingsFilter: null,
   sortBy: null,
@@ -57,24 +57,13 @@ export default function dataReducer(state, action) {
     case ACTIONS.CLEARFILTERS: {
       return {
         ...state,
-        priceFilter: null,
+        priceFilter: 200,
         categoryFilter: { Men: false, Women: false },
         ratingsFilter: null,
         sortBy: null,
       };
     }
-    // case ACTIONS.AddTOWISHLIST: {
-    //   const product = state.products.find(({ id }) => id === payload);
-    //   const getWishList = async () => {
-    //     const wishList = await axios.post('/api/user/wishlist', {
-    //       product,
-    //     });
-    //     return wishList;
-    //   };
-    //   const wishlist = getWishList();
-    //   console.log(wishlist);
-    //   return state;
-    // }
+
     default: {
       return state;
     }

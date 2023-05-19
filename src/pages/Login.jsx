@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuthDispatch } from '../contexts/AuthContext';
 import { ACTIONS_AUTH } from '../reducer/authReducer';
 const GUEST = {
   email: 'johndoe@gmail.com',
   password: 'johndoe',
 };
+
 function Login() {
   const [formDetails, setFormDetails] = useState({
     email: '',
@@ -28,11 +30,17 @@ function Login() {
           password: password,
         });
         const { foundUser, encodedToken } = res.data;
-
         dispatch({
           type: ACTIONS_AUTH.LOGIN_SUCCESS,
-          payload: { user: foundUser, encodedToken },
+          payload: { userDetails: foundUser },
         });
+        localStorage.setItem(
+          'user',
+          JSON.stringify({
+            userDetails: foundUser,
+            encodedToken: encodedToken,
+          })
+        );
       } catch (error) {
         console.log(error.message);
         dispatch({ type: ACTIONS_AUTH.LOGIN_FAILURE, payload: error });
@@ -45,13 +53,12 @@ function Login() {
     setFormDetails((prev) => {
       return { ...prev, email, password };
     });
-    console.log(guest);
     handleLogin(guest);
   }
   return (
     <main className="h-screen flex justify-center items-center bg-slate-100 p-6">
-      <form className="container mx-auto flex flex-col justify-center item-center space-y-4 bg-white py-10 px-4  md:w-2/6 rounded-lg shadow-2xl text-base">
-        <label htmlFor="email">Email address</label>
+      <form className="container mx-auto flex flex-col justify-center item-center gap-4 bg-white p-12  md:w-2/5 rounded-2xl shadow-2xl text-base">
+        <label htmlFor="email ">Email address</label>
         <input
           type="email"
           id="email"
@@ -91,6 +98,12 @@ function Login() {
         >
           Login as Guest
         </button>
+        <p>
+          Don't have an account ?{' '}
+          <Link to="/signup" className="text-pink-600 hover:text-slate-500">
+            Sign up
+          </Link>
+        </p>
       </form>
     </main>
   );

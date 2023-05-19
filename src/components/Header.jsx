@@ -3,8 +3,7 @@ import Searchbar from './Searchbar';
 import { useAuth } from '../contexts/AuthContext';
 
 function Header() {
-  const { user, isLoggedIn } = useAuth();
-
+  const { userDetails, isLoggedIn } = useAuth();
   return (
     <header className=" p-4  sticky top-0 z-10 bg-slate-100 shadow-xl">
       <div className="flex justify-between gap-2 items-center container mx-auto ">
@@ -14,7 +13,7 @@ function Header() {
         <ul className=" flex justify-center space-x-4 items-center">
           <li className="text-fuchsia-400">
             {isLoggedIn ? (
-              <Link>Hello {user.firstName}</Link>
+              <Link>Hello {userDetails?.firstName}</Link>
             ) : (
               <Link to="/login">Login</Link>
             )}

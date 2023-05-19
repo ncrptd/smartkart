@@ -30,6 +30,7 @@ export default function DataProvider({ children }) {
       });
     } catch (error) {}
   };
+
   useEffect(() => {
     getProductsData();
     getCategories();
