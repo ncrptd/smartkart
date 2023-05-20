@@ -65,10 +65,10 @@ export default function dataReducer(state, action) {
       };
     }
     case ACTIONS.GET_CART: {
-      return { ...state, cart: [...state.cart, { ...payload.cart }] };
+      return { ...state, cart: payload.cart };
     }
     case ACTIONS.ADD_TO_CART: {
-      return { ...state, cart: payload.cart };
+      return { ...state, cart: [...state.cart, { ...payload.cart }] };
     }
 
     default: {
