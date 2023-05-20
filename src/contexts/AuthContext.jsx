@@ -23,6 +23,7 @@ export default function AuthProvider({ children }) {
   useEffect(() => {
     getUserDetails();
   }, []);
+
   return (
     <AuthContext.Provider value={state}>
       <AuthDispatchContext.Provider value={dispatch}>

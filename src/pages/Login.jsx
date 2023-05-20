@@ -1,20 +1,22 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useAuthDispatch } from '../contexts/AuthContext';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth, useAuthDispatch } from '../contexts/AuthContext';
 import { ACTIONS_AUTH } from '../reducer/authReducer';
 const GUEST = {
   email: 'johndoe@gmail.com',
   password: 'johndoe',
 };
 
-function Login() {
+export default function Login() {
   const [formDetails, setFormDetails] = useState({
     email: '',
     password: '',
   });
   const dispatch = useAuthDispatch();
-
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { isLoggedIn } = useAuth();
   const handleFormDetails = (e) => {
     const value = e.target.value;
     const name = e.target.name;
@@ -22,7 +24,9 @@ function Login() {
       return { ...prevForm, [name]: value };
     });
   };
+
   async function handleLogin({ email, password }) {
+    if (isLoggedIn) return;
     if (email !== '' && password !== '') {
       try {
         const res = await axios.post('/api/auth/login', {
@@ -41,6 +45,11 @@ function Login() {
             encodedToken: encodedToken,
           })
         );
+        if (location.pathname === '/login') {
+          navigate('/');
+        } else {
+          navigate(location?.state?.from?.pathname);
+        }
       } catch (error) {
         console.log(error.message);
         dispatch({ type: ACTIONS_AUTH.LOGIN_FAILURE, payload: error });
@@ -108,5 +117,3 @@ function Login() {
     </main>
   );
 }
-
-export default Login;

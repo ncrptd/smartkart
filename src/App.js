@@ -7,6 +7,8 @@ import RootLayout from './rootLayout/RootLayout';
 import ProductDetails from './pages/ProductDetails';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import RequiresAuth from './components/RequiresAuth';
+import Cart from './pages/Cart';
 function App() {
   return (
     <div className="App min-h-screen bg-slate-50 text-2xl">
@@ -20,6 +22,14 @@ function App() {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/cart"
+            element={
+              <RequiresAuth>
+                <Cart />
+              </RequiresAuth>
+            }
+          />
           <Route path="/mockman" element={<Mockman />} />
         </Route>
       </Routes>

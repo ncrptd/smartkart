@@ -39,8 +39,9 @@ function Header() {
               </svg>
             </Link>
           </li>
+          {/* cart  */}
           <li>
-            <Link>
+            <Link to="/cart">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
