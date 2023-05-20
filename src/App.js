@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import RequiresAuth from './components/RequiresAuth';
 import Cart from './pages/Cart';
+import ProfileDetails from './pages/ProfileDetails';
 function App() {
   return (
     <div className="App min-h-screen bg-slate-50 text-2xl">
@@ -18,8 +19,13 @@ function App() {
           <Route path="/productsList" element={<ProductsList />} />
           <Route
             path="/productDetails/:productId"
-            element={<ProductDetails />}
+            element={
+              <RequiresAuth>
+                <ProductDetails />
+              </RequiresAuth>
+            }
           />
+          <Route path="/profileDetails" element={<ProfileDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route

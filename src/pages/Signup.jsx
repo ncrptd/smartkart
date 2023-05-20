@@ -48,8 +48,8 @@ export default function Signup() {
         <label htmlFor="password">Password</label>
         <input
           type="password"
-          id="password"
-          name="password"
+          id="confirm-password"
+          name="confirm-password"
           value={formDetails.confirmPassword}
           placeholder="*******"
           onChange={handleFormDetails}

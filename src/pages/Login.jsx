@@ -45,7 +45,7 @@ export default function Login() {
             encodedToken: encodedToken,
           })
         );
-        if (location.pathname === '/login') {
+        if (location?.state?.from?.pathname === undefined) {
           navigate('/');
         } else {
           navigate(location?.state?.from?.pathname);

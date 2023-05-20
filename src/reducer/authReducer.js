@@ -1,7 +1,10 @@
+import { ACTIONS } from './dataReducer';
+
 export const ACTIONS_AUTH = {
   GET_USER: 'get-user',
   LOGIN_SUCCESS: 'login-success',
   LOGIN_FAILURE: 'login-failure',
+  LOGOUT: 'logout',
 };
 
 export const initialAuthState = {
@@ -25,6 +28,9 @@ export default function authReducer(state, action) {
     }
     case ACTIONS_AUTH.LOGIN_FAILURE: {
       return { ...state, error: payload };
+    }
+    case ACTIONS_AUTH.LOGOUT: {
+      return { ...state, isLoggedIn: false, userDetails: null };
     }
     default: {
       return state;
