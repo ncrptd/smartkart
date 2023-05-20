@@ -1,5 +1,3 @@
-import { ACTIONS } from './dataReducer';
-
 export const ACTIONS_AUTH = {
   GET_USER: 'get-user',
   LOGIN_SUCCESS: 'login-success',
