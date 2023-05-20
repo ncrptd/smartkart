@@ -3,7 +3,7 @@ import { ACTIONS } from '../reducer/dataReducer';
 const RATINGS = [4, 3, 2, 1];
 export default function Filters() {
   const dispatch = useDataDispatch();
-  const { categoryFilter, priceFilter, ratingsFilter, sortBy } = useData();
+  const { categoryFilter, priceFilter } = useData();
   const handleCategoryFilter = (categoryName, checked) => {
     dispatch({
       type: ACTIONS.CATEGORYFILTER,

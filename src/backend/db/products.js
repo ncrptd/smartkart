@@ -1,129 +1,133 @@
-import { v4 as uuid } from 'uuid';
-
 /**
  * Product Database can be added here.
  * You can add products of your wish with different attributes
  * */
 export const products = [
   {
-    id: uuid(),
+    id: 'rA3vD9xG',
     title: "Men's Slim-Fit Shirt",
     description: 'A classic slim-fit shirt for men in a range of colors',
     price: '49.99',
     category: 'Men',
-    imageUrl: `https://res.cloudinary.com/dwghy6c1x/image/upload/v1684297577/Men_s_Slim-Fit_Shirt_hmeyxz.webp`,
+    imageUrl:
+      'https://res.cloudinary.com/dwghy6c1x/image/upload/v1684297577/Men_s_Slim-Fit_Shirt_hmeyxz.webp',
     rating: 4.5,
     numReviews: '10k',
     colors: ['white', 'blue', 'black', 'red'],
     sizes: ['S', 'M', 'L', 'XL'],
   },
   {
-    id: uuid(),
+    id: 'eF5uK2wP',
     title: "Women's Skinny Jeans",
     description: 'Trendy and versatile skinny jeans for women',
     price: '59.99',
     category: 'Women',
-    imageUrl: `https://res.cloudinary.com/dwghy6c1x/image/upload/v1684297577/Women_s_Skinny_Jeans_mkzb7a.webp`,
+    imageUrl:
+      'https://res.cloudinary.com/dwghy6c1x/image/upload/v1684297577/Women_s_Skinny_Jeans_mkzb7a.webp',
     rating: 4.8,
     numReviews: '25k',
     colors: ['blue', 'black', 'grey'],
     sizes: ['24', '26', '28', '30'],
   },
   {
-    id: uuid(),
+    id: 'sG6rM3tZ',
     title: 'Hoodie',
     description: 'A cozy and stylish hoodie',
     price: '79.99',
     category: 'Women',
-    imageUrl: `https://res.cloudinary.com/dwghy6c1x/image/upload/v1684297577/Unisex_Hoodie_rvyf2f.webp`,
+    imageUrl:
+      'https://res.cloudinary.com/dwghy6c1x/image/upload/v1684297577/Unisex_Hoodie_rvyf2f.webp',
     rating: 4.2,
     numReviews: '5k',
     colors: ['black', 'grey', 'navy'],
     sizes: ['S', 'M', 'L', 'XL'],
   },
   {
-    id: uuid(),
+    id: 'tY4sB1qF',
     title: "Men's Swim Shorts",
     description: 'Stylish and comfortable shorts for swimming',
     price: '39.99',
     category: 'Men',
-    imageUrl: `https://res.cloudinary.com/dwghy6c1x/image/upload/v1684297577/Men_s_Swim_Shorts_c7z7wn.webp`,
+    imageUrl:
+      'https://res.cloudinary.com/dwghy6c1x/image/upload/v1684297577/Men_s_Swim_Shorts_c7z7wn.webp',
     rating: 4.2,
     numReviews: '8k',
     colors: ['blue', 'black', 'red'],
     sizes: ['30', '32', '34', '36'],
   },
-
   {
-    id: uuid(),
+    id: 'pW8nC7mJ',
     title: "Women's Skirt",
     description: 'A flowy and feminine skirt for women',
     price: '79.99',
     category: 'Women',
-    imageUrl: `https://res.cloudinary.com/dwghy6c1x/image/upload/v1684297577/Women_s_Skirt_g8g8pt.webp`,
+    imageUrl:
+      'https://res.cloudinary.com/dwghy6c1x/image/upload/v1684297577/Women_s_Skirt_g8g8pt.webp',
     rating: 4.6,
     numReviews: '22k',
     colors: ['blue', 'black', 'pink'],
     sizes: ['S', 'M', 'L'],
   },
-
   {
-    id: uuid(),
+    id: 'qZ9lA4sE',
     title: "Men's Leather Jacket",
     description: 'A classic leather jacket for men',
     price: '199.99',
     category: 'Men',
-    imageUrl: `https://res.cloudinary.com/dwghy6c1x/image/upload/v1684297577/Men_s_Leather_Jacket_bc8j2s.webp`,
+    imageUrl:
+      'https://res.cloudinary.com/dwghy6c1x/image/upload/v1684297577/Men_s_Leather_Jacket_bc8j2s.webp',
     rating: 4.8,
     numReviews: '25k',
     colors: ['black', 'brown'],
     sizes: ['S', 'M', 'L', 'XL'],
   },
-
   {
-    id: uuid(),
+    id: 'mJ5pD8vQ',
     title: "Women's Denim Jacket",
     description: 'A trendy and versatile jacket for women',
     price: '119.99',
     category: 'Women',
-    imageUrl: `https://res.cloudinary.com/dwghy6c1x/image/upload/v1684297577/Women_s_Denim_Jacket_jiusof.webp`,
+    imageUrl:
+      'https://res.cloudinary.com/dwghy6c1x/image/upload/v1684297577/Women_s_Denim_Jacket_jiusof.webp',
     rating: 4.7,
     numReviews: '18k',
     colors: ['blue', 'black'],
     sizes: ['S', 'M', 'L'],
   },
   {
-    id: uuid(),
+    id: 'xG3zV6tA',
     title: "Men's T-Shirt",
     description: 'A comfortable and casual T-shirt for men',
     price: '29.99',
     category: 'Men',
-    imageUrl: `https://res.cloudinary.com/dwghy6c1x/image/upload/v1684297577/Men_s_T-Shirt_qnpz1j.webp`,
+    imageUrl:
+      'https://res.cloudinary.com/dwghy6c1x/image/upload/v1684297577/Men_s_T-Shirt_qnpz1j.webp',
     rating: 4.4,
     numReviews: '6k',
     colors: ['white', 'black', 'grey', 'navy'],
     sizes: ['S', 'M', 'L', 'XL'],
   },
-
   {
-    id: uuid(),
+    id: 'gH6bR2wM',
     title: "Men's Dress Shoes",
     description: 'Classic and stylish dress shoes for men',
     price: '129.99',
     category: 'Men',
-    imageUrl: `https://res.cloudinary.com/dwghy6c1x/image/upload/v1684297577/Men_s_Dress_Shoes_rfwihf.webp`,
+    imageUrl:
+      'https://res.cloudinary.com/dwghy6c1x/image/upload/v1684297577/Men_s_Dress_Shoes_rfwihf.webp',
     rating: 4.5,
     numReviews: '12k',
     colors: ['black', 'brown'],
     sizes: ['8', '9', '10', '11'],
   },
   {
-    id: uuid(),
+    id: 'wP4rS5uQ',
     title: "Women's Sneakers",
     description: 'Comfortable and stylish sneakers for women',
     price: '99.99',
     category: 'Women',
-    imageUrl: `https://res.cloudinary.com/dwghy6c1x/image/upload/v1684297578/Women_s_Sneakers_sxrzxe.webp`,
+    imageUrl:
+      'https://res.cloudinary.com/dwghy6c1x/image/upload/v1684297578/Women_s_Sneakers_sxrzxe.webp',
     rating: 1.2,
     numReviews: '15k',
     colors: ['white', 'black', 'pink'],

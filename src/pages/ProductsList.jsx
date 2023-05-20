@@ -56,8 +56,8 @@ function ProductsList() {
     categoryFilteredData,
     ratingsFilter
   );
-  const sortyByPriceData = getSortByPriceData(ratingsFilteredData, sortBy);
-  const visibleData = sortyByPriceData;
+  const sortByPriceData = getSortByPriceData(ratingsFilteredData, sortBy);
+  const visibleData = sortByPriceData;
   return (
     <div className="text-center flex p-4">
       <div className="hidden  md:block w-1/6">
@@ -65,19 +65,18 @@ function ProductsList() {
       </div>
 
       <div className="container mx-auto flex flex-wrap justify-center md:ml-4  align-center gap-6 pb-12 ">
-        {visibleData.map(
-          ({ id, title, price, imageUrl, rating, numReviews }) => (
-            <ProductCard
-              key={id}
-              id={id}
-              title={title}
-              price={price}
-              imageUrl={imageUrl}
-              rating={rating}
-              numReviews={numReviews}
-            />
-          )
-        )}
+        {visibleData.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            // id={id}
+            // title={title}
+            // price={price}
+            // imageUrl={imageUrl}
+            // rating={rating}
+            // numReviews={numReviews}
+          />
+        ))}
       </div>
 
       <div className=" fixed  bottom-0 left- 0 right-0 w-full bg-slate-100 text-base md:hidden p-2">

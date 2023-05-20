@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth, useAuthDispatch } from '../contexts/AuthContext';
 import { ACTIONS_AUTH } from '../reducer/authReducer';
+import { ACTIONS } from '../reducer/dataReducer';
 const GUEST = {
   email: 'johndoe@gmail.com',
   password: 'johndoe',
@@ -34,9 +35,14 @@ export default function Login() {
           password: password,
         });
         const { foundUser, encodedToken } = res.data;
+        console.log(foundUser);
         dispatch({
           type: ACTIONS_AUTH.LOGIN_SUCCESS,
           payload: { userDetails: foundUser },
+        });
+        dispatch({
+          type: ACTIONS.ADD_TO_CART,
+          payload: { cart: foundUser.cart },
         });
         localStorage.setItem(
           'user',

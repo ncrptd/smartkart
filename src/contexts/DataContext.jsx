@@ -8,7 +8,6 @@ const DataDispatchContext = createContext();
 
 export default function DataProvider({ children }) {
   const [state, dispatch] = useReducer(dataReducer, initialState);
-
   const getProductsData = async () => {
     try {
       const res = await axios.get('/api/products');
@@ -30,10 +29,25 @@ export default function DataProvider({ children }) {
       });
     } catch (error) {}
   };
-
+  const getCart = async () => {
+    const user = localStorage.getItem('user');
+    if (!user) return;
+    const encodedToken = JSON.parse(user).encodedToken;
+    try {
+      const res = await axios.get('/api/user/cart', {
+        headers: { authorization: encodedToken },
+      });
+      const cart = res.data.cart;
+      console.log('data', cart);
+      dispatch({ type: ACTIONS.GET_CART, payload: { cart: cart } });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     getProductsData();
     getCategories();
+    getCart();
   }, []);
 
   return (
