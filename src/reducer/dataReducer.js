@@ -5,8 +5,8 @@ export const ACTIONS = {
   RATINGSFILTER: 'ratings-filter',
   SORTBY: 'sort-by',
   CLEARFILTERS: 'clear-filters',
-  GET_CART: 'get-cart',
   ADD_TO_CART: 'add-to-cart',
+  CLEAR_CART: 'clear-cart',
 };
 export const initialState = {
   products: [],
@@ -64,13 +64,13 @@ export default function dataReducer(state, action) {
         sortBy: null,
       };
     }
-    case ACTIONS.GET_CART: {
+
+    case ACTIONS.ADD_TO_CART: {
       return { ...state, cart: payload.cart };
     }
-    case ACTIONS.ADD_TO_CART: {
-      return { ...state, cart: [...state.cart, { ...payload.cart }] };
+    case ACTIONS.CLEAR_CART: {
+      return { ...state, cart: [] };
     }
-
     default: {
       return state;
     }

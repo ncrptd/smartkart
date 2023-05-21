@@ -38,8 +38,7 @@ export default function DataProvider({ children }) {
         headers: { authorization: encodedToken },
       });
       const cart = res.data.cart;
-      console.log('data', cart);
-      dispatch({ type: ACTIONS.GET_CART, payload: { cart: cart } });
+      dispatch({ type: ACTIONS.ADD_TO_CART, payload: { cart: cart } });
     } catch (error) {
       console.log(error);
     }

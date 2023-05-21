@@ -1,8 +1,8 @@
-import { Navigate, useLocation } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import { Navigate, useLocation } from 'react-router-dom';
 
 export default function RequiresAuth({ children }) {
-  const { isLoggedIn } = useAuth();
+  const isLoggedIn = localStorage.getItem('user');
+
   const location = useLocation();
   return isLoggedIn ? (
     children

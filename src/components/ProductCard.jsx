@@ -10,19 +10,20 @@ function ProductCard({ product }) {
   const { isLoggedIn } = useAuth();
   const dispatch = useDataDispatch();
   const { cart } = useData();
-  console.log('p', cart);
-  const itemFound = false;
+  const itemFound = cart.some((product) => {
+    return product.id === id;
+  });
   const addToCartHandler = async () => {
-    const { encodedToken } = JSON.parse(localStorage.getItem('user'));
-    if (!encodedToken) return;
+    const user = localStorage.getItem('user');
+    if (!user) return;
+    const { encodedToken } = JSON.parse(user);
     try {
       const config = {
         headers: { authorization: encodedToken },
       };
-      const data = product;
+      const data = { product };
       const res = await axios.post('/api/user/cart', data, config);
       dispatch({ type: ACTIONS.ADD_TO_CART, payload: { cart: res.data.cart } });
-      console.log(res.data.cart);
     } catch (error) {
       console.log(error);
     }

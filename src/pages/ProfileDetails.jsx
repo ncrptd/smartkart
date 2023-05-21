@@ -1,9 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth, useAuthDispatch } from '../contexts/AuthContext';
 import { ACTIONS_AUTH } from '../reducer/authReducer';
+import { useDataDispatch } from '../contexts/DataContext';
+import { ACTIONS } from '../reducer/dataReducer';
 
 export default function ProfileDetails() {
-  const dispatch = useAuthDispatch();
+  const dispatchAuth = useAuthDispatch();
+  const dispatchData = useDataDispatch();
+
   const navigate = useNavigate();
   const { userDetails } = useAuth();
   return (
@@ -15,7 +19,8 @@ export default function ProfileDetails() {
            py-1 px-4   shadow-2xl"
         onClick={() => {
           localStorage.clear();
-          dispatch({ type: ACTIONS_AUTH.LOGOUT });
+          dispatchAuth({ type: ACTIONS_AUTH.LOGOUT });
+          dispatchData({ type: ACTIONS.CLEAR_CART });
           navigate('/');
         }}
       >

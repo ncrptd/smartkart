@@ -15,6 +15,7 @@ export const products = [
     numReviews: '10k',
     colors: ['white', 'blue', 'black', 'red'],
     sizes: ['S', 'M', 'L', 'XL'],
+    original_price: 84.99,
   },
   {
     id: 'eF5uK2wP',
@@ -28,6 +29,7 @@ export const products = [
     numReviews: '25k',
     colors: ['blue', 'black', 'grey'],
     sizes: ['24', '26', '28', '30'],
+    original_price: 95.99,
   },
   {
     id: 'sG6rM3tZ',
@@ -41,6 +43,7 @@ export const products = [
     numReviews: '5k',
     colors: ['black', 'grey', 'navy'],
     sizes: ['S', 'M', 'L', 'XL'],
+    original_price: 107.99,
   },
   {
     id: 'tY4sB1qF',
@@ -54,6 +57,7 @@ export const products = [
     numReviews: '8k',
     colors: ['blue', 'black', 'red'],
     sizes: ['30', '32', '34', '36'],
+    original_price: 94.99,
   },
   {
     id: 'pW8nC7mJ',
@@ -67,6 +71,7 @@ export const products = [
     numReviews: '22k',
     colors: ['blue', 'black', 'pink'],
     sizes: ['S', 'M', 'L'],
+    original_price: 200.99,
   },
   {
     id: 'qZ9lA4sE',
@@ -80,6 +85,7 @@ export const products = [
     numReviews: '25k',
     colors: ['black', 'brown'],
     sizes: ['S', 'M', 'L', 'XL'],
+    original_price: 250.99,
   },
   {
     id: 'mJ5pD8vQ',
@@ -93,6 +99,7 @@ export const products = [
     numReviews: '18k',
     colors: ['blue', 'black'],
     sizes: ['S', 'M', 'L'],
+    original_price: 400.99,
   },
   {
     id: 'xG3zV6tA',
@@ -106,6 +113,7 @@ export const products = [
     numReviews: '6k',
     colors: ['white', 'black', 'grey', 'navy'],
     sizes: ['S', 'M', 'L', 'XL'],
+    original_price: 32.99,
   },
   {
     id: 'gH6bR2wM',
@@ -119,6 +127,7 @@ export const products = [
     numReviews: '12k',
     colors: ['black', 'brown'],
     sizes: ['8', '9', '10', '11'],
+    original_price: 195.99,
   },
   {
     id: 'wP4rS5uQ',
@@ -132,5 +141,6 @@ export const products = [
     numReviews: '15k',
     colors: ['white', 'black', 'pink'],
     sizes: ['6', '7', '8', '9'],
+    original_price: 159.99,
   },
 ];
