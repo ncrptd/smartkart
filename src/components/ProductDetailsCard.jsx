@@ -14,7 +14,13 @@ export default function ProductDetailsCard({ product }) {
   //   sizes,
   //   _id,
   // } = product;
-  const { cart, wishlist, addToCartHandler, addToWishlistHandler } = useData();
+  const {
+    cart,
+    wishlist,
+    addToCartHandler,
+    addToWishlistHandler,
+    removeFromWishlistHandler,
+  } = useData();
   const { isLoggedIn } = useAuth();
 
   const inCart = cart?.some((item) => {
@@ -30,7 +36,13 @@ export default function ProductDetailsCard({ product }) {
           alt={product?.title}
           className="rounded-xl object-cover h-full w-full"
         />
-        <div onClick={(e) => addToWishlistHandler(inWishlist, e, product)}>
+        <div
+          onClick={() => {
+            inWishlist
+              ? removeFromWishlistHandler(product._id)
+              : addToWishlistHandler(product);
+          }}
+        >
           <FontAwesomeIcon
             icon={faHeart}
             // p-2 rounded-full bg-slate-300 text-gray-700 inline-block absolute top-2 right-2

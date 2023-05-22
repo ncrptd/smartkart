@@ -16,7 +16,7 @@ function ProductCard({ product }) {
   const inCart = cart?.some((product) => {
     return product._id === _id;
   });
-  const inWishlist = wishlist?.some((product) => product._id === _id);
+  const inWishlist = wishlist.some((product) => product._id === _id);
 
   return (
     <div className=" shadow-lg rounded-t-xl text-center overflow-hidden flex flex-col justify-between p-2  text-lg md:text-sm md:w-1/5 hover:bg-slate-100 hover:shadow-xl ">

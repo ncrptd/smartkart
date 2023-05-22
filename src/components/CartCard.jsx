@@ -8,14 +8,20 @@ export default function CartCard({ product }) {
   const discount = Number(
     ((original_price - price) / original_price) * 100
   ).toFixed(2);
-  const { incrementHandler, decrementHandler, removeFromCart } = useData();
-
+  const {
+    incrementHandler,
+    decrementHandler,
+    removeFromCart,
+    wishlist,
+    addToWishlistHandler,
+  } = useData();
+  const inWishlist = wishlist.some((product) => product._id === _id);
   return (
     <div className="flex rounded-xl md:w-3/4 md:shadow-lg overflow-hidden mb-4 text-slate-600">
       <Link to={`/productDetails/${_id}`}>
-        <div className="w-full h-full">
+        <div className="w-full h-full overflow-hidden">
           <img
-            className="h-full w-full object-cover rounded-tl-xl  rounded-tr-xl "
+            className="h-full w-full object-cover rounded-xl "
             src={imageUrl}
             alt={title}
           />
@@ -55,6 +61,28 @@ export default function CartCard({ product }) {
         >
           Remove From Cart
         </button>
+        {inWishlist ? (
+          <Link
+            to="/wishlist"
+            className=" text-sm bg-slate-500
+            w-full py-2  text-white text-center font-bold hover:bg-fuchsia-600
+            "
+          >
+            In Wishlist
+          </Link>
+        ) : (
+          <button
+            className=" text-sm bg-fuchsia-500
+            w-full py-2  text-white font-bold 
+            "
+            onClick={() => {
+              addToWishlistHandler(product);
+              removeFromCart(_id);
+            }}
+          >
+            Move To Wishlist
+          </button>
+        )}
       </div>
     </div>
   );

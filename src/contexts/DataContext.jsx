@@ -56,10 +56,26 @@ export default function DataProvider({ children }) {
       payload: { cart: res.data.cart },
     });
   };
+  const getWishlist = async () => {
+    const user = localStorage.getItem('user');
+    if (!user) return;
+    const { encodedToken } = JSON.parse(user);
+    const config = {
+      headers: {
+        authorization: encodedToken,
+      },
+    };
+    const res = await axios.get('/api/user/wishlist', config);
+    dispatch({
+      type: ACTIONS.ADD_TO_WISHLIST,
+      payload: { wishlist: res.data.wishlist },
+    });
+  };
   useEffect(() => {
     getProductsData();
     getCategories();
     getCart();
+    getWishlist();
   }, []);
 
   const addToCartHandler = async (product) => {
