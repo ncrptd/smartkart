@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { useDataDispatch } from '../contexts/DataContext';
+import { useData, useDataDispatch } from '../contexts/DataContext';
 import { ACTIONS } from '../reducer/dataReducer';
 export default function CartCard({ product }) {
   let { imageUrl, title, price, qty, id, _id, original_price } = product;
-
   price = parseFloat(price);
   original_price = parseFloat(original_price);
 
   const discount = Number(((1 - price / original_price) * 100).toFixed(1));
   const dispatch = useDataDispatch();
+  const { cart } = useData();
 
   const incrementHandler = async () => {
     try {
@@ -36,11 +36,17 @@ export default function CartCard({ product }) {
         },
       };
       const res = await axios.post(`/api/user/cart/${_id}`, body, config);
-      console.log(res);
-      dispatch({ type: ACTIONS.ADD_TO_CART, payload: { cart: res.data.cart } });
+      const decrementedCart = res.data.cart;
+      const updatedCart = decrementedCart.filter((item) => item.qty >= 1);
+      dispatch({ type: ACTIONS.ADD_TO_CART, payload: { cart: updatedCart } });
     } catch (error) {
       console.log(error);
     }
+  };
+  const removeFromCart = () => {
+    const newCart = cart.filter((item) => item._id !== _id);
+    console.log(newCart);
+    dispatch({ type: ACTIONS.ADD_TO_CART, payload: { cart: newCart } });
   };
   return (
     <div className="flex rounded-xl md:w-3/4 md:shadow-lg overflow-hidden mb-4 text-slate-600">
@@ -83,6 +89,7 @@ export default function CartCard({ product }) {
           className=" text-sm bg-pink-600
             w-full py-2  text-white font-bold 
             "
+          onClick={removeFromCart}
         >
           Remove From Cart
         </button>

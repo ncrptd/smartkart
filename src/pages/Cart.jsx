@@ -4,7 +4,9 @@ import { useData } from '../contexts/DataContext';
 
 export default function Cart() {
   const { cart } = useData();
-  const price = cart?.reduce((acc, curr) => (acc += Number(curr.price)), 0);
+  const price = cart
+    ?.reduce((acc, curr) => (acc += Number(curr.price) * Number(curr.qty)), 0)
+    .toFixed(2);
 
   return (
     <main className="p-6">

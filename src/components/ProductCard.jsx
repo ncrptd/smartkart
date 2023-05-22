@@ -2,32 +2,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import axios from 'axios';
-import { useData, useDataDispatch } from '../contexts/DataContext';
-import { ACTIONS } from '../reducer/dataReducer';
+import { useData } from '../contexts/DataContext';
 function ProductCard({ product }) {
   const { title, price, imageUrl, rating, _id } = product;
   const { isLoggedIn } = useAuth();
-  const dispatch = useDataDispatch();
-  const { cart } = useData();
+  const { cart, addToCartHandler } = useData();
   const itemFound = cart?.some((product) => {
     return product._id === _id;
   });
-  const addToCartHandler = async () => {
-    const user = localStorage.getItem('user');
-    if (!user) return;
-    const { encodedToken } = JSON.parse(user);
-    try {
-      const config = {
-        headers: { authorization: encodedToken },
-      };
-      const data = { product };
-      const res = await axios.post('/api/user/cart', data, config);
-      dispatch({ type: ACTIONS.ADD_TO_CART, payload: { cart: res.data.cart } });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
   return (
     <div className=" shadow-lg rounded-t-xl text-center overflow-hidden flex flex-col justify-between p-2  text-lg md:text-sm md:w-1/5 hover:bg-slate-100 hover:shadow-xl ">
       <div className="relative shadow-lg h-3/4 md:h-4/6 ">
@@ -72,7 +55,7 @@ function ProductCard({ product }) {
               to={!isLoggedIn ? '/login' : ''}
               className="bg-pink-600 text-white
            py-1 px-4 block w-full"
-              onClick={addToCartHandler}
+              onClick={() => addToCartHandler(product)}
             >
               Add to Cart
             </Link>
