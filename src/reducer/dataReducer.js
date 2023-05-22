@@ -7,12 +7,13 @@ export const ACTIONS = {
   CLEARFILTERS: 'clear-filters',
   ADD_TO_CART: 'add-to-cart',
   CLEAR_CART: 'clear-cart',
+  ADD_TO_WISHLIST: 'add-to-wishlist',
 };
 export const initialState = {
   products: [],
   categories: [],
   cart: [],
-  wishList: [],
+  wishlist: [],
   priceFilter: 200,
   categoryFilter: { Men: false, Women: false },
   ratingsFilter: null,
@@ -70,6 +71,9 @@ export default function dataReducer(state, action) {
     }
     case ACTIONS.CLEAR_CART: {
       return { ...state, cart: [] };
+    }
+    case ACTIONS.ADD_TO_WISHLIST: {
+      return { ...state, wishlist: payload.wishlist };
     }
     default: {
       return state;

@@ -12,7 +12,7 @@ export default function DataProvider({ children }) {
     products,
     categories,
     cart,
-    wishList,
+    wishlist,
     priceFilter,
     categoryFilter,
     ratingsFilter,
@@ -26,6 +26,7 @@ export default function DataProvider({ children }) {
         type: ACTIONS.INITIAL_LOAD,
         payload: { products: res.data.products },
       });
+      return res.data.products;
     } catch (error) {
       console.log(error);
     }
@@ -50,7 +51,6 @@ export default function DataProvider({ children }) {
       },
     };
     const res = await axios.get('/api/user/cart', config);
-    console.log(res.data.cart);
     dispatch({
       type: ACTIONS.ADD_TO_CART,
       payload: { cart: res.data.cart },
@@ -70,28 +70,111 @@ export default function DataProvider({ children }) {
       const config = {
         headers: { authorization: encodedToken },
       };
-      const data = { product };
+      const body = { product };
 
-      const res = await axios.post('/api/user/cart', data, config);
+      const res = await axios.post('/api/user/cart', body, config);
 
       dispatch({ type: ACTIONS.ADD_TO_CART, payload: { cart: res.data.cart } });
     } catch (error) {
       console.log(error);
     }
   };
+  const removeFromCart = async (_id) => {
+    try {
+      const { encodedToken } = JSON.parse(localStorage.getItem('user'));
+      const config = { headers: { authorization: encodedToken } };
 
+      const res = await axios.delete(`/api/user/cart/${_id}`, config);
+      dispatch({ type: ACTIONS.ADD_TO_CART, payload: { cart: res.data.cart } });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const incrementHandler = async (_id) => {
+    try {
+      const { encodedToken } = JSON.parse(localStorage.getItem('user'));
+      const config = { headers: { authorization: encodedToken } };
+      const body = {
+        action: {
+          type: 'increment',
+        },
+      };
+      const res = await axios.post(`/api/user/cart/${_id}`, body, config);
+      dispatch({ type: ACTIONS.ADD_TO_CART, payload: { cart: res.data.cart } });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const decrementHandler = async (_id) => {
+    const foundItem = cart.find((item) => item._id === _id);
+    if (foundItem.qty === 1) {
+      removeFromCart(_id);
+    }
+    try {
+      const { encodedToken } = JSON.parse(localStorage.getItem('user'));
+      const config = { headers: { authorization: encodedToken } };
+      const body = {
+        action: {
+          type: 'decrement',
+        },
+      };
+      const res = await axios.post(`/api/user/cart/${_id}`, body, config);
+      const decrementedCart = res.data.cart;
+      dispatch({
+        type: ACTIONS.ADD_TO_CART,
+        payload: { cart: decrementedCart },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const addToWishlistHandler = async (product) => {
+    try {
+      const { encodedToken } = JSON.parse(localStorage.getItem('user'));
+      const config = { headers: { authorization: encodedToken } };
+
+      const body = { product };
+      const res = await axios.post('/api/user/wishlist', body, config);
+      dispatch({
+        type: ACTIONS.ADD_TO_WISHLIST,
+        payload: { wishlist: res.data.wishlist },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const removeFromWishlistHandler = async (_id) => {
+    console.log(_id);
+    try {
+      const { encodedToken } = JSON.parse(localStorage.getItem('user'));
+      const config = {
+        headers: { authorization: encodedToken },
+      };
+      const res = await axios.delete(`/api/user/wishlist/${_id}`, config);
+      dispatch({
+        type: ACTIONS.ADD_TO_WISHLIST,
+        payload: { wishlist: res.data.wishlist },
+      });
+    } catch (error) {}
+  };
   return (
     <DataContext.Provider
       value={{
         products,
         categories,
         cart,
-        wishList,
+        wishlist,
         priceFilter,
         categoryFilter,
         ratingsFilter,
         sortBy,
+        getProductsData,
         addToCartHandler,
+        incrementHandler,
+        decrementHandler,
+        removeFromCart,
+        addToWishlistHandler,
+        removeFromWishlistHandler,
       }}
     >
       <DataDispatchContext.Provider value={dispatch}>

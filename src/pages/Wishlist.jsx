@@ -1,3 +1,11 @@
+import { useData } from '../contexts/DataContext';
+
 export default function Wishlist() {
-  return <div className="container mx-auto flex flex-wrap p-4"></div>;
+  const { wishlist } = useData();
+  console.log(wishlist);
+  return (
+    <div className="container mx-auto flex flex-wrap p-4">
+      wishlist {wishlist.length}
+    </div>
+  );
 }

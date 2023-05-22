@@ -5,8 +5,10 @@ import { useData } from '../contexts/DataContext';
 
 function Header() {
   const { isLoggedIn } = useAuth();
-  const { cart } = useData();
+  const { cart, wishlist } = useData();
+
   const totalCartItems = cart.length >= 1 ? cart.length : undefined;
+  const totalWishlistItems = wishlist.length >= 1 ? wishlist.length : undefined;
 
   return (
     <header className=" p-4  sticky top-0 z-10 bg-slate-100 shadow-xl ">
@@ -48,15 +50,25 @@ function Header() {
           <li>
             <Searchbar placeholder="search" />
           </li>
-          <li>
-            <Link>
+          {/* wishlist  */}
+          <li className="relative">
+            <span
+              className={
+                totalWishlistItems
+                  ? 'absolute bottom-5 left-2 text-sm bg-pink-500 rounded-full w-5 h-5 flex justify-center items-center text-white'
+                  : ''
+              }
+            >
+              {totalWishlistItems}
+            </span>
+            <Link to="/wishlist">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                className="w-6 h-6"
+                className=" relative w-6 h-6"
               >
                 <path
                   strokeLinecap="round"
@@ -67,11 +79,11 @@ function Header() {
             </Link>
           </li>
           {/* cart  */}
-          <li>
+          <li className="relative ">
             <span
               className={
                 totalCartItems
-                  ? 'absolute bottom-9 right-2 text-lg bg-pink-500 rounded-full w-5 h-5 flex justify-center items-center text-white'
+                  ? 'absolute bottom-5 left-2 text-sm bg-pink-500 rounded-full w-5 h-5 flex justify-center items-center text-white'
                   : ''
               }
             >
@@ -84,7 +96,7 @@ function Header() {
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                className=" relative w-6 h-6"
+                className="  w-6 h-6"
               >
                 <path
                   strokeLinecap="round"

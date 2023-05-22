@@ -10,6 +10,7 @@ import Signup from './pages/Signup';
 import RequiresAuth from './components/RequiresAuth';
 import Cart from './pages/Cart';
 import ProfileDetails from './pages/ProfileDetails';
+import Wishlist from './pages/Wishlist';
 function App() {
   return (
     <div className="App min-h-screen bg-slate-50 text-2xl">
@@ -36,6 +37,14 @@ function App() {
               </RequiresAuth>
             }
           />
+          <Route
+            path="/wishlist"
+            element={
+              <RequiresAuth>
+                <Wishlist />
+              </RequiresAuth>
+            }
+          ></Route>
           <Route path="/mockman" element={<Mockman />} />
         </Route>
       </Routes>
