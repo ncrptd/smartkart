@@ -4,25 +4,25 @@ import { useData } from '../contexts/DataContext';
 
 export default function Cart() {
   const { cart } = useData();
-  const price = cart.reduce((acc, curr) => (acc += Number(curr.price)), 0);
+  const price = cart?.reduce((acc, curr) => (acc += Number(curr.price)), 0);
 
   return (
     <main className="p-6">
-      {cart.length < 1 ? (
+      {cart?.length < 1 ? (
         <p className="text-center font-bold uppercase">Cart is Empty</p>
       ) : (
         <div
           className="container mx-auto md:flex gap-4  md:px-32 items-start
       "
         >
-          <div>
-            {cart.map((product) => (
+          <div className="w-full">
+            {cart?.map((product) => (
               <CartCard key={product.id} product={product} />
             ))}
           </div>
           {/* price details  */}
           <div
-            className="rounded-xl shadow-lg mt-6 px-4 py-12 text-lg  md:p-4 md:mt-0 md:flex md:flex-col md:justify-between md:text-2xl md:w-3/4  
+            className="rounded-xl shadow-lg mt-6 px-4 py-12 text-lg  md:p-4 md:mt-0 md:flex md:flex-col md:justify-between md:text-2xl md:w-3/4 
           text-slate-600 
 
        "
@@ -31,7 +31,7 @@ export default function Cart() {
             <hr />
             <div className="flex flex-col gap-4 mt-2 justify-between font-semibold">
               <p className="flex justify-between">
-                Price ({cart.length} item) <span>&#36;{price}</span>
+                Price ({cart?.length} item) <span>&#36;{price}</span>
               </p>
               <p className="flex justify-between">Discount </p>
               <p className="flex justify-between">
@@ -40,7 +40,7 @@ export default function Cart() {
               <p className="flex justify-between">TOTAL AMOUNT {}</p>
               <button
                 className=" text-sm bg-pink-600
-            w-full py-1.5 px-2 text-white font-bold 
+            w-full py-2.5 px-2 text-white font-bold 
             "
               >
                 PLACE ORDER

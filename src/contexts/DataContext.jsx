@@ -12,7 +12,7 @@ export default function DataProvider({ children }) {
     try {
       const res = await axios.get('/api/products');
       dispatch({
-        type: ACTIONS.INITIALLOAD,
+        type: ACTIONS.INITIAL_LOAD,
         payload: { products: res.data.products },
       });
     } catch (error) {
@@ -24,7 +24,7 @@ export default function DataProvider({ children }) {
     try {
       const res = await axios.get('/api/categories');
       dispatch({
-        type: ACTIONS.INITIALLOAD,
+        type: ACTIONS.INITIAL_LOAD,
         payload: { categories: res.data.categories },
       });
     } catch (error) {}
@@ -32,16 +32,18 @@ export default function DataProvider({ children }) {
   const getCart = async () => {
     const user = localStorage.getItem('user');
     if (!user) return;
-    const encodedToken = JSON.parse(user).encodedToken;
-    try {
-      const res = await axios.get('/api/user/cart', {
-        headers: { authorization: encodedToken },
-      });
-      const cart = res.data.cart;
-      dispatch({ type: ACTIONS.ADD_TO_CART, payload: { cart: cart } });
-    } catch (error) {
-      console.log(error);
-    }
+    const { encodedToken } = JSON.parse(user);
+    console.log(encodedToken);
+    const config = {
+      headers: {
+        authorization: encodedToken,
+      },
+    };
+    const res = await axios.get('/api/user/cart', config);
+    dispatch({
+      type: ACTIONS.ADD_TO_CART,
+      payload: { cart: res.data.cart },
+    });
   };
   useEffect(() => {
     getProductsData();

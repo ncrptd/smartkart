@@ -5,7 +5,7 @@ import ProductDetailsCard from '../components/ProductDetailsCard';
 export default function ProductDetails() {
   const { productId } = useParams();
   const { products } = useData();
-  const product = products.find(({ id }) => id === productId);
+  const product = products.find(({ _id }) => _id === productId);
 
   return (
     <section>

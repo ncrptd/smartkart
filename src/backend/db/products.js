@@ -4,7 +4,7 @@
  * */
 export const products = [
   {
-    id: 'rA3vD9xG',
+    _id: 'rA3vD9xG',
     title: "Men's Slim-Fit Shirt",
     description: 'A classic slim-fit shirt for men in a range of colors',
     price: '49.99',
@@ -18,7 +18,7 @@ export const products = [
     original_price: 84.99,
   },
   {
-    id: 'eF5uK2wP',
+    _id: 'eF5uK2wP',
     title: "Women's Skinny Jeans",
     description: 'Trendy and versatile skinny jeans for women',
     price: '59.99',
@@ -32,7 +32,7 @@ export const products = [
     original_price: 95.99,
   },
   {
-    id: 'sG6rM3tZ',
+    _id: 'sG6rM3tZ',
     title: 'Hoodie',
     description: 'A cozy and stylish hoodie',
     price: '79.99',
@@ -46,7 +46,7 @@ export const products = [
     original_price: 107.99,
   },
   {
-    id: 'tY4sB1qF',
+    _id: 'tY4sB1qF',
     title: "Men's Swim Shorts",
     description: 'Stylish and comfortable shorts for swimming',
     price: '39.99',
@@ -60,7 +60,7 @@ export const products = [
     original_price: 94.99,
   },
   {
-    id: 'pW8nC7mJ',
+    _id: 'pW8nC7mJ',
     title: "Women's Skirt",
     description: 'A flowy and feminine skirt for women',
     price: '79.99',
@@ -74,7 +74,7 @@ export const products = [
     original_price: 200.99,
   },
   {
-    id: 'qZ9lA4sE',
+    _id: 'qZ9lA4sE',
     title: "Men's Leather Jacket",
     description: 'A classic leather jacket for men',
     price: '199.99',
@@ -88,7 +88,7 @@ export const products = [
     original_price: 250.99,
   },
   {
-    id: 'mJ5pD8vQ',
+    _id: 'mJ5pD8vQ',
     title: "Women's Denim Jacket",
     description: 'A trendy and versatile jacket for women',
     price: '119.99',
@@ -102,7 +102,7 @@ export const products = [
     original_price: 400.99,
   },
   {
-    id: 'xG3zV6tA',
+    _id: 'xG3zV6tA',
     title: "Men's T-Shirt",
     description: 'A comfortable and casual T-shirt for men',
     price: '29.99',
@@ -116,7 +116,7 @@ export const products = [
     original_price: 32.99,
   },
   {
-    id: 'gH6bR2wM',
+    _id: 'gH6bR2wM',
     title: "Men's Dress Shoes",
     description: 'Classic and stylish dress shoes for men',
     price: '129.99',
@@ -130,7 +130,7 @@ export const products = [
     original_price: 195.99,
   },
   {
-    id: 'wP4rS5uQ',
+    _id: 'wP4rS5uQ',
     title: "Women's Sneakers",
     description: 'Comfortable and stylish sneakers for women',
     price: '99.99',

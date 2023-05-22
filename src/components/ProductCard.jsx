@@ -6,12 +6,12 @@ import axios from 'axios';
 import { useData, useDataDispatch } from '../contexts/DataContext';
 import { ACTIONS } from '../reducer/dataReducer';
 function ProductCard({ product }) {
-  const { title, price, imageUrl, rating, id } = product;
+  const { title, price, imageUrl, rating, _id } = product;
   const { isLoggedIn } = useAuth();
   const dispatch = useDataDispatch();
   const { cart } = useData();
-  const itemFound = cart.some((product) => {
-    return product.id === id;
+  const itemFound = cart?.some((product) => {
+    return product._id === _id;
   });
   const addToCartHandler = async () => {
     const user = localStorage.getItem('user');
@@ -31,17 +31,13 @@ function ProductCard({ product }) {
   return (
     <div className=" shadow-lg rounded-t-xl text-center overflow-hidden flex flex-col justify-between p-2  text-lg md:text-sm md:w-1/5 hover:bg-slate-100 hover:shadow-xl ">
       <div className="relative shadow-lg h-3/4 md:h-4/6 ">
-        <Link to={`/productDetails/${id}`}>
+        <Link to={`/productDetails/${_id}`}>
           <img
             src={imageUrl}
             alt={title}
             className="rounded-t-xl object-cover h-full w-full"
           />
-          <div
-          // onClick={() =>
-          //   dispatch({ type: ACTIONS.AddTOWISHLIST, payload: id })
-          // }
-          >
+          <div>
             <FontAwesomeIcon
               icon={faHeart}
               className="p-2 rounded-full bg-slate-300 text-gray-700 inline-block absolute top-2 right-2"

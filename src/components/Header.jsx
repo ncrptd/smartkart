@@ -68,7 +68,7 @@ function Header() {
           {/* cart  */}
           <li>
             <span className="absolute bottom-9 right-2 text-lg bg-pink-500 rounded-full w-5 h-5 flex justify-center items-center text-white">
-              {cart.length}
+              {cart?.length}
             </span>
             <Link to="/cart">
               <svg

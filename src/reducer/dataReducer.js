@@ -1,5 +1,5 @@
 export const ACTIONS = {
-  INITIALLOAD: 'initial-load',
+  INITIAL_LOAD: 'initial-load',
   PRICEFILTER: 'price-filter',
   CATEGORYFILTER: 'category-filter',
   RATINGSFILTER: 'ratings-filter',
@@ -21,7 +21,7 @@ export const initialState = {
 export default function dataReducer(state, action) {
   const { type, payload } = action;
   switch (type) {
-    case ACTIONS.INITIALLOAD: {
+    case ACTIONS.INITIAL_LOAD: {
       if (payload.products) {
         return {
           ...state,
