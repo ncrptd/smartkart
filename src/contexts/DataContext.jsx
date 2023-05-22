@@ -44,13 +44,13 @@ export default function DataProvider({ children }) {
     const user = localStorage.getItem('user');
     if (!user) return;
     const { encodedToken } = JSON.parse(user);
-    console.log(encodedToken);
     const config = {
       headers: {
         authorization: encodedToken,
       },
     };
     const res = await axios.get('/api/user/cart', config);
+    console.log(res.data.cart);
     dispatch({
       type: ACTIONS.ADD_TO_CART,
       payload: { cart: res.data.cart },
@@ -71,7 +71,9 @@ export default function DataProvider({ children }) {
         headers: { authorization: encodedToken },
       };
       const data = { product };
+
       const res = await axios.post('/api/user/cart', data, config);
+
       dispatch({ type: ACTIONS.ADD_TO_CART, payload: { cart: res.data.cart } });
     } catch (error) {
       console.log(error);

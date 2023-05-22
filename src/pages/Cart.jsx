@@ -4,10 +4,21 @@ import { useData } from '../contexts/DataContext';
 
 export default function Cart() {
   const { cart } = useData();
-  const price = cart
-    ?.reduce((acc, curr) => (acc += Number(curr.price) * Number(curr.qty)), 0)
-    .toFixed(2);
+  const price = Number(
+    cart
+      ?.reduce((acc, curr) => (acc += Number(curr.price) * Number(curr.qty)), 0)
+      .toFixed(2)
+  );
 
+  const originalPrice = Number(
+    cart.reduce(
+      (acc, curr) => (acc += Number(curr.original_price) * Number(curr.qty)),
+      0
+    )
+  );
+  const totalDiscount = (originalPrice - price).toFixed(2);
+  const deliveryCharge = 5;
+  const totalPrice = (price + deliveryCharge).toFixed(2);
   return (
     <main className="p-6">
       {cart?.length < 1 ? (
@@ -35,11 +46,15 @@ export default function Cart() {
               <p className="flex justify-between">
                 Price ({cart?.length} item) <span>&#36;{price}</span>
               </p>
-              <p className="flex justify-between">Discount </p>
               <p className="flex justify-between">
-                Delivery Charges: <span>&#36;10</span>
+                Discount <span>&#36;{totalDiscount}</span>
               </p>
-              <p className="flex justify-between">TOTAL AMOUNT {}</p>
+              <p className="flex justify-between">
+                Delivery Charges: <span>&#36;{deliveryCharge}</span>
+              </p>
+              <p className="flex justify-between">
+                TOTAL AMOUNT <span>&#36;{totalPrice}</span>
+              </p>
               <button
                 className=" text-sm bg-pink-600
             w-full py-2.5 px-2 text-white font-bold 

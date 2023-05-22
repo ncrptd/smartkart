@@ -3,11 +3,13 @@ import axios from 'axios';
 import { useData, useDataDispatch } from '../contexts/DataContext';
 import { ACTIONS } from '../reducer/dataReducer';
 export default function CartCard({ product }) {
-  let { imageUrl, title, price, qty, id, _id, original_price } = product;
+  let { imageUrl, title, price, qty, _id, original_price } = product;
   price = parseFloat(price);
   original_price = parseFloat(original_price);
 
-  const discount = Number(((1 - price / original_price) * 100).toFixed(1));
+  const discount = Number(
+    ((original_price - price) / original_price) * 100
+  ).toFixed(2);
   const dispatch = useDataDispatch();
   const { cart } = useData();
 
@@ -75,10 +77,10 @@ export default function CartCard({ product }) {
               {original_price}
             </span>
           </p>
-          <p className="font-semibold">{discount}% OFF</p>
-          <div className="flex gap-4 items-center ">
+          <p className="font-bold mt-2">{discount}% OFF</p>
+          <div className="flex gap-4 items-center font-base">
             <p>Quantity</p>
-            <div className="flex space-x-2 text-lg font-bold">
+            <div className="flex space-x-2 text-lg ">
               <button onClick={decrementHandler}>-</button>{' '}
               <p className="border-2 rounded-full p-1">{qty}</p>{' '}
               <button onClick={incrementHandler}>+</button>
