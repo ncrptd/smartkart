@@ -8,6 +8,17 @@ const DataDispatchContext = createContext();
 
 export default function DataProvider({ children }) {
   const [state, dispatch] = useReducer(dataReducer, initialState);
+  const {
+    products,
+    categories,
+    cart,
+    wishList,
+    priceFilter,
+    categoryFilter,
+    ratingsFilter,
+    sortBy,
+  } = state;
+
   const getProductsData = async () => {
     try {
       const res = await axios.get('/api/products');
@@ -51,8 +62,36 @@ export default function DataProvider({ children }) {
     getCart();
   }, []);
 
+  const addToCartHandler = async (product) => {
+    const user = localStorage.getItem('user');
+    if (!user) return;
+    const { encodedToken } = JSON.parse(user);
+    try {
+      const config = {
+        headers: { authorization: encodedToken },
+      };
+      const data = { product };
+      const res = await axios.post('/api/user/cart', data, config);
+      dispatch({ type: ACTIONS.ADD_TO_CART, payload: { cart: res.data.cart } });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <DataContext.Provider value={state}>
+    <DataContext.Provider
+      value={{
+        products,
+        categories,
+        cart,
+        wishList,
+        priceFilter,
+        categoryFilter,
+        ratingsFilter,
+        sortBy,
+        addToCartHandler,
+      }}
+    >
       <DataDispatchContext.Provider value={dispatch}>
         {children}
       </DataDispatchContext.Provider>
