@@ -188,8 +188,6 @@ export default function DataProvider({ children }) {
     } catch (error) {}
   };
   const handleSearchInput = (e) => {
-    console.log(e.target.value);
-    console.log('value', searchInput);
     dispatch({
       type: ACTIONS.SEARCH_INPUT,
       payload: { searchInput: e.target.value },

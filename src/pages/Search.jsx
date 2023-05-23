@@ -15,10 +15,10 @@ export default function Search() {
 
   visibleProducts = getTitleFilteredData(products, searchInput);
   return (
-    <div className="container mx-auto p-10">
+    <div className="container mx-auto ">
       {location.pathname === '/search' && (
         <div
-          className="mt-2 max-w-2xl container mx-auto md:hidden
+          className="mt-2 max-w-2xl container mx-auto md:hidden px-4
         "
         >
           <Searchbar2
@@ -27,9 +27,9 @@ export default function Search() {
           />
         </div>
       )}
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap p-8">
         {visibleProducts.map((product) => (
-          <ProductCard product={product} />
+          <ProductCard product={product} key={product?._id} />
         ))}
       </div>
     </div>
