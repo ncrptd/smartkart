@@ -30,7 +30,7 @@ export default function Cart() {
         >
           <div className="w-full">
             {cart?.map((product) => (
-              <CartCard key={product.id} product={product} />
+              <CartCard key={product._id} product={product} />
             ))}
           </div>
           {/* price details  */}

@@ -47,9 +47,9 @@ export default function CartCard({ product }) {
           <div className="flex gap-4 items-center font-base">
             <p>Quantity</p>
             <div className="flex space-x-2 text-lg ">
-              <button onClick={() => decrementHandler(_id)}>-</button>{' '}
+              <button onClick={() => decrementHandler(product)}>-</button>{' '}
               <p className="border-2 rounded-full p-1">{qty}</p>{' '}
-              <button onClick={() => incrementHandler(_id)}>+</button>
+              <button onClick={() => incrementHandler(product)}>+</button>
             </div>
           </div>
         </div>
@@ -64,9 +64,7 @@ export default function CartCard({ product }) {
         {inWishlist ? (
           <Link
             to="/wishlist"
-            className=" text-sm bg-slate-500
-            w-full py-2  text-white text-center font-bold hover:bg-fuchsia-600
-            "
+            className="bg-slate-600 p-2 font-bold text-white hover:bg-pink-500 text-center"
           >
             In Wishlist
           </Link>

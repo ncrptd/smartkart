@@ -56,7 +56,7 @@ function ProductCard({ product }) {
         </Link>
 
         <p className="mb-2">
-          <span>&#8377;</span>
+          <span> &#36;</span>
           {price}
         </p>
         <div>

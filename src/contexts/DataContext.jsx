@@ -41,44 +41,50 @@ export default function DataProvider({ children }) {
       });
     } catch (error) {}
   };
-  const getCart = async () => {
-    const user = localStorage.getItem('user');
-    if (!user) return;
-    const { encodedToken } = JSON.parse(user);
-    const config = {
-      headers: {
-        authorization: encodedToken,
-      },
-    };
-    const res = await axios.get('/api/user/cart', config);
-    dispatch({
-      type: ACTIONS.ADD_TO_CART,
-      payload: { cart: res.data.cart },
-    });
-  };
-  const getWishlist = async () => {
-    const user = localStorage.getItem('user');
-    if (!user) return;
-    const { encodedToken } = JSON.parse(user);
-    const config = {
-      headers: {
-        authorization: encodedToken,
-      },
-    };
-    const res = await axios.get('/api/user/wishlist', config);
-    dispatch({
-      type: ACTIONS.ADD_TO_WISHLIST,
-      payload: { wishlist: res.data.wishlist },
-    });
-  };
+  // const getCart = async () => {
+  //   const user = localStorage.getItem('user');
+  //   if (!user) return;
+  //   const { encodedToken } = JSON.parse(user);
+  //   const config = {
+  //     headers: {
+  //       authorization: encodedToken,
+  //     },
+  //   };
+  //   const res = await axios.get('/api/user/cart', config);
+  //   dispatch({
+  //     type: ACTIONS.ADD_TO_CART,
+  //     payload: { cart: res.data.cart },
+  //   });
+  // };
+  // const getWishlist = async () => {
+  //   const user = localStorage.getItem('user');
+  //   if (!user) return;
+  //   const { encodedToken } = JSON.parse(user);
+  //   const config = {
+  //     headers: {
+  //       authorization: encodedToken,
+  //     },
+  //   };
+  //   const res = await axios.get('/api/user/wishlist', config);
+  //   dispatch({
+  //     type: ACTIONS.ADD_TO_WISHLIST,
+  //     payload: { wishlist: res.data.wishlist },
+  //   });
+  // };
   useEffect(() => {
     getProductsData();
     getCategories();
-    getCart();
-    getWishlist();
+    // getCart();
+    // getWishlist();
   }, []);
 
   const addToCartHandler = async (product) => {
+    const inCart = cart.some(({ _id }) => {
+      console.log(_id, product._id);
+      return product?._id === _id;
+    });
+
+    if (inCart) return;
     const user = localStorage.getItem('user');
     if (!user) return;
     const { encodedToken } = JSON.parse(user);
@@ -106,7 +112,7 @@ export default function DataProvider({ children }) {
       console.log(error);
     }
   };
-  const incrementHandler = async (_id) => {
+  const incrementHandler = async (product) => {
     try {
       const { encodedToken } = JSON.parse(localStorage.getItem('user'));
       const config = { headers: { authorization: encodedToken } };
@@ -115,16 +121,19 @@ export default function DataProvider({ children }) {
           type: 'increment',
         },
       };
-      const res = await axios.post(`/api/user/cart/${_id}`, body, config);
+      const res = await axios.post(
+        `/api/user/cart/${product?._id}`,
+        body,
+        config
+      );
       dispatch({ type: ACTIONS.ADD_TO_CART, payload: { cart: res.data.cart } });
     } catch (error) {
       console.log(error);
     }
   };
-  const decrementHandler = async (_id) => {
-    const foundItem = cart.find((item) => item._id === _id);
-    if (foundItem.qty === 1) {
-      removeFromCart(_id);
+  const decrementHandler = async (product) => {
+    if (product?.qty <= 1) {
+      removeFromCart(product?._id);
     }
     try {
       const { encodedToken } = JSON.parse(localStorage.getItem('user'));
@@ -134,7 +143,11 @@ export default function DataProvider({ children }) {
           type: 'decrement',
         },
       };
-      const res = await axios.post(`/api/user/cart/${_id}`, body, config);
+      const res = await axios.post(
+        `/api/user/cart/${product?._id}`,
+        body,
+        config
+      );
       const decrementedCart = res.data.cart;
       dispatch({
         type: ACTIONS.ADD_TO_CART,
@@ -145,6 +158,8 @@ export default function DataProvider({ children }) {
     }
   };
   const addToWishlistHandler = async (product) => {
+    const inWishlist = wishlist.some((_id) => product._id === _id);
+    if (inWishlist) return;
     try {
       const { encodedToken } = JSON.parse(localStorage.getItem('user'));
       const config = { headers: { authorization: encodedToken } };
@@ -160,7 +175,6 @@ export default function DataProvider({ children }) {
     }
   };
   const removeFromWishlistHandler = async (_id) => {
-    console.log(_id);
     try {
       const { encodedToken } = JSON.parse(localStorage.getItem('user'));
       const config = {
