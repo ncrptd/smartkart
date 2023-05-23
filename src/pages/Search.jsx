@@ -1,10 +1,17 @@
 import { useLocation } from 'react-router-dom';
 import Searchbar2 from '../components/Searchbar2';
-import { useData } from '../contexts/DataContext';
+import { useData, useDataDispatch } from '../contexts/DataContext';
 import ProductCard from '../components/ProductCard';
+import { useEffect } from 'react';
+import { ACTIONS } from '../reducer/dataReducer';
 export default function Search() {
+  const dispatch = useDataDispatch();
+  useEffect(() => {
+    dispatch({ type: ACTIONS.SEARCH_INPUT, payload: { searchInput: '' } });
+  }, []);
   const location = useLocation();
   const { products, searchInput, handleSearchInput } = useData();
+
   let visibleProducts = [];
 
   const getTitleFilteredData = (products, searchInput) => {
