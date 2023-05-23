@@ -23,3 +23,11 @@ header a:hover {
   opacity: 0.9;
   color: red;
 }
+
+.content-container {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+.content-container:not(.loading) {
+  opacity: 1;
+}

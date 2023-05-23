@@ -12,45 +12,54 @@ import Cart from './pages/Cart';
 import ProfileDetails from './pages/ProfileDetails';
 import Wishlist from './pages/Wishlist';
 import Search from './pages/Search';
+import { useData } from './contexts/DataContext';
+import Loader from './components/Loader';
 function App() {
+  const { homeIsLoading } = useData();
   return (
-    <div className="App min-h-screen bg-slate-50 text-2xl">
-      <Routes>
-        <Route path="/" element={<RootLayout />}>
-          <Route index element={<Home />} />
-          <Route path="/productsList" element={<ProductsList />} />
-          <Route
-            path="/productDetails/:productId"
-            element={
-              <RequiresAuth>
-                <ProductDetails />
-              </RequiresAuth>
-            }
-          />
-          <Route path="/profileDetails" element={<ProfileDetails />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route
-            path="/cart"
-            element={
-              <RequiresAuth>
-                <Cart />
-              </RequiresAuth>
-            }
-          />
-          <Route
-            path="/wishlist"
-            element={
-              <RequiresAuth>
-                <Wishlist />
-              </RequiresAuth>
-            }
-          ></Route>
-          <Route path="/search" element={<Search />} />
-          <Route path="/mockman" element={<Mockman />} />
-        </Route>
-      </Routes>
-    </div>
+    <main className="App bg-slate-50 text-lg h-screen">
+      {homeIsLoading ? (
+        <Loader />
+      ) : (
+        <div className={`content-container ${homeIsLoading ? 'loading' : ''}`}>
+          <Routes>
+            <Route path="/" element={<RootLayout />}>
+              <Route index element={<Home />} />
+              <Route path="/productsList" element={<ProductsList />} />
+              <Route
+                path="/productDetails/:productId"
+                element={
+                  <RequiresAuth>
+                    <ProductDetails />
+                  </RequiresAuth>
+                }
+              />
+              <Route path="/profileDetails" element={<ProfileDetails />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route
+                path="/cart"
+                element={
+                  <RequiresAuth>
+                    <Cart />
+                  </RequiresAuth>
+                }
+              />
+              <Route
+                path="/wishlist"
+                element={
+                  <RequiresAuth>
+                    <Wishlist />
+                  </RequiresAuth>
+                }
+              ></Route>
+              <Route path="/search" element={<Search />} />
+              <Route path="/mockman" element={<Mockman />} />
+            </Route>
+          </Routes>
+        </div>
+      )}
+    </main>
   );
 }
 

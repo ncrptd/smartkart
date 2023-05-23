@@ -9,6 +9,7 @@ export const ACTIONS = {
   CLEAR_CART: 'clear-cart',
   ADD_TO_WISHLIST: 'add-to-wishlist',
   SEARCH_INPUT: 'search-input',
+  HOME_IS_LOADING: 'home-is-loading',
 };
 export const initialState = {
   products: [],
@@ -20,6 +21,7 @@ export const initialState = {
   ratingsFilter: null,
   sortBy: null,
   searchInput: '',
+  homeIsLoading: true,
 };
 export default function dataReducer(state, action) {
   const { type, payload } = action;
@@ -82,6 +84,9 @@ export default function dataReducer(state, action) {
         ...state,
         searchInput: payload.searchInput,
       };
+    }
+    case ACTIONS.HOME_IS_LOADING: {
+      return { ...state, homeIsLoading: false };
     }
     default: {
       return state;

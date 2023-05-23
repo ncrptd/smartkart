@@ -2,7 +2,6 @@ import { useState } from 'react';
 import Filters from '../components/Filters';
 import ProductCard from '../components/ProductCard';
 import { useData } from '../contexts/DataContext';
-
 function ProductsList() {
   const { products, priceFilter, categoryFilter, ratingsFilter, sortBy } =
     useData();
@@ -66,16 +65,7 @@ function ProductsList() {
 
       <div className="container mx-auto flex flex-wrap justify-center md:ml-4  align-center gap-6 pb-12 ">
         {visibleData.map((product) => (
-          <ProductCard
-            key={product._id}
-            product={product}
-            // id={id}
-            // title={title}
-            // price={price}
-            // imageUrl={imageUrl}
-            // rating={rating}
-            // numReviews={numReviews}
-          />
+          <ProductCard key={product._id} product={product} />
         ))}
       </div>
 

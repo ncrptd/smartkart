@@ -18,6 +18,7 @@ export default function DataProvider({ children }) {
     ratingsFilter,
     sortBy,
     searchInput,
+    homeIsLoading,
   } = state;
 
   const getProductsData = async () => {
@@ -27,6 +28,7 @@ export default function DataProvider({ children }) {
         type: ACTIONS.INITIAL_LOAD,
         payload: { products: res.data.products },
       });
+
       return res.data.products;
     } catch (error) {
       console.log(error);
@@ -42,41 +44,13 @@ export default function DataProvider({ children }) {
       });
     } catch (error) {}
   };
-  // const getCart = async () => {
-  //   const user = localStorage.getItem('user');
-  //   if (!user) return;
-  //   const { encodedToken } = JSON.parse(user);
-  //   const config = {
-  //     headers: {
-  //       authorization: encodedToken,
-  //     },
-  //   };
-  //   const res = await axios.get('/api/user/cart', config);
-  //   dispatch({
-  //     type: ACTIONS.ADD_TO_CART,
-  //     payload: { cart: res.data.cart },
-  //   });
-  // };
-  // const getWishlist = async () => {
-  //   const user = localStorage.getItem('user');
-  //   if (!user) return;
-  //   const { encodedToken } = JSON.parse(user);
-  //   const config = {
-  //     headers: {
-  //       authorization: encodedToken,
-  //     },
-  //   };
-  //   const res = await axios.get('/api/user/wishlist', config);
-  //   dispatch({
-  //     type: ACTIONS.ADD_TO_WISHLIST,
-  //     payload: { wishlist: res.data.wishlist },
-  //   });
-  // };
+
   useEffect(() => {
     getProductsData();
     getCategories();
-    // getCart();
-    // getWishlist();
+    setInterval(() => {
+      dispatch({ type: ACTIONS.HOME_IS_LOADING });
+    }, 1000);
   }, []);
 
   const addToCartHandler = async (product) => {
@@ -193,6 +167,7 @@ export default function DataProvider({ children }) {
       payload: { searchInput: e.target.value },
     });
   };
+
   return (
     <DataContext.Provider
       value={{
@@ -213,6 +188,7 @@ export default function DataProvider({ children }) {
         removeFromWishlistHandler,
         handleSearchInput,
         searchInput,
+        homeIsLoading,
       }}
     >
       <DataDispatchContext.Provider value={dispatch}>
