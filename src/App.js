@@ -11,6 +11,7 @@ import RequiresAuth from './components/RequiresAuth';
 import Cart from './pages/Cart';
 import ProfileDetails from './pages/ProfileDetails';
 import Wishlist from './pages/Wishlist';
+import Search from './pages/Search';
 function App() {
   return (
     <div className="App min-h-screen bg-slate-50 text-2xl">
@@ -45,6 +46,7 @@ function App() {
               </RequiresAuth>
             }
           ></Route>
+          <Route path="/search" element={<Search />} />
           <Route path="/mockman" element={<Mockman />} />
         </Route>
       </Routes>

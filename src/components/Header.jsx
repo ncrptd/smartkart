@@ -2,13 +2,15 @@ import { Link } from 'react-router-dom';
 import Searchbar from './Searchbar';
 import { useAuth } from '../contexts/AuthContext';
 import { useData } from '../contexts/DataContext';
-
+import { useLocation } from 'react-router-dom';
+import Searchbar2 from './Searchbar2';
 function Header() {
   const { isLoggedIn } = useAuth();
-  const { cart, wishlist } = useData();
+  const { cart, wishlist, handleSearchInput, searchInput } = useData();
 
   const totalCartItems = cart.length >= 1 ? cart.length : undefined;
   const totalWishlistItems = wishlist.length >= 1 ? wishlist.length : undefined;
+  const location = useLocation();
 
   return (
     <header className=" p-4  sticky top-0 z-10 bg-slate-100 shadow-xl ">
@@ -16,7 +18,15 @@ function Header() {
         <h1 className="text-xl">
           <Link to="/">SmartKart</Link>
         </h1>
-        <ul className=" flex justify-center space-x-4 items-center">
+        {location.pathname === '/search' && (
+          <div className="hidden md:block w-2/4">
+            <Searchbar2
+              handleSearchInput={handleSearchInput}
+              value={searchInput}
+            />
+          </div>
+        )}
+        <ul className=" flex justify-center flex-wrap gap-4 items-center">
           <li>
             <Link
               className="hidden md:block font-sm text-pink-500 "
@@ -47,9 +57,14 @@ function Header() {
               <Link to="/login">Login</Link>
             )}
           </li>
-          <li>
-            <Searchbar placeholder="search" />
-          </li>
+
+          {location.pathname !== '/search' && (
+            <li>
+              <Link to="/search">
+                <Searchbar placeholder="search" />
+              </Link>
+            </li>
+          )}
           {/* wishlist  */}
           <li className="relative">
             <span

@@ -17,6 +17,7 @@ export default function DataProvider({ children }) {
     categoryFilter,
     ratingsFilter,
     sortBy,
+    searchInput,
   } = state;
 
   const getProductsData = async () => {
@@ -80,7 +81,6 @@ export default function DataProvider({ children }) {
 
   const addToCartHandler = async (product) => {
     const inCart = cart.some(({ _id }) => {
-      console.log(_id, product._id);
       return product?._id === _id;
     });
 
@@ -187,6 +187,14 @@ export default function DataProvider({ children }) {
       });
     } catch (error) {}
   };
+  const handleSearchInput = (e) => {
+    console.log(e.target.value);
+    console.log('value', searchInput);
+    dispatch({
+      type: ACTIONS.SEARCH_INPUT,
+      payload: { searchInput: e.target.value },
+    });
+  };
   return (
     <DataContext.Provider
       value={{
@@ -205,6 +213,8 @@ export default function DataProvider({ children }) {
         removeFromCart,
         addToWishlistHandler,
         removeFromWishlistHandler,
+        handleSearchInput,
+        searchInput,
       }}
     >
       <DataDispatchContext.Provider value={dispatch}>

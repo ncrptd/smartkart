@@ -8,6 +8,7 @@ export const ACTIONS = {
   ADD_TO_CART: 'add-to-cart',
   CLEAR_CART: 'clear-cart',
   ADD_TO_WISHLIST: 'add-to-wishlist',
+  SEARCH_INPUT: 'search-input',
 };
 export const initialState = {
   products: [],
@@ -18,6 +19,7 @@ export const initialState = {
   categoryFilter: { Men: false, Women: false },
   ratingsFilter: null,
   sortBy: null,
+  searchInput: '',
 };
 export default function dataReducer(state, action) {
   const { type, payload } = action;
@@ -74,6 +76,12 @@ export default function dataReducer(state, action) {
     }
     case ACTIONS.ADD_TO_WISHLIST: {
       return { ...state, wishlist: payload.wishlist };
+    }
+    case ACTIONS.SEARCH_INPUT: {
+      return {
+        ...state,
+        searchInput: payload.searchInput,
+      };
     }
     default: {
       return state;
