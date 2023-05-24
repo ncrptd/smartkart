@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Filters from '../components/Filters';
 import ProductCard from '../components/ProductCard';
 import { useData } from '../contexts/DataContext';
+import Loader from '../components/Loader';
 function ProductsList() {
   const { products, priceFilter, categoryFilter, ratingsFilter, sortBy } =
     useData();
@@ -57,7 +58,9 @@ function ProductsList() {
   );
   const sortByPriceData = getSortByPriceData(ratingsFilteredData, sortBy);
   const visibleData = sortByPriceData;
-  return (
+  return products.length < 1 ? (
+    <Loader />
+  ) : (
     <div className="text-center flex p-4">
       <div className="hidden  md:block w-1/6">
         <Filters />

@@ -14,51 +14,57 @@ import Wishlist from './pages/Wishlist';
 import Search from './pages/Search';
 import { useData } from './contexts/DataContext';
 import Loader from './components/Loader';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
   const { homeIsLoading } = useData();
-  return (
-    <main className="App bg-slate-50 text-lg h-screen">
-      {homeIsLoading ? (
-        <Loader />
-      ) : (
-        <div className={`content-container ${homeIsLoading ? 'loading' : ''}`}>
-          <Routes>
-            <Route path="/" element={<RootLayout />}>
-              <Route index element={<Home />} />
-              <Route path="/productsList" element={<ProductsList />} />
-              <Route
-                path="/productDetails/:productId"
-                element={
-                  <RequiresAuth>
-                    <ProductDetails />
-                  </RequiresAuth>
-                }
-              />
-              <Route path="/profileDetails" element={<ProfileDetails />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route
-                path="/cart"
-                element={
-                  <RequiresAuth>
-                    <Cart />
-                  </RequiresAuth>
-                }
-              />
-              <Route
-                path="/wishlist"
-                element={
-                  <RequiresAuth>
-                    <Wishlist />
-                  </RequiresAuth>
-                }
-              ></Route>
-              <Route path="/search" element={<Search />} />
-              <Route path="/mockman" element={<Mockman />} />
-            </Route>
-          </Routes>
-        </div>
-      )}
+
+  return homeIsLoading ? (
+    <Loader />
+  ) : (
+    <main className="App bg-slate-50 text-lg h-screen ">
+      <div className={`content-container ${homeIsLoading ? 'loading' : ''}`}>
+        <Routes>
+          <Route path="/" element={<RootLayout />}>
+            <Route index element={<Home />} />
+            <Route path="/productsList" element={<ProductsList />} />
+            <Route
+              path="/productDetails/:productId"
+              element={
+                <RequiresAuth>
+                  <ProductDetails />
+                </RequiresAuth>
+              }
+            />
+            <Route path="/profileDetails" element={<ProfileDetails />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route
+              path="/cart"
+              element={
+                <RequiresAuth>
+                  <Cart />
+                </RequiresAuth>
+              }
+            />
+            <Route
+              path="/wishlist"
+              element={
+                <RequiresAuth>
+                  <Wishlist />
+                </RequiresAuth>
+              }
+            ></Route>
+            <Route path="/search" element={<Search />} />
+            <Route path="/mockman" element={<Mockman />} />
+          </Route>
+        </Routes>
+      </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        style={{ color: '#ec4899' }}
+      />
     </main>
   );
 }

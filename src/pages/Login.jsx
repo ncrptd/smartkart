@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth, useAuthDispatch } from '../contexts/AuthContext';
 import { ACTIONS_AUTH } from '../reducer/authReducer';
 import { ACTIONS } from '../reducer/dataReducer';
+import { loggedIn } from '../alerts/cartAlerts';
 const GUEST = {
   email: 'johndoe@gmail.com',
   password: 'johndoe',
@@ -35,7 +36,6 @@ export default function Login() {
           password: password,
         });
         const { foundUser, encodedToken } = res.data;
-        console.log(foundUser);
         dispatch({
           type: ACTIONS_AUTH.LOGIN_SUCCESS,
           payload: { userDetails: foundUser },
@@ -56,6 +56,7 @@ export default function Login() {
         } else {
           navigate(location?.state?.from?.pathname);
         }
+        loggedIn();
       } catch (error) {
         console.log(error.message);
         dispatch({ type: ACTIONS_AUTH.LOGIN_FAILURE, payload: error });

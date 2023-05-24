@@ -1,9 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useData } from '../contexts/DataContext';
+
 function ProductCard({ product }) {
+  const navigate = useNavigate();
   const { title, price, imageUrl, rating, _id } = product;
   const { isLoggedIn } = useAuth();
   const {
@@ -19,19 +21,29 @@ function ProductCard({ product }) {
   const inWishlist = wishlist.some((product) => product._id === _id);
 
   return (
-    <div className=" shadow-lg rounded-t-xl text-center overflow-hidden flex flex-col justify-between p-2  text-lg md:text-sm md:w-1/5 hover:bg-slate-100 hover:shadow-xl ">
-      <div className="relative shadow-lg h-3/4 md:h-4/6">
+    <div className=" shadow-lg rounded-t-xl text-center overflow-hidden flex flex-col justify-between p-2 text-lg md:text-sm md:w-1/5 hover:bg-slate-100 hover:shadow-xl w-full">
+      <div
+        className="relative shadow-lg h-96 md:h-64 w-full cursor-pointer"
+        onClick={() => {
+          navigate(`/productDetails/${_id}`);
+        }}
+      >
         <img
           src={imageUrl}
           alt={title}
           className="rounded-t-xl object-cover h-full w-full"
         />
         <div
-          onClick={() =>
-            inWishlist
-              ? removeFromWishlistHandler(product?._id)
-              : addToWishlistHandler(product)
-          }
+          onClick={(e) => {
+            e.stopPropagation();
+            if (inWishlist) {
+              removeFromWishlistHandler(product?._id);
+              // removedFromWishlist();
+            } else {
+              addToWishlistHandler(product);
+              // addedToWishlist();
+            }
+          }}
         >
           <FontAwesomeIcon
             icon={faHeart}
@@ -51,10 +63,7 @@ function ProductCard({ product }) {
       </div>
 
       <div className="mt-2 pt-4 font-semibold md:text-lg md:pt-0 md:mt-2 ">
-        <Link to={`/productDetails/${_id}`}>
-          <p className="mb-2 md:hover:text-b hover:text-orange-400">{title}</p>
-        </Link>
-
+        <p className="mb-2 ">{title}</p>
         <p className="mb-2">
           <span> &#36;</span>
           {price}
@@ -73,7 +82,9 @@ function ProductCard({ product }) {
               to={!isLoggedIn ? '/login' : ''}
               className="bg-pink-600 text-white
            py-1 px-4 block w-full"
-              onClick={() => addToCartHandler(product)}
+              onClick={() => {
+                addToCartHandler(product);
+              }}
             >
               Add to Cart
             </Link>

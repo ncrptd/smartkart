@@ -7,9 +7,8 @@ import { ACTIONS } from '../reducer/dataReducer';
 function Home() {
   const dispatch = useDataDispatch();
   useEffect(() => {
-    console.log('hello');
     dispatch({ type: ACTIONS.CLEARFILTERS });
-  });
+  }, []);
   return (
     <div>
       <Banner />

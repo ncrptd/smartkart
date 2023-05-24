@@ -3,7 +3,7 @@ import { useAuth, useAuthDispatch } from '../contexts/AuthContext';
 import { ACTIONS_AUTH } from '../reducer/authReducer';
 import { useDataDispatch } from '../contexts/DataContext';
 import { ACTIONS } from '../reducer/dataReducer';
-
+import { loggedOut } from '../alerts/cartAlerts';
 export default function ProfileDetails() {
   const dispatchAuth = useAuthDispatch();
   const dispatchData = useDataDispatch();
@@ -22,6 +22,7 @@ export default function ProfileDetails() {
           dispatchAuth({ type: ACTIONS_AUTH.LOGOUT });
           dispatchData({ type: ACTIONS.CLEAR_CART });
           navigate('/');
+          loggedOut();
         }}
       >
         Logout

@@ -3,6 +3,12 @@ import dataReducer from '../reducer/dataReducer';
 import axios from 'axios';
 import { ACTIONS } from '../reducer/dataReducer';
 import { initialState } from '../reducer/dataReducer';
+import {
+  addedToCart,
+  removedFromCart,
+  addedToWishlist,
+  removedFromWishlist,
+} from '../alerts/cartAlerts';
 const DataContext = createContext();
 const DataDispatchContext = createContext();
 
@@ -24,10 +30,13 @@ export default function DataProvider({ children }) {
   const getProductsData = async () => {
     try {
       const res = await axios.get('/api/products');
-      dispatch({
-        type: ACTIONS.INITIAL_LOAD,
-        payload: { products: res.data.products },
-      });
+      setTimeout(() => {
+        dispatch({
+          type: ACTIONS.INITIAL_LOAD,
+          payload: { products: res.data.products },
+        });
+        dispatch({ type: ACTIONS.HOME_IS_LOADING });
+      }, 1000);
 
       return res.data.products;
     } catch (error) {
@@ -42,15 +51,17 @@ export default function DataProvider({ children }) {
         type: ACTIONS.INITIAL_LOAD,
         payload: { categories: res.data.categories },
       });
-    } catch (error) {}
+      // setTimeout(() => {
+      //   dispatch({ type: ACTIONS.HOME_IS_LOADING });
+      // }, 3000);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
     getProductsData();
     getCategories();
-    setInterval(() => {
-      dispatch({ type: ACTIONS.HOME_IS_LOADING });
-    }, 1000);
   }, []);
 
   const addToCartHandler = async (product) => {
@@ -71,6 +82,7 @@ export default function DataProvider({ children }) {
       const res = await axios.post('/api/user/cart', body, config);
 
       dispatch({ type: ACTIONS.ADD_TO_CART, payload: { cart: res.data.cart } });
+      addedToCart();
     } catch (error) {
       console.log(error);
     }
@@ -82,6 +94,7 @@ export default function DataProvider({ children }) {
 
       const res = await axios.delete(`/api/user/cart/${_id}`, config);
       dispatch({ type: ACTIONS.ADD_TO_CART, payload: { cart: res.data.cart } });
+      removedFromCart();
     } catch (error) {
       console.log(error);
     }
@@ -144,6 +157,7 @@ export default function DataProvider({ children }) {
         type: ACTIONS.ADD_TO_WISHLIST,
         payload: { wishlist: res.data.wishlist },
       });
+      addedToWishlist();
     } catch (error) {
       console.log(error);
     }
@@ -159,6 +173,7 @@ export default function DataProvider({ children }) {
         type: ACTIONS.ADD_TO_WISHLIST,
         payload: { wishlist: res.data.wishlist },
       });
+      removedFromWishlist();
     } catch (error) {}
   };
   const handleSearchInput = (e) => {
