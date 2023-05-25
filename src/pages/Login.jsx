@@ -36,6 +36,7 @@ export default function Login() {
           password: password,
         });
         const { foundUser, encodedToken } = res.data;
+        console.log(foundUser);
         dispatch({
           type: ACTIONS_AUTH.LOGIN_SUCCESS,
           payload: { userDetails: foundUser },

@@ -24,16 +24,12 @@ function Banner() {
   return (
     <div>
       <div
+        className="hidden md:block"
         onClick={() => {
           navigate('/productsList');
         }}
       >
-        <img
-          ref={ref}
-          src={img1 ? banner1 : banner2}
-          alt="banner"
-          className="w-full h-full object-cover "
-        />
+        <img ref={ref} src={img1 ? banner1 : banner2} alt="banner" />
       </div>
 
       <div

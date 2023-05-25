@@ -30,15 +30,11 @@ export default function DataProvider({ children }) {
   const getProductsData = async () => {
     try {
       const res = await axios.get('/api/products');
-      setTimeout(() => {
-        dispatch({
-          type: ACTIONS.INITIAL_LOAD,
-          payload: { products: res.data.products },
-        });
-        dispatch({ type: ACTIONS.HOME_IS_LOADING });
-      }, 1000);
-
-      return res.data.products;
+      dispatch({
+        type: ACTIONS.INITIAL_LOAD,
+        payload: { products: res.data.products },
+      });
+      dispatch({ type: ACTIONS.HOME_IS_LOADING });
     } catch (error) {
       console.log(error);
     }
@@ -51,9 +47,6 @@ export default function DataProvider({ children }) {
         type: ACTIONS.INITIAL_LOAD,
         payload: { categories: res.data.categories },
       });
-      // setTimeout(() => {
-      //   dispatch({ type: ACTIONS.HOME_IS_LOADING });
-      // }, 3000);
     } catch (error) {
       console.log(error);
     }

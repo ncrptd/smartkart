@@ -16,6 +16,18 @@ export const initialState = {
   categories: [],
   cart: [],
   wishlist: [],
+  addressList: [
+    {
+      address: '123 Main St',
+      alternateMobile: 1234567890,
+      city: 'Anytown',
+      id: '123abc-456def-789ghi',
+      mobile: 9876543210,
+      name: 'John Doe',
+      pincode: '12345',
+      state: 'California',
+    },
+  ],
   priceFilter: 200,
   categoryFilter: { Men: false, Women: false },
   ratingsFilter: null,
@@ -71,6 +83,7 @@ export default function dataReducer(state, action) {
     }
 
     case ACTIONS.ADD_TO_CART: {
+      console.log(payload.cart);
       return { ...state, cart: payload.cart };
     }
     case ACTIONS.CLEAR_CART: {
