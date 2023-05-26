@@ -40,7 +40,7 @@ export default function Cart() {
 
        "
           >
-            <p className="text-2xl font-bold text py-2"> Price Details</p>
+            <p className=" font-bold  py-2"> Price Details</p>
             <hr />
             <div className="flex flex-col gap-4 mt-2 justify-between font-semibold">
               <p className="flex justify-between">

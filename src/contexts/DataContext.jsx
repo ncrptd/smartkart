@@ -8,7 +8,7 @@ import {
   removedFromCart,
   addedToWishlist,
   removedFromWishlist,
-} from '../alerts/cartAlerts';
+} from '../alerts/alerts';
 const DataContext = createContext();
 const DataDispatchContext = createContext();
 

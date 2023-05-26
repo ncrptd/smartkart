@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth, useAuthDispatch } from '../contexts/AuthContext';
 import { ACTIONS_AUTH } from '../reducer/authReducer';
 import { ACTIONS } from '../reducer/dataReducer';
-import { loggedIn } from '../alerts/cartAlerts';
+import { loggedIn } from '../alerts/alerts';
 const GUEST = {
   email: 'johndoe@gmail.com',
   password: 'johndoe',
@@ -15,6 +15,7 @@ export default function Login() {
     email: '',
     password: '',
   });
+  const [errorMsg, setErrorMsg] = useState('');
   const dispatch = useAuthDispatch();
   const location = useLocation();
   const navigate = useNavigate();
@@ -36,7 +37,6 @@ export default function Login() {
           password: password,
         });
         const { foundUser, encodedToken } = res.data;
-        console.log(foundUser);
         dispatch({
           type: ACTIONS_AUTH.LOGIN_SUCCESS,
           payload: { userDetails: foundUser },
@@ -60,6 +60,7 @@ export default function Login() {
         loggedIn();
       } catch (error) {
         console.log(error.message);
+        setErrorMsg('No user found');
         dispatch({ type: ACTIONS_AUTH.LOGIN_FAILURE, payload: error });
       }
     }
@@ -120,6 +121,9 @@ export default function Login() {
           <Link to="/signup" className="text-pink-600 hover:text-slate-500">
             Sign up
           </Link>
+        </p>
+        <p className="font-bold uppercase text-red-500 text-center 2xl ">
+          {errorMsg}
         </p>
       </form>
     </main>

@@ -10,7 +10,6 @@ function Header() {
 
   const totalCartItems = cart.length >= 1 ? cart.length : undefined;
   const totalWishlistItems = wishlist.length >= 1 ? wishlist.length : undefined;
-  console.log(wishlist);
   const location = useLocation();
 
   return (

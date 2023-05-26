@@ -84,8 +84,13 @@ export default function Signup() {
         wishlist,
         _id,
       };
-      console.log(user, encodedToken);
-      localStorage.setItem('user', JSON.stringify(user, encodedToken));
+      localStorage.setItem(
+        'user',
+        JSON.stringify({
+          userDetails: user,
+          encodedToken: encodedToken,
+        })
+      );
 
       dispatch({
         type: ACTIONS_AUTH.LOGIN_SUCCESS,

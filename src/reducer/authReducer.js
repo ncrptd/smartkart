@@ -7,6 +7,18 @@ export const ACTIONS_AUTH = {
 
 export const initialAuthState = {
   userDetails: null,
+  addressList: [
+    {
+      address: '123 Main St',
+      alternateMobile: 1234567890,
+      city: 'Anytown',
+      id: '123abc-456def-789ghi',
+      mobile: 9876543210,
+      name: 'John Doe',
+      pincode: '12345',
+      state: 'California',
+    },
+  ],
   isLoggedIn: false,
   error: null,
 };
