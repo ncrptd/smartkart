@@ -5,9 +5,10 @@ import { useData } from '../contexts/DataContext';
 import { useLocation } from 'react-router-dom';
 import Searchbar2 from './Searchbar2';
 function Header() {
-  const { isLoggedIn } = useAuth();
-  const { cart, wishlist, handleSearchInput, searchInput } = useData();
-
+  const { state: authState } = useAuth();
+  const { isLoggedIn } = authState;
+  const { state } = useData();
+  const { cart, wishlist, handleSearchInput, searchInput } = state;
   const totalCartItems = cart.length >= 1 ? cart.length : undefined;
   const totalWishlistItems = wishlist.length >= 1 ? wishlist.length : undefined;
   const location = useLocation();

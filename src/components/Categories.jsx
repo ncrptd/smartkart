@@ -4,7 +4,8 @@ import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { useData } from '../contexts/DataContext';
 
 function Categories() {
-  const { categories } = useData();
+  const { state } = useData();
+  const { categories } = state;
   return (
     <section className=" flex flex-col justify-center items-center py-6 space-y-4 ">
       <div className="py-4 bg-white  w-full text-center">

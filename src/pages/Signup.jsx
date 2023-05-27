@@ -1,11 +1,11 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuthDispatch } from '../contexts/AuthContext';
 import { ACTIONS_AUTH } from '../reducer/authReducer';
 export default function Signup() {
   const dispatch = useAuthDispatch();
-
+  const navigate = useNavigate();
   const [formDetails, setFormDetails] = useState({
     firstName: '',
     lastName: '',
@@ -96,6 +96,7 @@ export default function Signup() {
         type: ACTIONS_AUTH.LOGIN_SUCCESS,
         payload: { userDetails: user },
       });
+      navigate('/');
     } catch (error) {
       console.log(error);
       const { status, data } = error.response;

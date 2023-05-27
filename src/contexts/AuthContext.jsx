@@ -23,9 +23,16 @@ export default function AuthProvider({ children }) {
   useEffect(() => {
     getUserDetails();
   }, []);
-
+  function handleAddressUpdate(address) {
+    console.log(address);
+  }
+  function handleAddressDelete(address) {
+    console.log(address);
+  }
   return (
-    <AuthContext.Provider value={state}>
+    <AuthContext.Provider
+      value={{ state, handleAddressUpdate, handleAddressDelete }}
+    >
       <AuthDispatchContext.Provider value={dispatch}>
         {children}
       </AuthDispatchContext.Provider>

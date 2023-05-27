@@ -17,7 +17,12 @@ function CategoryCard({ src, category, checked }) {
       }}
     >
       <div className="h-86">
-        <img src={src} alt={category} className="h-full w-full object-cover" />
+        <img
+          src={src}
+          alt={category}
+          className="h-full w-full object-cover"
+          loading="eager"
+        />
       </div>
       <div className="mt-4 ">
         <p className="uppercase text-sm">New Arrival</p>

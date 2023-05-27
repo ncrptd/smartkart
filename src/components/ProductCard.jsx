@@ -9,12 +9,12 @@ function ProductCard({ product }) {
   const { title, price, imageUrl, rating, _id } = product;
   const { isLoggedIn } = useAuth();
   const {
-    cart,
-    wishlist,
+    state,
     addToCartHandler,
     addToWishlistHandler,
     removeFromWishlistHandler,
   } = useData();
+  const { cart, wishlist } = state;
   const inCart = cart?.some((product) => {
     return product._id === _id;
   });
@@ -32,6 +32,7 @@ function ProductCard({ product }) {
           src={imageUrl}
           alt={title}
           className="rounded-t-xl object-cover h-full w-full"
+          loading="lazy"
         />
         <div
           onClick={(e) => {

@@ -7,7 +7,7 @@ export default function ProfileDetails() {
 px-2 py-1 rounded-lg `;
 
   return (
-    <div className="container mx-auto flex flex-col items-center mt-10 w-2/6">
+    <div className="container mx-auto flex flex-col items-center mt-10 p-4 md:w-3/6 ">
       <h1 className="text-center font-4xl font-bold">Account</h1>
       <div className="flex  justify-between w-full shadow-lg px-4 py-2 font-semibold">
         <button

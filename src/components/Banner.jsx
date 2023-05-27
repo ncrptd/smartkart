@@ -29,7 +29,12 @@ function Banner() {
           navigate('/productsList');
         }}
       >
-        <img ref={ref} src={img1 ? banner1 : banner2} alt="banner" />
+        <img
+          ref={ref}
+          src={img1 ? banner1 : banner2}
+          alt="banner"
+          loading="eager"
+        />
       </div>
 
       <div

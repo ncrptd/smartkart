@@ -1,23 +1,23 @@
 import { useData, useDataDispatch } from '../contexts/DataContext';
 import { ACTIONS } from '../reducer/dataReducer';
 const RATINGS = [4, 3, 2, 1];
+
 export default function Filters() {
   const dispatch = useDataDispatch();
-  const { categoryFilter, priceFilter } = useData();
+  const { state } = useData();
+  const { categoryFilter, priceFilter } = state;
   const handleCategoryFilter = (categoryName, checked) => {
     dispatch({
       type: ACTIONS.CATEGORYFILTER,
       payload: { category: categoryName, checked: checked },
     });
   };
-  const handleRatingFilter = (rating) => {
-    dispatch({ type: ACTIONS.RATINGSFILTER, payload: rating });
-  };
+
   const handlePriceSort = (sortBy) => {
     dispatch({ type: ACTIONS.SORTBY, payload: sortBy });
   };
   return (
-    <div className="container mx-auto  flex flex-col gap-4 text-base w-full px-4">
+    <div className="container mx-auto  flex flex-col gap-4 text-base w-full px-4 text-center">
       <div className="flex justify-between">
         <h2 className="font-bold">Filters</h2>
         <button
@@ -66,21 +66,23 @@ export default function Filters() {
       </div>
 
       {/* Rating Filter  */}
-      <div className="flex flex-col gap-1">
-        <p className="font-bold">Rating</p>
 
+      <div className="flex flex-col mx-2">
+        <p className="font-bold">Rating</p>
         {RATINGS.map((rating) => (
           <div className="flex gap-2" key={rating}>
             <input
               type="radio"
               name="ratings"
-              id={rating}
               value={rating}
               onChange={() => {
-                handleRatingFilter(rating);
+                dispatch({
+                  type: ACTIONS.RATINGS_FILTER,
+                  payload: { rating: rating },
+                });
               }}
             />
-            <label htmlFor={rating}>{rating} stars & above</label>
+            <label>{rating} stars and above</label>
           </div>
         ))}
       </div>

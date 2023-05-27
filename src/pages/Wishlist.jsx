@@ -2,7 +2,8 @@ import WishlistCard from '../components/WishlistCard';
 import { useData } from '../contexts/DataContext';
 
 export default function Wishlist() {
-  const { wishlist } = useData();
+  const { state } = useData();
+  const { wishlist } = state;
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-center font-bold uppercase">My Wishlist</h1>

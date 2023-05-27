@@ -14,18 +14,6 @@ const DataDispatchContext = createContext();
 
 export default function DataProvider({ children }) {
   const [state, dispatch] = useReducer(dataReducer, initialState);
-  const {
-    products,
-    categories,
-    cart,
-    wishlist,
-    priceFilter,
-    categoryFilter,
-    ratingsFilter,
-    sortBy,
-    searchInput,
-    homeIsLoading,
-  } = state;
 
   const getProductsData = async () => {
     try {
@@ -58,7 +46,7 @@ export default function DataProvider({ children }) {
   }, []);
 
   const addToCartHandler = async (product) => {
-    const inCart = cart.some(({ _id }) => {
+    const inCart = state.cart.some(({ _id }) => {
       return product?._id === _id;
     });
 
@@ -138,7 +126,7 @@ export default function DataProvider({ children }) {
     }
   };
   const addToWishlistHandler = async (product) => {
-    const inWishlist = wishlist.some((_id) => product._id === _id);
+    const inWishlist = state.wishlist.some((_id) => product._id === _id);
     if (inWishlist) return;
     try {
       const { encodedToken } = JSON.parse(localStorage.getItem('user'));
@@ -179,24 +167,14 @@ export default function DataProvider({ children }) {
   return (
     <DataContext.Provider
       value={{
-        products,
-        categories,
-        cart,
-        wishlist,
-        priceFilter,
-        categoryFilter,
-        ratingsFilter,
-        sortBy,
-        getProductsData,
+        state,
         addToCartHandler,
-        incrementHandler,
-        decrementHandler,
         removeFromCart,
         addToWishlistHandler,
         removeFromWishlistHandler,
+        incrementHandler,
+        decrementHandler,
         handleSearchInput,
-        searchInput,
-        homeIsLoading,
       }}
     >
       <DataDispatchContext.Provider value={dispatch}>

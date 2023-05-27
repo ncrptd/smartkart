@@ -4,12 +4,12 @@ import ProductCard from '../components/ProductCard';
 import { useData } from '../contexts/DataContext';
 import Loader from '../components/Loader';
 function ProductsList() {
+  const { state } = useData();
   const { products, priceFilter, categoryFilter, ratingsFilter, sortBy } =
-    useData();
+    state;
   const [show, setShow] = useState(false);
 
   const handleShow = (e) => {
-    e.preventDefault();
     setShow(!show);
   };
 
@@ -34,7 +34,9 @@ function ProductsList() {
   }
   function getRatingsFilteredData(products, rating) {
     if (rating) {
-      const r = products.filter((product) => product.rating >= rating);
+      const r = products.filter(
+        (product) => Number(product.rating) >= Number(rating)
+      );
       return r;
     }
     return products;

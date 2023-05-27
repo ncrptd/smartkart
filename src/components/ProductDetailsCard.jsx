@@ -3,24 +3,15 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { useData } from '../contexts/DataContext';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import Loader from './Loader';
 export default function ProductDetailsCard({ product }) {
-  // const {
-  //   imageUrl,
-  //   title,
-  //   rating,
-  //   numReviews,
-  //   price,
-  //   description,
-  //   sizes,
-  //   _id,
-  // } = product;
   const {
-    cart,
-    wishlist,
+    state,
     addToCartHandler,
     addToWishlistHandler,
     removeFromWishlistHandler,
   } = useData();
+  const { cart, wishlist } = state;
   const { isLoggedIn } = useAuth();
 
   const inCart = cart?.some((item) => {
@@ -104,6 +95,6 @@ export default function ProductDetailsCard({ product }) {
       </div>
     </div>
   ) : (
-    <p>...loading</p>
+    <Loader />
   );
 }

@@ -10,7 +10,8 @@ export default function Search() {
     dispatch({ type: ACTIONS.SEARCH_INPUT, payload: { searchInput: '' } });
   }, []);
   const location = useLocation();
-  const { products, searchInput, handleSearchInput } = useData();
+  const { state, handleSearchInput } = useData();
+  const { products, searchInput } = state;
 
   let visibleProducts = [];
 

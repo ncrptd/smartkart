@@ -3,7 +3,8 @@ import CartCard from '../components/CartCard';
 import { useData } from '../contexts/DataContext';
 
 export default function Cart() {
-  const { cart } = useData();
+  const { state } = useData();
+  const { cart } = state;
   const price = Number(
     cart
       ?.reduce((acc, curr) => (acc += Number(curr.price) * Number(curr.qty)), 0)

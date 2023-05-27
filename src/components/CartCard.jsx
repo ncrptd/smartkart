@@ -9,12 +9,13 @@ export default function CartCard({ product }) {
     ((original_price - price) / original_price) * 100
   ).toFixed(2);
   const {
+    state,
     incrementHandler,
     decrementHandler,
     removeFromCart,
-    wishlist,
     addToWishlistHandler,
   } = useData();
+  const { wishlist } = state;
   const inWishlist = wishlist.some((product) => product._id === _id);
   return (
     <div className="flex rounded-xl md:w-3/4 md:shadow-lg overflow-hidden mb-4 text-slate-600">
