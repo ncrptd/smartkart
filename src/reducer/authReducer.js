@@ -3,14 +3,19 @@ export const ACTIONS_AUTH = {
   LOGIN_SUCCESS: 'login-success',
   LOGIN_FAILURE: 'login-failure',
   LOGOUT: 'logout',
-  ADDRESS_UPDATE: 'address-update',
+  FILL_EDIT_ADDRESS_FORM: 'fill-edit-address-form',
+  SHOW_ADDRESS_FORM: 'show-address-form',
+  NEW_ADDRESS: 'new-address',
+  EDIT_ADDRESS: 'edit-address',
+  DELETE_ADDRESS: 'delete-address',
 };
 
 export const initialAuthState = {
   userDetails: null,
-  addressList: [],
   isLoggedIn: false,
-  error: null,
+  showAddressForm: false,
+  editAddressForm: null,
+  addressList: [],
 };
 
 export default function authReducer(state, action) {
@@ -32,8 +37,21 @@ export default function authReducer(state, action) {
     case ACTIONS_AUTH.LOGOUT: {
       return { ...state, isLoggedIn: false, userDetails: null };
     }
-    case ACTIONS_AUTH.ADDRESS_UPDATE: {
-      return { ...state, addressList: payload.addressList };
+    case ACTIONS_AUTH.SHOW_ADDRESS_FORM: {
+      return { ...state, showAddressForm: payload.flag };
+    }
+    case ACTIONS_AUTH.FILL_EDIT_ADDRESS_FORM: {
+      console.log('f', payload.form);
+      return { ...state, editAddressForm: payload.form };
+    }
+    case ACTIONS_AUTH.NEW_ADDRESS: {
+      return { ...state, addressList: [...state.addressList, payload.address] };
+    }
+    case ACTIONS_AUTH.EDIT_ADDRESS: {
+      return { ...state, addressList: payload.updatedAddressList };
+    }
+    case ACTIONS_AUTH.DELETE_ADDRESS: {
+      return { ...state, addressList: payload.updatedAddressList };
     }
     default: {
       return state;

@@ -1,13 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
 import { useData } from '../contexts/DataContext';
 
 function ProductCard({ product }) {
   const navigate = useNavigate();
   const { title, price, imageUrl, rating, _id } = product;
-  const { isLoggedIn } = useAuth();
+  const isLoggedIn = localStorage.getItem('user');
   const {
     state,
     addToCartHandler,

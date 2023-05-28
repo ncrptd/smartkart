@@ -27,7 +27,7 @@ export default function Profile() {
       </div>
       <button
         className="bg-pink-600 text-white
-             py-1 px-4 w-2/4 mx-auto  shadow-2xl font-bold"
+             py-1 px-4  mx-auto  shadow-2xl font-bold"
         onClick={() => {
           localStorage.clear();
           dispatchAuth({ type: ACTIONS_AUTH.LOGOUT });

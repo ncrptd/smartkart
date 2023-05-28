@@ -3,6 +3,7 @@ import authReducer, {
   ACTIONS_AUTH,
   initialAuthState,
 } from '../reducer/authReducer';
+import { addedAddress, removedAddress } from '../alerts/alerts';
 const AuthContext = createContext();
 const AuthDispatchContext = createContext();
 
@@ -23,15 +24,37 @@ export default function AuthProvider({ children }) {
   useEffect(() => {
     getUserDetails();
   }, []);
-  function handleAddressUpdate(address) {
-    console.log(address);
+  function handleNewAddress(address) {
+    dispatch({ type: ACTIONS_AUTH.NEW_ADDRESS, payload: { address: address } });
+    addedAddress();
+  }
+  function handleAddressEdit(address) {
+    const updatedAddressList = state.addressList.map((item) =>
+      item.id === address?.id ? address : item
+    );
+    dispatch({
+      type: ACTIONS_AUTH.EDIT_ADDRESS,
+      payload: { updatedAddressList },
+    });
   }
   function handleAddressDelete(address) {
-    console.log(address);
+    const updatedAddressList = state.addressList.filter(
+      (item) => item?.id !== address?.id
+    );
+    dispatch({
+      type: ACTIONS_AUTH.DELETE_ADDRESS,
+      payload: { updatedAddressList },
+    });
+    removedAddress();
   }
   return (
     <AuthContext.Provider
-      value={{ state, handleAddressUpdate, handleAddressDelete }}
+      value={{
+        state,
+        handleNewAddress,
+        handleAddressEdit,
+        handleAddressDelete,
+      }}
     >
       <AuthDispatchContext.Provider value={dispatch}>
         {children}

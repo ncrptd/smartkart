@@ -7,7 +7,7 @@ import { ACTIONS } from '../reducer/dataReducer';
 import { loggedIn } from '../alerts/alerts';
 const GUEST = {
   email: 'johndoe@gmail.com',
-  password: 'johndoe',
+  password: 'johndoe5',
 };
 
 export default function Login() {
@@ -75,7 +75,13 @@ export default function Login() {
   }
   return (
     <main className="h-screen flex justify-center items-center bg-slate-100 p-6">
-      <form className="container mx-auto flex flex-col justify-center item-center gap-4 bg-white p-12  md:w-2/5 rounded-2xl shadow-2xl text-base">
+      <form
+        className="container mx-auto flex flex-col justify-center item-center gap-4 bg-white p-12  md:w-2/5 rounded-2xl shadow-2xl text-base"
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleLogin(formDetails);
+        }}
+      >
         <label htmlFor="email ">Email address</label>
         <input
           type="email"
@@ -99,10 +105,7 @@ export default function Login() {
         <button
           className="bg-pink-600 text-white
            py-1 px-4 w-full  "
-          onClick={(e) => {
-            e.preventDefault();
-            handleLogin(formDetails);
-          }}
+          type="submit"
         >
           Login
         </button>

@@ -14,12 +14,12 @@ import Wishlist from './pages/Wishlist';
 import Search from './pages/Search';
 import { useData } from './contexts/DataContext';
 import Loader from './components/Loader';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 function App() {
-  const { homeIsLoading } = useData();
+  const { homeIsLoading, categories } = useData();
 
-  return homeIsLoading ? (
+  return categories?.length < 1 ? (
     <Loader />
   ) : (
     <main className="App bg-slate-50 text-lg h-screen ">

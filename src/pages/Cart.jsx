@@ -36,14 +36,14 @@ export default function Cart() {
           </div>
           {/* price details  */}
           <div
-            className="rounded-xl shadow-lg mt-6 px-4 py-12 text-lg  md:p-4 md:mt-0 md:flex md:flex-col md:justify-between md:text-2xl md:w-3/4 
+            className="rounded-xl shadow-lg mt-6 px-4 py-12  md:p-4 md:mt-0 md:flex md:flex-col md:justify-between md:text-2xl md:w-3/4 
           text-slate-600 
 
        "
           >
             <p className=" font-bold  py-2"> Price Details</p>
             <hr />
-            <div className="flex flex-col gap-4 mt-2 justify-between font-semibold">
+            <div className="flex flex-col gap-4 mt-2 justify-between text-base font-semibold">
               <p className="flex justify-between">
                 Price ({cart?.length} item) <span>&#36;{price}</span>
               </p>
