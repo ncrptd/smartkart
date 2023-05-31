@@ -17,12 +17,12 @@ export default function Filters() {
     dispatch({ type: ACTIONS.SORTBY, payload: sortBy });
   };
   return (
-    <div className="container mx-auto  flex flex-col gap-4 text-base w-full px-4 text-center">
+    <div className="container mx-auto flex flex-col gap-4 text-base w-full px-4 ">
       <div className="flex justify-between">
         <h2 className="font-bold">Filters</h2>
         <button
           className="font-thin hover:text-slate-500"
-          onClick={() => dispatch({ type: ACTIONS.CLEARFILTERS })}
+          onClick={() => dispatch({ type: ACTIONS.CLEAR_FILTERS })}
         >
           Clear
         </button>
@@ -67,24 +67,26 @@ export default function Filters() {
 
       {/* Rating Filter  */}
 
-      <div className="flex flex-col mx-2">
+      <div className="flex flex-col gap-2">
         <p className="font-bold">Rating</p>
-        {RATINGS.map((rating) => (
-          <div className="flex gap-2" key={rating}>
-            <input
-              type="radio"
-              name="ratings"
-              value={rating}
-              onChange={() => {
-                dispatch({
-                  type: ACTIONS.RATINGS_FILTER,
-                  payload: { rating: rating },
-                });
-              }}
-            />
-            <label>{rating} stars and above</label>
-          </div>
-        ))}
+        {RATINGS.map((rating) => {
+          return (
+            <div className="flex gap-2" key={rating}>
+              <input
+                type="radio"
+                name="ratings"
+                id={rating}
+                onChange={() => {
+                  dispatch({
+                    type: ACTIONS.RATINGS_FILTER,
+                    payload: { rating: rating },
+                  });
+                }}
+              />
+              <label htmlFor={rating}>{rating} stars and above</label>
+            </div>
+          );
+        })}
       </div>
       {/* Sort by  */}
       <div className="flex flex-col gap-2">
@@ -103,7 +105,7 @@ export default function Filters() {
           />
           <label htmlFor="low-to-high">Low to High</label>
         </div>
-        <div className="flex gap-1">
+        <div className="flex gap-2">
           <input
             type="radio"
             name="price-sort"

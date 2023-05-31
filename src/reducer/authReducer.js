@@ -8,6 +8,7 @@ export const ACTIONS_AUTH = {
   NEW_ADDRESS: 'new-address',
   EDIT_ADDRESS: 'edit-address',
   DELETE_ADDRESS: 'delete-address',
+  SELECT_ADDRESS: 'select-address',
 };
 
 export const initialAuthState = {
@@ -15,7 +16,30 @@ export const initialAuthState = {
   isLoggedIn: false,
   showAddressForm: false,
   editAddressForm: null,
-  addressList: [],
+  addressList: [
+    {
+      name: 'Vicki McDermott',
+      address: '8505 Christina Ridges',
+      city: 'West Cooper',
+      state: 'Arunachal Pradesh',
+      country: 'India',
+      pincode: '820598',
+      mobile: 1293452481,
+      alternateMobile: 4878794411,
+      id: '2364c34d-7645-49cb-8b74-4bc5cb09711d',
+    },
+  ],
+  selectedAddress: {
+    name: 'Vicki McDermott',
+    address: '8505 Christina Ridges',
+    city: 'West Cooper',
+    state: 'Arunachal Pradesh',
+    country: 'India',
+    pincode: '820598',
+    mobile: 1293452481,
+    alternateMobile: 4878794411,
+    id: '2364c34d-7645-49cb-8b74-4bc5cb09711d',
+  },
 };
 
 export default function authReducer(state, action) {
@@ -52,6 +76,9 @@ export default function authReducer(state, action) {
     }
     case ACTIONS_AUTH.DELETE_ADDRESS: {
       return { ...state, addressList: payload.updatedAddressList };
+    }
+    case ACTIONS_AUTH.SELECT_ADDRESS: {
+      return { ...state, selectedAddress: payload.selectedAddress };
     }
     default: {
       return state;

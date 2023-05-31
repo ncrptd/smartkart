@@ -16,10 +16,12 @@ import { useData } from './contexts/DataContext';
 import Loader from './components/Loader';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PageNotFound from './pages/PageNotFound';
+import Checkout from './pages/Checkout';
 function App() {
-  const { homeIsLoading, categories } = useData();
+  const { homeIsLoading } = useData();
 
-  return categories?.length < 1 ? (
+  return homeIsLoading ? (
     <Loader />
   ) : (
     <main className="App bg-slate-50 text-lg h-screen ">
@@ -56,6 +58,15 @@ function App() {
               }
             ></Route>
             <Route path="/search" element={<Search />} />
+            <Route
+              path="/checkout"
+              element={
+                <RequiresAuth>
+                  <Checkout />
+                </RequiresAuth>
+              }
+            />
+            <Route path="*" element={<PageNotFound />} />
             <Route path="/mockman" element={<Mockman />} />
           </Route>
         </Routes>

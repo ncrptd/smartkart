@@ -33,6 +33,7 @@ function ProductsList() {
     return products;
   }
   function getRatingsFilteredData(products, rating) {
+    console.log('list', rating);
     if (rating) {
       const r = products.filter(
         (product) => Number(product.rating) >= Number(rating)
@@ -60,6 +61,7 @@ function ProductsList() {
   );
   const sortByPriceData = getSortByPriceData(ratingsFilteredData, sortBy);
   const visibleData = sortByPriceData;
+
   return products.length < 1 ? (
     <Loader />
   ) : (

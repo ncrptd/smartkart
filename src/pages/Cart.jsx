@@ -1,8 +1,10 @@
 import React from 'react';
 import CartCard from '../components/CartCard';
 import { useData } from '../contexts/DataContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function Cart() {
+  const navigate = useNavigate();
   const { state } = useData();
   const { cart } = state;
   const price = Number(
@@ -21,7 +23,7 @@ export default function Cart() {
   const deliveryCharge = 5;
   const totalPrice = (price + deliveryCharge).toFixed(2);
   return (
-    <main className="p-6">
+    <main className="p-6 ">
       {cart?.length < 1 ? (
         <p className="text-center font-bold uppercase">Cart is Empty</p>
       ) : (
@@ -35,8 +37,9 @@ export default function Cart() {
             ))}
           </div>
           {/* price details  */}
+
           <div
-            className="rounded-xl shadow-lg mt-6 px-4 py-12  md:p-4 md:mt-0 md:flex md:flex-col md:justify-between md:text-2xl md:w-3/4 
+            className="rounded-xl shadow-lg mt-6 px-4 py-12  md:p-4 md:mt-0 md:flex md:flex-col md:justify-between md:text-2xl lg:w-full  
           text-slate-600 
 
        "
@@ -47,21 +50,24 @@ export default function Cart() {
               <p className="flex justify-between">
                 Price ({cart?.length} item) <span>&#36;{price}</span>
               </p>
-              <p className="flex justify-between">
+              <p className="flex justify-between text-green-500">
                 Discount <span>&#36;{totalDiscount}</span>
               </p>
               <p className="flex justify-between">
                 Delivery Charges: <span>&#36;{deliveryCharge}</span>
               </p>
-              <p className="flex justify-between">
+              <p className="flex justify-between font-bold">
                 TOTAL AMOUNT <span>&#36;{totalPrice}</span>
               </p>
               <button
                 className=" text-sm bg-pink-600
-            w-full py-2.5 px-2 text-white font-bold 
+            py-2.5 px-2 mx-auto w-2/4 text-white font-bold rounded-md
             "
+                onClick={() => {
+                  navigate('/checkout');
+                }}
               >
-                PLACE ORDER
+                Checkout
               </button>
             </div>
           </div>

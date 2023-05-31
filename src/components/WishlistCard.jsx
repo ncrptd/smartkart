@@ -4,12 +4,12 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
 export default function WishlistCard({ product }) {
   const {
-    cart,
-    wishlist,
+    state,
     addToCartHandler,
     addToWishlistHandler,
     removeFromWishlistHandler,
   } = useData();
+  const { cart, wishlist } = state;
   const inWishlist = wishlist?.some(({ _id }) => product?._id === _id);
   const inCart = cart?.some(({ _id }) => product?._id === _id);
   return (

@@ -4,7 +4,7 @@ export const ACTIONS = {
   CATEGORYFILTER: 'category-filter',
   RATINGS_FILTER: 'ratings-filter',
   SORTBY: 'sort-by',
-  CLEARFILTERS: 'clear-filters',
+  CLEAR_FILTERS: 'clear-filters',
   ADD_TO_CART: 'add-to-cart',
   CLEAR_CART: 'clear-cart',
   ADD_TO_WISHLIST: 'add-to-wishlist',
@@ -18,7 +18,7 @@ export const initialState = {
   wishlist: [],
   priceFilter: 200,
   categoryFilter: { Men: false, Women: false },
-  ratingsFilter: 1,
+  ratingsFilter: null,
   sortBy: null,
   searchInput: '',
   homeIsLoading: true,
@@ -63,7 +63,7 @@ export default function dataReducer(state, action) {
     case ACTIONS.SORTBY: {
       return { ...state, sortBy: payload };
     }
-    case ACTIONS.CLEARFILTERS: {
+    case ACTIONS.CLEAR_FILTERS: {
       return {
         ...state,
         priceFilter: 200,

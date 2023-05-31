@@ -18,7 +18,7 @@ export default function CartCard({ product }) {
   const { wishlist } = state;
   const inWishlist = wishlist.some((product) => product._id === _id);
   return (
-    <div className="flex rounded-xl md:w-3/4 md:shadow-lg overflow-hidden mb-4 text-slate-600">
+    <div className="flex rounded-xl md:shadow-lg overflow-hidden mb-4 text-slate-600 ">
       <Link to={`/productDetails/${_id}`}>
         <div className="w-full h-full overflow-hidden">
           <img
