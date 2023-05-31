@@ -61,7 +61,7 @@ export default function Cart() {
               </p>
               <button
                 className=" text-sm bg-pink-600
-            py-2.5 px-2 mx-auto text-white font-bold rounded-md
+            py-2.5 px-12 mx-auto text-white font-bold rounded-md
             "
                 onClick={() => {
                   navigate('/checkout');

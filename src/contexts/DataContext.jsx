@@ -39,23 +39,25 @@ export default function DataProvider({ children }) {
       console.log(error);
     }
   };
-  // const getCart = async () => {
-  //   const user = localStorage.getItem('user');
-  //   if (!user) return;
-  //   const { encodedToken } = JSON.parse(user);
-  //   try {
-  //     const config = {
-  //       headers: { authorization: encodedToken },
-  //     };
+  const getCart = async () => {
+    const user = localStorage.getItem('user');
+    if (!user) return;
+    const { encodedToken } = JSON.parse(user);
+    try {
+      const config = {
+        headers: { authorization: encodedToken },
+      };
 
-  //     const res = await axios.get('/api/user/cart', config);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+      const res = await axios.get('/api/user/cart', config);
+      console.log(res.data.cart);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     getProductsData();
     getCategories();
+    getCart();
   }, []);
 
   const addToCartHandler = async (product) => {
@@ -187,6 +189,7 @@ export default function DataProvider({ children }) {
         incrementHandler,
         decrementHandler,
         handleSearchInput,
+        getCart,
       }}
     >
       <DataDispatchContext.Provider value={dispatch}>

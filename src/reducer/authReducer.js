@@ -9,6 +9,7 @@ export const ACTIONS_AUTH = {
   EDIT_ADDRESS: 'edit-address',
   DELETE_ADDRESS: 'delete-address',
   SELECT_ADDRESS: 'select-address',
+  PLACE_ORDER: 'place-order',
 };
 
 export const initialAuthState = {
@@ -30,6 +31,7 @@ export const initialAuthState = {
     },
   ],
   selectedAddress: null,
+  orderedItems: [],
 };
 
 export default function authReducer(state, action) {
@@ -66,9 +68,14 @@ export default function authReducer(state, action) {
     case ACTIONS_AUTH.DELETE_ADDRESS: {
       return { ...state, addressList: payload.updatedAddressList };
     }
+    case ACTIONS_AUTH.PLACE_ORDER: {
+      console.log(payload.orderedItems);
+      return { ...state, orderedItems: payload.orderedItems };
+    }
     case ACTIONS_AUTH.SELECT_ADDRESS: {
       return { ...state, selectedAddress: payload.selectedAddress };
     }
+
     default: {
       return state;
     }

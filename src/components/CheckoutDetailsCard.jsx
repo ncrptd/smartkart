@@ -1,23 +1,28 @@
-import { useAuth } from '../contexts/AuthContext';
-import { useData } from '../contexts/DataContext';
+import { useAuth, useAuthDispatch } from '../contexts/AuthContext';
+import { useData, useDataDispatch } from '../contexts/DataContext';
 import { selectAddress, noAddress } from '../alerts/alerts';
 import { useNavigate } from 'react-router-dom';
+import { ACTIONS_AUTH } from '../reducer/authReducer';
+import { ACTIONS } from '../reducer/dataReducer';
 export default function CheckoutDetailsCard() {
-  const { state } = useData();
   const navigate = useNavigate();
 
-  const { state: authState } = useAuth();
-  const { addressList, selectedAddress } = authState;
+  const { state } = useData();
+  const dispatch = useDataDispatch();
   const { cart } = state;
 
+  const { state: authState } = useAuth();
+  const { addressList, selectedAddress, orderedItems } = authState;
+  const authDispatch = useAuthDispatch();
+
   const price = Number(
-    cart
+    orderedItems
       ?.reduce((acc, curr) => (acc += Number(curr.price) * Number(curr.qty)), 0)
       .toFixed(2)
   );
 
   const originalPrice = Number(
-    cart.reduce(
+    orderedItems.reduce(
       (acc, curr) => (acc += Number(curr.original_price) * Number(curr.qty)),
       0
     )
@@ -33,6 +38,11 @@ export default function CheckoutDetailsCard() {
       selectAddress();
     } else {
       navigate('/orderSummary');
+      authDispatch({
+        type: ACTIONS_AUTH.PLACE_ORDER,
+        payload: { orderedItems: cart },
+      });
+      console.log(orderedItems);
     }
   };
   return (
@@ -44,7 +54,7 @@ export default function CheckoutDetailsCard() {
         <span>Item</span> <span>Qty</span>
       </div>
       <div>
-        {cart.map((item) => (
+        {orderedItems.map((item) => (
           <p
             className="flex justify-between text-base font-semibold"
             key={item?._id}
@@ -59,7 +69,7 @@ export default function CheckoutDetailsCard() {
       <hr />
       <div className="flex flex-col gap-2 font-semibold">
         <p className="flex justify-between">
-          <span>Price ({cart?.length} items)</span>
+          <span>Price ({orderedItems?.length} items)</span>
           <span>&#36;{originalPrice}</span>
         </p>
         <p className="flex justify-between text-green-600">

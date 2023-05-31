@@ -32,9 +32,9 @@ export default function Profile() {
           localStorage.clear();
           dispatchAuth({ type: ACTIONS_AUTH.LOGOUT });
           dispatchData({ type: ACTIONS.CLEAR_CART });
+          dispatchData({ type: ACTIONS.CLEAR_WISHLIST });
           navigate('/');
           loggedOut();
-          window.location.reload(true);
         }}
       >
         Logout

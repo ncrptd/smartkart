@@ -36,6 +36,7 @@ function ProductCard({ product }) {
         <div
           onClick={(e) => {
             e.stopPropagation();
+            if (!isLoggedIn && navigate('/wishlist'));
             if (inWishlist) {
               removeFromWishlistHandler(product?._id);
               // removedFromWishlist();

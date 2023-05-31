@@ -5,6 +5,7 @@ import { useAuth, useAuthDispatch } from '../contexts/AuthContext';
 import { ACTIONS_AUTH } from '../reducer/authReducer';
 import { ACTIONS } from '../reducer/dataReducer';
 import { loggedIn } from '../alerts/alerts';
+import { useData, useDataDispatch } from '../contexts/DataContext';
 const GUEST = {
   email: 'johndoe@gmail.com',
   password: 'johndoe5',
@@ -16,7 +17,8 @@ export default function Login() {
     password: '',
   });
   const [errorMsg, setErrorMsg] = useState('');
-  const dispatch = useAuthDispatch();
+  const dataDispatch = useDataDispatch();
+  const authDispatch = useAuthDispatch();
   const location = useLocation();
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
@@ -37,13 +39,17 @@ export default function Login() {
           password: password,
         });
         const { foundUser, encodedToken } = res.data;
-        dispatch({
+        authDispatch({
           type: ACTIONS_AUTH.LOGIN_SUCCESS,
           payload: { userDetails: foundUser },
         });
-        dispatch({
+        dataDispatch({
           type: ACTIONS.ADD_TO_CART,
           payload: { cart: foundUser.cart },
+        });
+        dataDispatch({
+          type: ACTIONS.ADD_TO_WISHLIST,
+          payload: { wishlist: foundUser.wishlist },
         });
         localStorage.setItem(
           'user',
@@ -61,7 +67,7 @@ export default function Login() {
       } catch (error) {
         console.log(error.message);
         setErrorMsg('No user found');
-        dispatch({ type: ACTIONS_AUTH.LOGIN_FAILURE, payload: error });
+        authDispatch({ type: ACTIONS_AUTH.LOGIN_FAILURE, payload: error });
       }
     }
   }

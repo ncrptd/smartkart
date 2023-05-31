@@ -8,6 +8,7 @@ export const ACTIONS = {
   ADD_TO_CART: 'add-to-cart',
   CLEAR_CART: 'clear-cart',
   ADD_TO_WISHLIST: 'add-to-wishlist',
+  CLEAR_WISHLIST: 'clear-wishlist',
   SEARCH_INPUT: 'search-input',
   HOME_IS_LOADING: 'home-is-loading',
 };
@@ -74,6 +75,7 @@ export default function dataReducer(state, action) {
     }
 
     case ACTIONS.ADD_TO_CART: {
+      console.log('reducer', payload.cart, payload?.login);
       return { ...state, cart: payload.cart };
     }
     case ACTIONS.CLEAR_CART: {
@@ -81,6 +83,9 @@ export default function dataReducer(state, action) {
     }
     case ACTIONS.ADD_TO_WISHLIST: {
       return { ...state, wishlist: payload.wishlist };
+    }
+    case ACTIONS.CLEAR_WISHLIST: {
+      return { ...state, wishlist: [] };
     }
     case ACTIONS.SEARCH_INPUT: {
       return {

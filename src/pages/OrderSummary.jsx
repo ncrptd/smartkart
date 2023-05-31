@@ -1,4 +1,3 @@
-import { selectAddress } from '../alerts/alerts';
 import { useAuth } from '../contexts/AuthContext';
 import { useData } from '../contexts/DataContext';
 
@@ -6,7 +5,7 @@ export default function OrderSummary() {
   const { state } = useData();
   const { cart } = state;
   const { state: authState } = useAuth();
-  const { selectedAddress } = authState;
+  const { selectedAddress, orderedItems } = authState;
   const price = Number(
     cart
       ?.reduce((acc, curr) => (acc += Number(curr.price) * Number(curr.qty)), 0)
@@ -16,12 +15,12 @@ export default function OrderSummary() {
 
   const totalPrice = (price + deliveryCharge).toFixed(2);
   return (
-    <main className="p-4 ">
+    <main className="p-4 md:p-20 ">
       <h1 className="font-bold text-center text-2xl">Order Summary</h1>
-      {selectedAddress && cart.length >= 1 ? (
-        <>
+      {selectedAddress && orderedItems.length >= 1 ? (
+        <div className="container mx-auto md:flex md:shadow-lg md:p-20">
           {' '}
-          <div className="p-4 font-semibold flex flex-col gap-4">
+          <div className="p-4 font-semibold flex flex-col gap-4 md:w-2/4">
             <h2 className="text-green-500 text-2xl text-center">
               Order Confirmed
             </h2>
@@ -43,10 +42,10 @@ export default function OrderSummary() {
               </p>
             </div>
           </div>
-          <div>
-            {cart.map((item) => (
+          <div className="md:w-2/4">
+            {orderedItems.map((item) => (
               <div
-                className="flex space-x-8 p-2 font-semibold shadow-lg"
+                className="flex space-x-8 p-2 font-semibold shadow-lg md:w-3/6"
                 key={item?.id}
               >
                 <div className="w-2/4 h-1/4 rounded-md overflow-hidden">
@@ -56,7 +55,7 @@ export default function OrderSummary() {
                     className="object-cover h-full w-full"
                   />
                 </div>
-                <div className="w-2/4 flex flex-col gap-6 ">
+                <div className="w-2/4 flex flex-col gap-6 md:w-3/6 md:text-sm">
                   <p>{item?.title}</p>
                   <p>Total Quantity: {item?.qty}</p>
                   <p>Price: {item?.price}</p>
@@ -64,7 +63,7 @@ export default function OrderSummary() {
               </div>
             ))}
           </div>
-        </>
+        </div>
       ) : (
         <p>No Order found</p>
       )}
