@@ -3,6 +3,7 @@ import CheckoutDetailsCard from '../components/CheckoutDetailsCard';
 import { useAuth, useAuthDispatch } from '../contexts/AuthContext';
 import { ACTIONS_AUTH } from '../reducer/authReducer';
 import { useData } from '../contexts/DataContext';
+import { useEffect } from 'react';
 export default function Checkout() {
   const { state } = useData();
   const { cart } = state;
@@ -11,16 +12,17 @@ export default function Checkout() {
   const dispatch = useAuthDispatch();
   const { addressList, selectedAddress } = authState;
   const addressSelectionHandler = (address) => {
-    console.log('checkout', address);
     dispatch({
       type: ACTIONS_AUTH.SELECT_ADDRESS,
       payload: { selectedAddress: address },
     });
   };
   const navigate = useNavigate();
-  if (cart.length < 1) {
-    navigate('/');
-  }
+  useEffect(() => {
+    if (cart.length < 1) {
+      navigate('/');
+    }
+  }, [cart.length, navigate]);
   return (
     <main className="p-4">
       <h1 className="text-center uppercase font-bold mb-4">Checkout</h1>
@@ -31,15 +33,15 @@ export default function Checkout() {
               {addressList.map((address) => (
                 <div
                   className="shadow-md p-6 flex flex-col gap-2"
-                  key={address.id}
+                  key={address?.id}
                 >
                   <div className="flex gap-4">
                     <input
                       type="radio"
                       name="address"
                       value={address}
-                      id={address.id}
-                      checked={selectedAddress.id === address.id}
+                      id={address?.id}
+                      checked={selectedAddress?.id === address?.id}
                       onChange={() => addressSelectionHandler(address)}
                     />
                     <p className="font-semibold">{address?.name}</p>

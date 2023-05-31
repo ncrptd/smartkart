@@ -29,17 +29,7 @@ export const initialAuthState = {
       id: '2364c34d-7645-49cb-8b74-4bc5cb09711d',
     },
   ],
-  selectedAddress: {
-    name: 'Vicki McDermott',
-    address: '8505 Christina Ridges',
-    city: 'West Cooper',
-    state: 'Arunachal Pradesh',
-    country: 'India',
-    pincode: '820598',
-    mobile: 1293452481,
-    alternateMobile: 4878794411,
-    id: '2364c34d-7645-49cb-8b74-4bc5cb09711d',
-  },
+  selectedAddress: null,
 };
 
 export default function authReducer(state, action) {
@@ -65,7 +55,6 @@ export default function authReducer(state, action) {
       return { ...state, showAddressForm: payload.flag };
     }
     case ACTIONS_AUTH.FILL_EDIT_ADDRESS_FORM: {
-      console.log('f', payload.form);
       return { ...state, editAddressForm: payload.form };
     }
     case ACTIONS_AUTH.NEW_ADDRESS: {

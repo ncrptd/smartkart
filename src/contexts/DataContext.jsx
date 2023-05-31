@@ -39,7 +39,20 @@ export default function DataProvider({ children }) {
       console.log(error);
     }
   };
+  // const getCart = async () => {
+  //   const user = localStorage.getItem('user');
+  //   if (!user) return;
+  //   const { encodedToken } = JSON.parse(user);
+  //   try {
+  //     const config = {
+  //       headers: { authorization: encodedToken },
+  //     };
 
+  //     const res = await axios.get('/api/user/cart', config);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   useEffect(() => {
     getProductsData();
     getCategories();
@@ -49,7 +62,6 @@ export default function DataProvider({ children }) {
     const inCart = state.cart.some(({ _id }) => {
       return product?._id === _id;
     });
-
     if (inCart) return;
     const user = localStorage.getItem('user');
     if (!user) return;

@@ -7,3 +7,5 @@ export const loggedIn = () => toast('Successfully Logged In');
 export const loggedOut = () => toast('Logged Out');
 export const addedAddress = () => toast('Successfully Added Address');
 export const removedAddress = () => toast('Address Removed');
+export const selectAddress = () => toast('Please select an Address');
+export const noAddress = () => toast('No Address Found');

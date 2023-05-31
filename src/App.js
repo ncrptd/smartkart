@@ -18,13 +18,14 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PageNotFound from './pages/PageNotFound';
 import Checkout from './pages/Checkout';
+import OrderSummary from './pages/OrderSummary';
 function App() {
   const { homeIsLoading } = useData();
 
   return homeIsLoading ? (
     <Loader />
   ) : (
-    <main className="App bg-slate-50 text-lg h-screen ">
+    <main className="App text-lg h-screen ">
       <div className={`content-container ${homeIsLoading ? 'loading' : ''}`}>
         <Routes>
           <Route path="/" element={<RootLayout />}>
@@ -58,14 +59,8 @@ function App() {
               }
             ></Route>
             <Route path="/search" element={<Search />} />
-            <Route
-              path="/checkout"
-              element={
-                <RequiresAuth>
-                  <Checkout />
-                </RequiresAuth>
-              }
-            />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/orderSummary" element={<OrderSummary />} />
             <Route path="*" element={<PageNotFound />} />
             <Route path="/mockman" element={<Mockman />} />
           </Route>

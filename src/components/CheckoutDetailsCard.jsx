@@ -1,12 +1,15 @@
 import { useAuth } from '../contexts/AuthContext';
 import { useData } from '../contexts/DataContext';
-
+import { selectAddress, noAddress } from '../alerts/alerts';
+import { useNavigate } from 'react-router-dom';
 export default function CheckoutDetailsCard() {
   const { state } = useData();
+  const navigate = useNavigate();
+
   const { state: authState } = useAuth();
-  const { selectedAddress } = authState;
-  console.log('card', selectedAddress);
+  const { addressList, selectedAddress } = authState;
   const { cart } = state;
+
   const price = Number(
     cart
       ?.reduce((acc, curr) => (acc += Number(curr.price) * Number(curr.qty)), 0)
@@ -22,8 +25,18 @@ export default function CheckoutDetailsCard() {
   const totalDiscount = (originalPrice - price).toFixed(2);
   const deliveryCharge = 5;
   const totalPrice = (price + deliveryCharge).toFixed(2);
+  const orderHandler = () => {
+    if (addressList.length < 1) {
+      noAddress();
+      navigate('/profileDetails');
+    } else if (!selectedAddress) {
+      selectAddress();
+    } else {
+      navigate('/orderSummary');
+    }
+  };
   return (
-    <div className="shadow-lg p-4">
+    <div className="shadow-2xl p-4">
       <hr />
       <p className="uppercase font-bold text-center my-4">order details</p>
       <hr />
@@ -34,7 +47,7 @@ export default function CheckoutDetailsCard() {
         {cart.map((item) => (
           <p
             className="flex justify-between text-base font-semibold"
-            key={item._id}
+            key={item?._id}
           >
             <span>{item?.title}</span>
             <span>{item?.qty}</span>
@@ -65,19 +78,31 @@ export default function CheckoutDetailsCard() {
         <p className="uppercase font-bold text-center my-4">Deliver to</p>
         <hr />
 
-        <div className="text-sm">
-          <p className="font-semibold">{selectedAddress?.name}</p>
-          <span>{selectedAddress?.address}, </span>
-          <span>{selectedAddress?.city}, </span>
-          <span>{selectedAddress?.state}, </span>
-          <span>{selectedAddress?.pincode}, </span>
-          <span>{selectedAddress?.country}. </span>
-        </div>
-        <p className="text-sm">
-          <span>Phone Number: {selectedAddress?.mobile}, </span>
-          <span>Alternate Number: {selectedAddress?.alternateMobile}</span>
-        </p>
+        {selectedAddress && (
+          <>
+            {' '}
+            <div className="text-sm">
+              <p className="font-semibold">{selectedAddress?.name}</p>
+              <span>{selectedAddress?.address}, </span>
+              <span>{selectedAddress?.city}, </span>
+              <span>{selectedAddress?.state}, </span>
+              <span>{selectedAddress?.pincode}, </span>
+              <span>{selectedAddress?.country}. </span>
+            </div>
+            <p className="text-sm">
+              <span>Phone Number: {selectedAddress?.mobile}, </span>
+              <span>Alternate Number: {selectedAddress?.alternateMobile}</span>
+            </p>
+          </>
+        )}
       </div>
+      <button
+        className="bg-pink-600 text-white
+       py-1 px-4 block w-2/4 mx-auto text-base text-center hover:bg-pink-500 mt-4 "
+        onClick={orderHandler}
+      >
+        Place order
+      </button>
     </div>
   );
 }

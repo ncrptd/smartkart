@@ -34,6 +34,7 @@ export default function Profile() {
           dispatchData({ type: ACTIONS.CLEAR_CART });
           navigate('/');
           loggedOut();
+          window.location.reload(true);
         }}
       >
         Logout
