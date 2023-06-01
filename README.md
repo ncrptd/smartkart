@@ -31,7 +31,6 @@ This is an ecommerce website for clothes built using React.js and Tailwind CSS. 
 
 -  [![React](https://skillicons.dev/icons?i=react)](https://skillicons.dev)
  -  [![Tailwind Css](https://skillicons.dev/icons?i=tailwind)](https://skillicons.dev)
- -  [![React Router](https://skillicons.dev/icons?i=react-router)](https://skillicons.dev)
 
 ## Getting Started
 
