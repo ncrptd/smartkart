@@ -30,6 +30,7 @@ This is an ecommerce website for clothes built using React.js and Tailwind CSS. 
 ## Technologies Used
 
 -  ![React.js](https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png)
+-  <img src="[image_url](https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png)" alt="React" width="200px"/>
 - Tailwind CSS
 - React Router
 
