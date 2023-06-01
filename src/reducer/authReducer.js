@@ -69,7 +69,6 @@ export default function authReducer(state, action) {
       return { ...state, addressList: payload.updatedAddressList };
     }
     case ACTIONS_AUTH.PLACE_ORDER: {
-      console.log(payload.orderedItems);
       return { ...state, orderedItems: payload.orderedItems };
     }
     case ACTIONS_AUTH.SELECT_ADDRESS: {

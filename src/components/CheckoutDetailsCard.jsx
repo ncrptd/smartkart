@@ -1,19 +1,15 @@
-import { useAuth, useAuthDispatch } from '../contexts/AuthContext';
-import { useData, useDataDispatch } from '../contexts/DataContext';
+import { useAuth } from '../contexts/AuthContext';
+import { useData } from '../contexts/DataContext';
 import { selectAddress, noAddress } from '../alerts/alerts';
 import { useNavigate } from 'react-router-dom';
-import { ACTIONS_AUTH } from '../reducer/authReducer';
-import { ACTIONS } from '../reducer/dataReducer';
 export default function CheckoutDetailsCard() {
   const navigate = useNavigate();
 
-  const { state } = useData();
-  const dispatch = useDataDispatch();
+  const { state, removeFromCart } = useData();
   const { cart } = state;
 
   const { state: authState } = useAuth();
   const { addressList, selectedAddress, orderedItems } = authState;
-  const authDispatch = useAuthDispatch();
 
   const price = Number(
     orderedItems
@@ -37,12 +33,8 @@ export default function CheckoutDetailsCard() {
     } else if (!selectedAddress) {
       selectAddress();
     } else {
+      cart.forEach((item) => removeFromCart(item._id));
       navigate('/orderSummary');
-      authDispatch({
-        type: ACTIONS_AUTH.PLACE_ORDER,
-        payload: { orderedItems: cart },
-      });
-      console.log(orderedItems);
     }
   };
   return (

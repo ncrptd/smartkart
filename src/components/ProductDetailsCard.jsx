@@ -12,7 +12,7 @@ export default function ProductDetailsCard({ product }) {
     removeFromWishlistHandler,
   } = useData();
   const { cart, wishlist } = state;
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = localStorage.getItem('user');
 
   const inCart = cart?.some((item) => {
     return item._id === product?._id;
@@ -83,14 +83,16 @@ export default function ProductDetailsCard({ product }) {
             Go to Cart
           </Link>
         ) : (
-          <Link
-            to={!isLoggedIn ? '/login' : ''}
+          <button
+            to={!isLoggedIn && '/login'}
             className="bg-pink-600 text-white
        py-1 px-4 block w-full  text-center hover:bg-pink-500"
-            onClick={() => addToCartHandler(product)}
+            onClick={() => {
+              addToCartHandler(product);
+            }}
           >
             Add to Cart
-          </Link>
+          </button>
         )}
       </div>
     </div>

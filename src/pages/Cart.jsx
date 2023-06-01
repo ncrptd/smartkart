@@ -2,10 +2,13 @@ import React from 'react';
 import CartCard from '../components/CartCard';
 import { useData } from '../contexts/DataContext';
 import { useNavigate } from 'react-router-dom';
+import { useAuthDispatch } from '../contexts/AuthContext';
+import { ACTIONS_AUTH } from '../reducer/authReducer';
 
 export default function Cart() {
   const navigate = useNavigate();
   const { state } = useData();
+  const authDispatch = useAuthDispatch();
   const { cart } = state;
   const price = Number(
     cart
@@ -61,10 +64,14 @@ export default function Cart() {
               </p>
               <button
                 className=" text-sm bg-pink-600
-            py-2.5 px-12 mx-auto text-white font-bold rounded-md
+            py-2.5 px-12 mx-auto text-white font-bold 
             "
                 onClick={() => {
                   navigate('/checkout');
+                  authDispatch({
+                    type: ACTIONS_AUTH.PLACE_ORDER,
+                    payload: { orderedItems: cart },
+                  });
                 }}
               >
                 Checkout

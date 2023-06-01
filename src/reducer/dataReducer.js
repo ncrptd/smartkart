@@ -75,7 +75,6 @@ export default function dataReducer(state, action) {
     }
 
     case ACTIONS.ADD_TO_CART: {
-      console.log('reducer', payload.cart, payload?.login);
       return { ...state, cart: payload.cart };
     }
     case ACTIONS.CLEAR_CART: {
