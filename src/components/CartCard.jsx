@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useData } from '../contexts/DataContext';
+import { removedFromCart } from '../alerts/alerts';
 export default function CartCard({ product }) {
   let { imageUrl, title, price, qty, _id, original_price } = product;
   price = parseFloat(price);
@@ -57,8 +58,12 @@ export default function CartCard({ product }) {
         <button
           className=" text-sm bg-pink-600
             w-full py-2  text-white font-bold 
+
             "
-          onClick={() => removeFromCart(_id)}
+          onClick={() => {
+            removeFromCart(_id);
+            removedFromCart();
+          }}
         >
           Remove From Cart
         </button>

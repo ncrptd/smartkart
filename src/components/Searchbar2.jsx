@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function Searchbar2({ handleSearchInput, value }) {
   return (
     <div>

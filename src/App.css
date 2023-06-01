@@ -19,7 +19,9 @@ button:active {
   opacity: 0.89;
 }
 header a:focus,
-header a:hover {
+header a:hover,
+footer a:focus,
+footer a:hover {
   opacity: 0.9;
   color: red;
 }

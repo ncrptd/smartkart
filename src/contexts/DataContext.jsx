@@ -5,8 +5,8 @@ import { ACTIONS } from '../reducer/dataReducer';
 import { initialState } from '../reducer/dataReducer';
 import {
   addedToCart,
-  removedFromCart,
   addedToWishlist,
+  removedFromCart,
   removedFromWishlist,
 } from '../alerts/alerts';
 const DataContext = createContext();
@@ -39,20 +39,7 @@ export default function DataProvider({ children }) {
       console.log(error);
     }
   };
-  // const getCart = async () => {
-  //   const user = localStorage.getItem('user');
-  //   if (!user) return;
-  //   const { encodedToken } = JSON.parse(user);
-  //   try {
-  //     const config = {
-  //       headers: { authorization: encodedToken },
-  //     };
 
-  //     const res = await axios.get('/api/user/cart', config);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
   useEffect(() => {
     getProductsData();
     getCategories();
@@ -87,7 +74,6 @@ export default function DataProvider({ children }) {
 
       const res = await axios.delete(`/api/user/cart/${_id}`, config);
       dispatch({ type: ACTIONS.ADD_TO_CART, payload: { cart: res.data.cart } });
-      removedFromCart();
     } catch (error) {
       console.log(error);
     }
@@ -106,6 +92,7 @@ export default function DataProvider({ children }) {
         body,
         config
       );
+
       dispatch({ type: ACTIONS.ADD_TO_CART, payload: { cart: res.data.cart } });
     } catch (error) {
       console.log(error);
@@ -114,6 +101,7 @@ export default function DataProvider({ children }) {
   const decrementHandler = async (product) => {
     if (product?.qty <= 1) {
       removeFromCart(product?._id);
+      removedFromCart();
     }
     try {
       const { encodedToken } = JSON.parse(localStorage.getItem('user'));

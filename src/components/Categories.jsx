@@ -7,8 +7,8 @@ function Categories() {
   const { state } = useData();
   const { categories } = state;
   return (
-    <section className=" flex flex-col justify-center items-center py-6 space-y-4 ">
-      <div className="py-4 bg-white  w-full text-center">
+    <section className=" flex flex-col justify-center items-center py-6 space-y-4 bg-slate-50">
+      <div className="py-4  w-full text-center">
         <h2 className="font-semibold">
           Shop By Category{' '}
           <span>
@@ -17,7 +17,7 @@ function Categories() {
         </h2>
       </div>
       <div
-        className="flex gap-4 md:flex-row container mx-auto px-4 justify-center
+        className="flex gap-4 md:flex-row px-4 md:gap-20 justify-center w-full
       "
       >
         {categories.map((category) => (

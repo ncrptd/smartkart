@@ -5,7 +5,7 @@ const RATINGS = [4, 3, 2, 1];
 export default function Filters() {
   const dispatch = useDataDispatch();
   const { state } = useData();
-  const { categoryFilter, priceFilter } = state;
+  const { categoryFilter, priceFilter, ratingsFilter, sortBy } = state;
   const handleCategoryFilter = (categoryName, checked) => {
     dispatch({
       type: ACTIONS.CATEGORYFILTER,
@@ -76,6 +76,7 @@ export default function Filters() {
                 type="radio"
                 name="ratings"
                 id={rating}
+                checked={ratingsFilter === rating}
                 onChange={() => {
                   dispatch({
                     type: ACTIONS.RATINGS_FILTER,
@@ -101,6 +102,7 @@ export default function Filters() {
             type="radio"
             name="price-sort"
             id="low-to-high"
+            checked={sortBy === 'low-to-high'}
             onChange={() => handlePriceSort('low-to-high')}
           />
           <label htmlFor="low-to-high">Low to High</label>
@@ -110,6 +112,7 @@ export default function Filters() {
             type="radio"
             name="price-sort"
             id="high-to-low"
+            checked={sortBy === 'high-to-low'}
             onChange={() => handlePriceSort('high-to-low')}
           />
           <label htmlFor="high-to-low">High to low</label>

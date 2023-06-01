@@ -19,9 +19,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import PageNotFound from './pages/PageNotFound';
 import Checkout from './pages/Checkout';
 import OrderSummary from './pages/OrderSummary';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { faTwitter, faFontAwesome } from '@fortawesome/free-brands-svg-icons';
+
 function App() {
   const { homeIsLoading } = useData();
 
