@@ -1,6 +1,5 @@
-# Ecommerce Clothing Website
+# SmartKart Ecommerce 
 
-![Ecommerce Website](https://i.imgur.com/P2vQZzI.jpg)
 
 This is an ecommerce website for clothes built using React.js and Tailwind CSS. The website includes a landing page with featured categories, a product listing page with filters, a product detail page, cart management, wishlist management, search functionality, sign-up and login pages, address management, and checkout.
 
@@ -36,7 +35,7 @@ This is an ecommerce website for clothes built using React.js and Tailwind CSS. 
 
 ## Getting Started
 
-1. Clone the repository: `git clone https://github.com/your-username/your-project.git`
+1. Clone the repository: `git clone https://github.com/ncrptd/smartkart`
 2. Install dependencies: `npm install`
 3. Start the development server: `npm start`
 
