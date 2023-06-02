@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <footer
-      className="relative bottom-0 py-4 flex gap-4 justify-center shadow-2xl
+      className=" w-full bg-slate-50 py-4 flex gap-4 justify-center shadow-2xl
     "
     >
       <a
