@@ -3,7 +3,7 @@
 ![Version](https://img.shields.io/badge/version-0.0.1--beta-orange) 
  ![Full Stack
  App](https://img.shields.io/badge/full%20stack%20app-yes-green) 
- [![Node.js](https://img.shields.io/badge/Node.js-v18.16.0-green.svg)](https://nodejs.org/)
+ [![Mirage.js](https://img.shields.io/badge/Node.js-v18.16.0-green.svg)](https://nodejs.org/)
  ![TypeScript](https://img.shields.io/badge/TypeScript-red?style=for-the-badge&logo=typescript) 
  ![JavaScript](https://img.shields.io/badge/JavaScript-blue?style=for-the-badge&logo=javascript) 
  ![Vite](https://img.shields.io/badge/Vite-yellow?style=for-the-badge&logo=vite) 
