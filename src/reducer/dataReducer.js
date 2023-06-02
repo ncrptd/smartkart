@@ -57,6 +57,7 @@ export default function dataReducer(state, action) {
       return state;
     }
     case ACTIONS.RATINGS_FILTER: {
+      console.log(payload.rating);
       return { ...state, ratingsFilter: payload.rating };
     }
     case ACTIONS.SORTBY: {

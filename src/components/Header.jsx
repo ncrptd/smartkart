@@ -7,8 +7,10 @@ import Searchbar2 from './Searchbar2';
 function Header() {
   const { state: authState } = useAuth();
   const { isLoggedIn } = authState;
-  const { state } = useData();
-  const { cart, wishlist, handleSearchInput, searchInput } = state;
+  const { state, handleSearchInput } = useData();
+  const { cart, wishlist, searchInput } = state;
+
+  console.log(handleSearchInput);
   const totalCartItems = cart.length >= 1 ? cart.length : undefined;
   const totalWishlistItems = wishlist.length >= 1 ? wishlist.length : undefined;
   const location = useLocation();

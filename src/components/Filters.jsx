@@ -4,7 +4,7 @@ const RATINGS = [4, 3, 2, 1];
 export default function Filters() {
   const dispatch = useDataDispatch();
   const { state } = useData();
-  const { categoryFilter, priceFilter } = state;
+  const { categoryFilter, priceFilter, ratingsFilter, sortBy } = state;
   const handleCategoryFilter = (categoryName, checked) => {
     dispatch({
       type: ACTIONS.CATEGORYFILTER,
@@ -14,7 +14,7 @@ export default function Filters() {
 
   const handleRatingsFilter = (e) => {
     const rating = Number(e.target.value);
-    console.log(typeof rating);
+    console.log(rating);
     dispatch({
       type: ACTIONS.RATINGS_FILTER,
       payload: { rating: rating },
@@ -74,46 +74,52 @@ export default function Filters() {
       </div>
       <div className="flex flex-col gap-2">
         <p className="font-bold">Rating</p>
-        {RATINGS.map((rating) => {
-          return (
-            <div className="flex gap-2 " key={rating}>
+        <form>
+          {RATINGS.map((rating) => {
+            return (
+              <div className="flex gap-2 " key={rating}>
+                <input
+                  type="radio"
+                  name="ratings"
+                  id={rating}
+                  value={rating}
+                  checked={ratingsFilter === rating}
+                  onChange={handleRatingsFilter}
+                />
+                <label htmlFor={rating}>{rating} stars and above</label>
+              </div>
+            );
+          })}
+
+          <div className="flex flex-col gap-2">
+            <p
+              className="font-bold
+        "
+            >
+              Sort By
+            </p>
+            <div className="flex gap-2">
               <input
                 type="radio"
-                name="ratings"
-                id={rating}
-                value={rating}
-                onChange={handleRatingsFilter}
+                name="price-sort"
+                id="low-to-high"
+                checked={sortBy === 'low-to-high'}
+                onChange={() => handlePriceSort('low-to-high')}
               />
-              <label htmlFor={rating}>{rating} stars and above</label>
+              <label htmlFor="low-to-high">Low to High</label>
             </div>
-          );
-        })}
-        <div className="flex flex-col gap-2">
-          <p
-            className="font-bold
-        "
-          >
-            Sort By
-          </p>
-          <div className="flex gap-2">
-            <input
-              type="radio"
-              name="price-sort"
-              id="low-to-high"
-              onChange={() => handlePriceSort('low-to-high')}
-            />
-            <label htmlFor="low-to-high">Low to High</label>
+            <div className="flex gap-2">
+              <input
+                type="radio"
+                name="price-sort"
+                id="high-to-low"
+                checked={sortBy === 'high-to-low'}
+                onChange={() => handlePriceSort('high-to-low')}
+              />
+              <label htmlFor="high-to-low">High to low</label>
+            </div>
           </div>
-          <div className="flex gap-2">
-            <input
-              type="radio"
-              name="price-sort"
-              id="high-to-low"
-              onChange={() => handlePriceSort('high-to-low')}
-            />
-            <label htmlFor="high-to-low">High to low</label>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   );
