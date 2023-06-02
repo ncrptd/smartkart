@@ -3,7 +3,7 @@
 ![Version](https://img.shields.io/badge/version-0.0.1--beta-orange) 
  ![Full Stack
  App](https://img.shields.io/badge/full%20stack%20app-yes-green) 
- ![Teact](https://img.shields.io/badge/React-blue?style=for-the-badge&logo=javascript) 
+ ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
  ![JavaScript](https://img.shields.io/badge/JavaScript-blue?style=for-the-badge&logo=javascript) 
  ![Vite](https://img.shields.io/badge/Vite-yellow?style=for-the-badge&logo=vite) 
 
