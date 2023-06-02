@@ -38,13 +38,7 @@ This is an ecommerce website for clothes built using React.js and Tailwind CSS. 
 
 - **Checkout**: Once the user chooses the address, they can click on the checkout button which shows the order summary.
 
-## Technologies Used
 
--  [![React](https://skillicons.dev/icons?i=react)](https://skillicons.dev)
- -  [![Tailwind Css](https://skillicons.dev/icons?i=tailwind)](https://skillicons.dev)
-
-
-
-##Conclusion
+## Conclusion
 
 This ecommerce website for clothes is designed to provide a seamless shopping experience for users. It includes all the necessary features such as product listing, cart and wishlist management, search functionality, and checkout. The website is built using React.js and Tailwind CSS, and React Router is used for navigation. With its user-friendly interface and easy-to-use features, this website is sure to make shopping for clothes a breeze.
