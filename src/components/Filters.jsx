@@ -4,7 +4,7 @@ const RATINGS = [4, 3, 2, 1];
 export default function Filters() {
   const dispatch = useDataDispatch();
   const { state } = useData();
-  const { categoryFilter, priceFilter, ratingsFilter, sortBy } = state;
+  const { categoryFilter, priceFilter } = state;
   const handleCategoryFilter = (categoryName, checked) => {
     dispatch({
       type: ACTIONS.CATEGORYFILTER,
@@ -82,7 +82,6 @@ export default function Filters() {
                 name="ratings"
                 id={rating}
                 value={rating}
-                checked={rating === ratingsFilter}
                 onChange={handleRatingsFilter}
               />
               <label htmlFor={rating}>{rating} stars and above</label>

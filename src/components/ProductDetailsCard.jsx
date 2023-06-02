@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { useData } from '../contexts/DataContext';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
 import Loader from './Loader';
 export default function ProductDetailsCard({ product }) {
   const {

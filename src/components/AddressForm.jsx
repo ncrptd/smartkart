@@ -55,7 +55,6 @@ export default function AddressForm() {
     e.preventDefault();
     const addressD = { ...addressData, id: uuid() };
     if (editAddressForm) {
-      console.log('from', addressData);
       handleAddressEdit(addressData);
     } else {
       handleNewAddress(addressD);
