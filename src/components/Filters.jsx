@@ -77,7 +77,7 @@ export default function Filters() {
         <form>
           {RATINGS.map((rating) => {
             return (
-              <div className="flex gap-2 " key={rating}>
+              <div className="flex gap-2" key={rating}>
                 <input
                   type="radio"
                   name="ratings"

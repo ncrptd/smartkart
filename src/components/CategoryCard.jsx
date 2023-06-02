@@ -7,7 +7,7 @@ function CategoryCard({ src, category, checked }) {
 
   return (
     <div
-      className=" rounded-xl p-4 border-2 border-gray-100 shadow-xl"
+      className=" rounded-xl p-4 border-2 border-gray-100 shadow-xl cursor-pointer hover:shadow-2xl "
       onClick={() => {
         dispatch({
           type: ACTIONS.CATEGORYFILTER,
