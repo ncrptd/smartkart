@@ -1,8 +1,20 @@
 # SmartKart Ecommerce 
 
+![Version](https://img.shields.io/badge/version-0.0.1--beta-orange)  
+ ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+
 
 This is an ecommerce website for clothes built using React.js and Tailwind CSS. The website includes a landing page with featured categories, a product listing page with filters, a product detail page, cart management, wishlist management, search functionality, sign-up and login pages, address management, and checkout.
 
+## Getting Started
+
+1. Clone the repository: ```git clone https://github.com/ncrptd/smartkart```
+2. Install dependencies: ```npm install```
+3. Start the development server: ```npm start```
 ## Features
 
 - **Landing Page**: The landing page displays a list of featured categories. Clicking on any category redirects the user to the product listing page with the selected category.
@@ -27,17 +39,7 @@ This is an ecommerce website for clothes built using React.js and Tailwind CSS. 
 
 - **Checkout**: Once the user chooses the address, they can click on the checkout button which shows the order summary.
 
-## Technologies Used
 
--  [![React](https://skillicons.dev/icons?i=react)](https://skillicons.dev)
- -  [![Tailwind Css](https://skillicons.dev/icons?i=tailwind)](https://skillicons.dev)
-
-## Getting Started
-
-1. Clone the repository: `git clone https://github.com/ncrptd/smartkart`
-2. Install dependencies: `npm install`
-3. Start the development server: `npm start`
-
-##Conclusion
+## Conclusion
 
 This ecommerce website for clothes is designed to provide a seamless shopping experience for users. It includes all the necessary features such as product listing, cart and wishlist management, search functionality, and checkout. The website is built using React.js and Tailwind CSS, and React Router is used for navigation. With its user-friendly interface and easy-to-use features, this website is sure to make shopping for clothes a breeze.
