@@ -2,11 +2,13 @@
 
 ![Version](https://img.shields.io/badge/version-0.0.1--beta-orange) 
  ![Full Stack App](https://img.shields.io/badge/full%20stack%20app-yes-green) 
+
+![NodeJs](https://img.shields.io/badge/NodeJS-green?style=for-the-badge&logo=nodejs) 
   
  ![TypeScript](https://img.shields.io/badge/TypeScript-red?style=for-the-badge&logo=typescript) 
  ![JavaScript](https://img.shields.io/badge/JavaScript-blue?style=for-the-badge&logo=javascript) 
  ![Vite](https://img.shields.io/badge/Vite-yellow?style=for-the-badge&logo=vite) 
- ![JWT](https://img.shields.io/badge/JWT-000?style=for-the-badge&logo=jsonwebtoken)
+
 
 
 This is an ecommerce website for clothes built using React.js and Tailwind CSS. The website includes a landing page with featured categories, a product listing page with filters, a product detail page, cart management, wishlist management, search functionality, sign-up and login pages, address management, and checkout.
