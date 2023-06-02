@@ -12,6 +12,11 @@
 
 This is an ecommerce website for clothes built using React.js and Tailwind CSS. The website includes a landing page with featured categories, a product listing page with filters, a product detail page, cart management, wishlist management, search functionality, sign-up and login pages, address management, and checkout.
 
+## Getting Started
+
+1. Clone the repository: ```git clone https://github.com/ncrptd/smartkart```
+2. Install dependencies: ```npm install```
+3. Start the development server: ```npm start```
 ## Features
 
 - **Landing Page**: The landing page displays a list of featured categories. Clicking on any category redirects the user to the product listing page with the selected category.
@@ -41,11 +46,7 @@ This is an ecommerce website for clothes built using React.js and Tailwind CSS. 
 -  [![React](https://skillicons.dev/icons?i=react)](https://skillicons.dev)
  -  [![Tailwind Css](https://skillicons.dev/icons?i=tailwind)](https://skillicons.dev)
 
-## Getting Started
 
-1. Clone the repository: `git clone https://github.com/ncrptd/smartkart`
-2. Install dependencies: `npm install`
-3. Start the development server: `npm start`
 
 ##Conclusion
 
