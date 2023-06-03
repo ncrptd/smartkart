@@ -30,7 +30,9 @@ export default function Profile() {
              py-1 px-4  mx-auto  shadow-2xl font-bold"
         onClick={() => {
           localStorage.clear();
-          dispatchAuth({ type: ACTIONS_AUTH.LOGOUT });
+          dispatchAuth({
+            type: ACTIONS_AUTH.LOGOUT,
+          });
           dispatchData({ type: ACTIONS.CLEAR_CART });
           dispatchData({ type: ACTIONS.CLEAR_WISHLIST });
           navigate('/');

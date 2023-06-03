@@ -1,3 +1,14 @@
+const DUMMY_ADDRESS = {
+  name: 'Vicki McDermott',
+  address: '8505 Christina Ridges',
+  city: 'West Cooper',
+  state: 'Arunachal Pradesh',
+  country: 'India',
+  pincode: '820598',
+  mobile: 1293452481,
+  alternateMobile: 4878794411,
+  id: '2364c34d-7645-49cb-8b74-4bc5cb09711d',
+};
 export const ACTIONS_AUTH = {
   GET_USER: 'get-user',
   LOGIN_SUCCESS: 'login-success',
@@ -17,19 +28,7 @@ export const initialAuthState = {
   isLoggedIn: false,
   showAddressForm: false,
   editAddressForm: null,
-  addressList: [
-    {
-      name: 'Vicki McDermott',
-      address: '8505 Christina Ridges',
-      city: 'West Cooper',
-      state: 'Arunachal Pradesh',
-      country: 'India',
-      pincode: '820598',
-      mobile: 1293452481,
-      alternateMobile: 4878794411,
-      id: '2364c34d-7645-49cb-8b74-4bc5cb09711d',
-    },
-  ],
+  addressList: [DUMMY_ADDRESS],
   selectedAddress: null,
   orderedItems: [],
 };
@@ -51,7 +50,12 @@ export default function authReducer(state, action) {
       return { ...state, error: payload };
     }
     case ACTIONS_AUTH.LOGOUT: {
-      return { ...state, isLoggedIn: false, userDetails: null };
+      return {
+        ...state,
+        isLoggedIn: false,
+        userDetails: null,
+        addressList: [DUMMY_ADDRESS],
+      };
     }
     case ACTIONS_AUTH.SHOW_ADDRESS_FORM: {
       return { ...state, showAddressForm: payload.flag };
