@@ -29,7 +29,6 @@ export default function Login() {
       return { ...prevForm, [name]: value };
     });
   };
-  console.log(location);
   async function handleLogin({ email, password }) {
     if (isLoggedIn) return;
     if (email !== '' && password !== '') {
