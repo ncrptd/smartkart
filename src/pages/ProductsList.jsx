@@ -5,7 +5,7 @@ import { useData } from '../contexts/DataContext';
 import Loader from '../components/Loader';
 function ProductsList() {
   const { state } = useData();
-  const { products, priceFilter, categoryFilter, ratingsFilter, sortBy } =
+  const { products, priceFilter, CATEGORY_FILTER, ratingsFilter, sortBy } =
     state;
   const [show, setShow] = useState(false);
 
@@ -21,9 +21,9 @@ function ProductsList() {
     }
     return products;
   }
-  function getCategoryFilteredData(products, categoryFilter) {
-    const selectedCategory = Object.keys(categoryFilter).filter(
-      (category) => categoryFilter[category]
+  function getCATEGORY_FILTERedData(products, CATEGORY_FILTER) {
+    const selectedCategory = Object.keys(CATEGORY_FILTER).filter(
+      (category) => CATEGORY_FILTER[category]
     );
     if (selectedCategory.length > 0) {
       return products.filter((product) =>
@@ -50,12 +50,12 @@ function ProductsList() {
     return products;
   }
   const priceFilteredData = getPriceFilteredData(products, priceFilter);
-  const categoryFilteredData = getCategoryFilteredData(
+  const CATEGORY_FILTERedData = getCATEGORY_FILTERedData(
     priceFilteredData,
-    categoryFilter
+    CATEGORY_FILTER
   );
   const ratingsFilteredData = getRatingsFilteredData(
-    categoryFilteredData,
+    CATEGORY_FILTERedData,
     ratingsFilter
   );
   const sortByPriceData = getSortByPriceData(ratingsFilteredData, sortBy);
@@ -64,12 +64,12 @@ function ProductsList() {
   return products.length < 1 ? (
     <Loader />
   ) : (
-    <div className="text-center flex p-4">
-      <div className="hidden  md:block w-1/6">
+    <div className="text-center flex p-4 ">
+      <div className="hidden  md:block w-1/6 ">
         <Filters />
       </div>
 
-      <div className="container mx-auto flex flex-wrap justify-center md:ml-4  align-center gap-6 pb-12 ">
+      <div className="container mx-auto flex flex-wrap justify-center md:ml-4  align-center pb-12 ">
         {visibleData.map((product) => (
           <ProductCard key={product._id} product={product} />
         ))}
