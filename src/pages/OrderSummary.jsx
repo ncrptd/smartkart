@@ -11,6 +11,7 @@ export default function OrderSummary() {
   const deliveryCharge = 5;
 
   const totalPrice = (price + deliveryCharge).toFixed(2);
+
   return (
     <section className="p-4 ">
       <h1 className="font-bold text-center text-2xl">Order Summary</h1>
