@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useData } from '../contexts/DataContext';
 
 function ProductCard({ product }) {
@@ -18,7 +18,7 @@ function ProductCard({ product }) {
     return product._id === _id;
   });
   const inWishlist = wishlist.some((product) => product._id === _id);
-
+  const location = useLocation();
   return (
     <div className=" shadow-lg rounded-t-xl text-center overflow-hidden flex flex-col justify-between p-2 text-lg md:text-sm md:w-1/5 hover:bg-slate-100 hover:shadow-xl w-full">
       <div
@@ -81,6 +81,7 @@ function ProductCard({ product }) {
           ) : (
             <Link
               to={!isLoggedIn ? '/login' : ''}
+              state={{ from: location }}
               className="bg-pink-600 text-white
            py-1 px-4 block w-full"
               onClick={() => {

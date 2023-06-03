@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuthDispatch } from '../contexts/AuthContext';
 import { ACTIONS_AUTH } from '../reducer/authReducer';
 import { signedUp } from '../alerts/alerts';
 export default function Signup() {
+  const location = useLocation();
   const dispatch = useAuthDispatch();
   const navigate = useNavigate();
   const [formDetails, setFormDetails] = useState({

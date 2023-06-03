@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { useData } from '../contexts/DataContext';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import Loader from './Loader';
+import { useAuth } from '../contexts/AuthContext';
 export default function ProductDetailsCard({ product }) {
   const {
     state,
@@ -11,13 +12,14 @@ export default function ProductDetailsCard({ product }) {
     removeFromWishlistHandler,
   } = useData();
   const { cart, wishlist } = state;
-  const { isLoggedIn } = localStorage.getItem('user');
-
+  const { state: authState } = useAuth();
+  const { isLoggedIn } = authState;
   const inCart = cart?.some((item) => {
     return item._id === product?._id;
   });
   const inWishlist = wishlist.some((item) => item._id === product?._id);
-
+  const navigate = useNavigate();
+  const location = useLocation();
   return product ? (
     <div className="shadow-xl rounded-xl  flex flex-col lg:w-2/4 lg:flex-row gap-6 p-4 h-full">
       <div className="relative shadow-lg  h-96 w-full">
@@ -82,8 +84,9 @@ export default function ProductDetailsCard({ product }) {
             Go to Cart
           </Link>
         ) : (
-          <button
-            to={!isLoggedIn && '/login'}
+          <Link
+            to={isLoggedIn ? '' : '/login'}
+            state={{ from: location }}
             className="bg-pink-600 text-white
        py-1 px-4 block w-full  text-center hover:bg-pink-500"
             onClick={() => {
@@ -91,7 +94,7 @@ export default function ProductDetailsCard({ product }) {
             }}
           >
             Add to Cart
-          </button>
+          </Link>
         )}
       </div>
     </div>
