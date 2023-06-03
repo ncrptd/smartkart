@@ -166,7 +166,6 @@ export default function AddressForm() {
         <button
           className="bg-red-500 text-white rounded-md px-2 py-1"
           onClick={() => {
-            console.log(addressData);
             dispatch({
               type: ACTIONS_AUTH.FILL_EDIT_ADDRESS_FORM,
               payload: { form: null },

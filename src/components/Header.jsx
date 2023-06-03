@@ -10,7 +10,6 @@ function Header() {
   const { state, handleSearchInput } = useData();
   const { cart, wishlist, searchInput } = state;
 
-  console.log(handleSearchInput);
   const totalCartItems = cart.length >= 1 ? cart.length : undefined;
   const totalWishlistItems = wishlist.length >= 1 ? wishlist.length : undefined;
   const location = useLocation();

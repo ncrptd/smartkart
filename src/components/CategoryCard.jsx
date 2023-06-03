@@ -10,7 +10,7 @@ function CategoryCard({ src, category, checked }) {
       className=" rounded-xl p-4 border-2 border-gray-100 shadow-xl cursor-pointer hover:shadow-2xl "
       onClick={() => {
         dispatch({
-          type: ACTIONS.CATEGORYFILTER,
+          type: ACTIONS.CATEGORY_FILTER,
           payload: { category: category, checked: checked },
         });
         navigate('/productsList');

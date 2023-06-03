@@ -5,16 +5,15 @@ export default function Filters() {
   const dispatch = useDataDispatch();
   const { state } = useData();
   const { categoryFilter, priceFilter, ratingsFilter, sortBy } = state;
-  const handleCategoryFilter = (categoryName, checked) => {
+  const handleCATEGORY_FILTER = (categoryName, checked) => {
     dispatch({
-      type: ACTIONS.CATEGORYFILTER,
+      type: ACTIONS.CATEGORY_FILTER,
       payload: { category: categoryName, checked: checked },
     });
   };
 
   const handleRatingsFilter = (e) => {
     const rating = Number(e.target.value);
-    console.log(rating);
     dispatch({
       type: ACTIONS.RATINGS_FILTER,
       payload: { rating: rating },
@@ -25,7 +24,7 @@ export default function Filters() {
   };
 
   return (
-    <div className="flex flex-col gap-4 text-sm  w-full px-4 ">
+    <div className="flex flex-col justify-between gap-2 md:gap-6 text-sm w-full ">
       <div className="flex justify-between">
         <h2 className="font-bold">Filters</h2>
         <button
@@ -46,7 +45,7 @@ export default function Filters() {
         </div>
         <input
           onChange={(e) => {
-            dispatch({ type: ACTIONS.PRICEFILTER, payload: e.target.value });
+            dispatch({ type: ACTIONS.PRICE_FILTER, payload: e.target.value });
           }}
           value={priceFilter}
           className="w-full"
@@ -66,7 +65,9 @@ export default function Filters() {
               id={category}
               value={category}
               checked={categoryFilter[category]}
-              onChange={(e) => handleCategoryFilter(category, e.target.checked)}
+              onChange={(e) =>
+                handleCATEGORY_FILTER(category, e.target.checked)
+              }
             />
             <label htmlFor={category}>{category} Clothing</label>
           </div>
@@ -77,7 +78,7 @@ export default function Filters() {
         <form>
           {RATINGS.map((rating) => {
             return (
-              <div className="flex gap-2 space-y-2" key={rating}>
+              <div className="flex gap-2 mb-2" key={rating}>
                 <input
                   type="radio"
                   name="ratings"

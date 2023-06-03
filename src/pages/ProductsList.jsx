@@ -5,7 +5,7 @@ import { useData } from '../contexts/DataContext';
 import Loader from '../components/Loader';
 function ProductsList() {
   const { state } = useData();
-  const { products, priceFilter, CATEGORY_FILTER, ratingsFilter, sortBy } =
+  const { products, priceFilter, categoryFilter, ratingsFilter, sortBy } =
     state;
   const [show, setShow] = useState(false);
 
@@ -21,7 +21,7 @@ function ProductsList() {
     }
     return products;
   }
-  function getCATEGORY_FILTERedData(products, CATEGORY_FILTER) {
+  function getCategoryFilteredData(products, CATEGORY_FILTER) {
     const selectedCategory = Object.keys(CATEGORY_FILTER).filter(
       (category) => CATEGORY_FILTER[category]
     );
@@ -50,12 +50,12 @@ function ProductsList() {
     return products;
   }
   const priceFilteredData = getPriceFilteredData(products, priceFilter);
-  const CATEGORY_FILTERedData = getCATEGORY_FILTERedData(
+  const categoryFilteredData = getCategoryFilteredData(
     priceFilteredData,
-    CATEGORY_FILTER
+    categoryFilter
   );
   const ratingsFilteredData = getRatingsFilteredData(
-    CATEGORY_FILTERedData,
+    categoryFilteredData,
     ratingsFilter
   );
   const sortByPriceData = getSortByPriceData(ratingsFilteredData, sortBy);

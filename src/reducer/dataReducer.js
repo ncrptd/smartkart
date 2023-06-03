@@ -1,7 +1,7 @@
 export const ACTIONS = {
   INITIAL_LOAD: 'initial-load',
-  PRICEFILTER: 'price-filter',
-  CATEGORYFILTER: 'category-filter',
+  PRICE_FILTER: 'price-filter',
+  CATEGORY_FILTER: 'category-filter',
   RATINGS_FILTER: 'ratings-filter',
   SORTBY: 'sort-by',
   CLEAR_FILTERS: 'clear-filters',
@@ -19,7 +19,6 @@ export const initialState = {
   wishlist: [],
   priceFilter: 200,
   categoryFilter: { Men: false, Women: false },
-
   ratingsFilter: null,
   sortBy: null,
   searchInput: '',
@@ -40,14 +39,13 @@ export default function dataReducer(state, action) {
       }
       return state;
     }
-    case ACTIONS.PRICEFILTER: {
+    case ACTIONS.PRICE_FILTER: {
       return { ...state, priceFilter: payload };
     }
-    case ACTIONS.CATEGORYFILTER: {
+    case ACTIONS.CATEGORY_FILTER: {
       if (payload.category) {
         return {
           ...state,
-
           categoryFilter: {
             ...state.categoryFilter,
             [payload.category]: payload.checked,
@@ -57,7 +55,6 @@ export default function dataReducer(state, action) {
       return state;
     }
     case ACTIONS.RATINGS_FILTER: {
-      console.log(payload.rating);
       return { ...state, ratingsFilter: payload.rating };
     }
     case ACTIONS.SORTBY: {
