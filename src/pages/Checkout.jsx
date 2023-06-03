@@ -35,28 +35,30 @@ export default function Checkout() {
                   className="shadow-md p-6 flex flex-col gap-2"
                   key={address?.id}
                 >
-                  <div className="flex gap-4">
-                    <input
-                      type="radio"
-                      name="address"
-                      value={address}
-                      id={address?.id}
-                      checked={selectedAddress?.id === address?.id}
-                      onChange={() => addressSelectionHandler(address)}
-                    />
-                    <p className="font-semibold">{address?.name}</p>
-                  </div>
-                  <p className="text-sm">
-                    <span>{address?.address}, </span>
-                    <span>{address?.city}, </span>
-                    <span>{address?.state}, </span>
-                    <span>{address?.pincode}, </span>
-                    <span>{address?.country}. </span>
-                  </p>
-                  <p className="text-sm">
-                    <span>Phone Number: {address?.mobile}, </span>
-                    <span>Alternate Number: {address?.alternateMobile}</span>
-                  </p>
+                  <label htmlFor={address?.id}>
+                    <div className="flex gap-4">
+                      <input
+                        type="radio"
+                        name="address"
+                        value={address}
+                        id={address?.id}
+                        checked={selectedAddress?.id === address?.id}
+                        onChange={() => addressSelectionHandler(address)}
+                      />
+                      <p className="font-semibold">{address?.name}</p>
+                    </div>
+                    <p className="text-sm">
+                      <span>{address?.address}, </span>
+                      <span>{address?.city}, </span>
+                      <span>{address?.state}, </span>
+                      <span>{address?.pincode}, </span>
+                      <span>{address?.country}. </span>
+                    </p>
+                    <p className="text-sm">
+                      <span>Phone Number: {address?.mobile}, </span>
+                      <span>Alternate Number: {address?.alternateMobile}</span>
+                    </p>
+                  </label>
                 </div>
               ))}
             </div>

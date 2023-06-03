@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { useData } from '../contexts/DataContext';
-import { Link, Navigate, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Loader from './Loader';
 import { useAuth } from '../contexts/AuthContext';
 export default function ProductDetailsCard({ product }) {
@@ -18,7 +18,6 @@ export default function ProductDetailsCard({ product }) {
     return item._id === product?._id;
   });
   const inWishlist = wishlist.some((item) => item._id === product?._id);
-  const navigate = useNavigate();
   const location = useLocation();
   return product ? (
     <div className="shadow-xl rounded-xl  flex flex-col lg:w-2/4 lg:flex-row gap-6 p-4 h-full">
