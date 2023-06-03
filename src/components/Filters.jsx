@@ -25,7 +25,7 @@ export default function Filters() {
   };
 
   return (
-    <div className="container mx-auto flex flex-col gap-4 text-sm  w-full px-4 ">
+    <div className="flex flex-col gap-4 text-sm  w-full px-4 ">
       <div className="flex justify-between">
         <h2 className="font-bold">Filters</h2>
         <button
@@ -77,7 +77,7 @@ export default function Filters() {
         <form>
           {RATINGS.map((rating) => {
             return (
-              <div className="flex gap-2" key={rating}>
+              <div className="flex gap-2 space-y-2" key={rating}>
                 <input
                   type="radio"
                   name="ratings"
@@ -90,7 +90,8 @@ export default function Filters() {
               </div>
             );
           })}
-
+        </form>
+        <form>
           <div className="flex flex-col gap-2">
             <p
               className="font-bold

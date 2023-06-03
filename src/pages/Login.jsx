@@ -5,7 +5,7 @@ import { useAuth, useAuthDispatch } from '../contexts/AuthContext';
 import { ACTIONS_AUTH } from '../reducer/authReducer';
 import { ACTIONS } from '../reducer/dataReducer';
 import { loggedIn } from '../alerts/alerts';
-import { useData, useDataDispatch } from '../contexts/DataContext';
+import { useDataDispatch } from '../contexts/DataContext';
 const GUEST = {
   email: 'johndoe@gmail.com',
   password: 'johndoe5',

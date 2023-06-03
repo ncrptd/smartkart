@@ -1,6 +1,6 @@
 import { useAuth } from '../contexts/AuthContext';
 import { useData } from '../contexts/DataContext';
-import { selectAddress, noAddress } from '../alerts/alerts';
+import { selectAddress, noAddress, orderPlaced } from '../alerts/alerts';
 import { useNavigate } from 'react-router-dom';
 export default function CheckoutDetailsCard() {
   const navigate = useNavigate();
@@ -34,6 +34,7 @@ export default function CheckoutDetailsCard() {
       selectAddress();
     } else {
       cart.forEach((item) => removeFromCart(item._id));
+      orderPlaced();
       navigate('/orderSummary');
     }
   };
