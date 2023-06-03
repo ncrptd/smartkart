@@ -35,10 +35,16 @@ export default function Search() {
           />
         </div>
       )}
-      <div className="flex flex-wrap p-8">
-        {visibleProducts.map((product) => (
-          <ProductCard product={product} key={product?._id} />
-        ))}
+      <div className="flex flex-wrap p-8  ">
+        {visibleProducts.length > 1 ? (
+          visibleProducts.map((product) => (
+            <ProductCard product={product} key={product?._id} />
+          ))
+        ) : (
+          <p className="uppercase font-bold text-center mx-auto">
+            No Products Found
+          </p>
+        )}
       </div>
     </div>
   );
