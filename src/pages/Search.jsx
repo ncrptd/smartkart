@@ -36,7 +36,7 @@ export default function Search() {
         </div>
       )}
       <div className="flex flex-wrap p-8  ">
-        {visibleProducts.length > 1 ? (
+        {visibleProducts.length >= 1 ? (
           visibleProducts.map((product) => (
             <ProductCard product={product} key={product?._id} />
           ))
