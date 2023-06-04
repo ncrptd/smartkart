@@ -18,6 +18,7 @@ export default function DataProvider({ children }) {
   const getProductsData = async () => {
     try {
       const res = await axios.get('/api/products');
+      console.log(res.data.products);
       dispatch({
         type: ACTIONS.INITIAL_LOAD,
         payload: { products: res.data.products },

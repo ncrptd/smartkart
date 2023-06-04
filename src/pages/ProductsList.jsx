@@ -7,6 +7,7 @@ function ProductsList() {
   const { state } = useData();
   const { products, priceFilter, categoryFilter, ratingsFilter, sortBy } =
     state;
+  console.log('raw', products);
   const [show, setShow] = useState(false);
 
   const handleShow = (e) => {
@@ -60,7 +61,7 @@ function ProductsList() {
   );
   const sortByPriceData = getSortByPriceData(ratingsFilteredData, sortBy);
   const visibleData = sortByPriceData;
-
+  console.log('filtered', visibleData);
   return products.length < 1 ? (
     <Loader />
   ) : (

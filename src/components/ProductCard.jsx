@@ -66,7 +66,7 @@ function ProductCard({ product }) {
       <div className="mt-2 pt-4 font-semibold md:text-lg md:pt-0 md:mt-2 ">
         <p className="mb-2 ">{title}</p>
         <p className="mb-2">
-          <span> &#36;</span>
+          <span>&#8377;</span>
           {price}
         </p>
         <div>

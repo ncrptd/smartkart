@@ -17,7 +17,7 @@ export const initialState = {
   categories: [],
   cart: [],
   wishlist: [],
-  priceFilter: 200,
+  priceFilter: 4000,
   categoryFilter: { Men: false, Women: false },
   ratingsFilter: null,
   sortBy: null,
@@ -63,7 +63,7 @@ export default function dataReducer(state, action) {
     case ACTIONS.CLEAR_FILTERS: {
       return {
         ...state,
-        priceFilter: 200,
+        priceFilter: 4000,
         categoryFilter: { Men: false, Women: false },
         ratingsFilter: null,
         sortBy: null,

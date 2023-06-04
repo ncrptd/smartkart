@@ -20,7 +20,7 @@ export default function Cart() {
     )
   );
   const totalDiscount = (originalPrice - price).toFixed(2);
-  const deliveryCharge = 5;
+  const deliveryCharge = 50;
   const totalPrice = (price + deliveryCharge).toFixed(2);
   return (
     <main className="p-6 ">
@@ -48,16 +48,16 @@ export default function Cart() {
             <hr />
             <div className="flex flex-col gap-4 mt-2 justify-between text-base font-semibold">
               <p className="flex justify-between">
-                Price ({cart?.length} item) <span>&#36;{price}</span>
+                Price ({cart?.length} item) <span>&#8377;{price}</span>
               </p>
               <p className="flex justify-between text-green-500">
-                Discount <span>&#36;{totalDiscount}</span>
+                Discount <span>&#8377;{totalDiscount}</span>
               </p>
               <p className="flex justify-between">
-                Delivery Charges: <span>&#36;{deliveryCharge}</span>
+                Delivery Charges: <span>&#8377;{deliveryCharge}</span>
               </p>
               <p className="flex justify-between font-bold">
-                TOTAL AMOUNT <span>&#36;{totalPrice}</span>
+                TOTAL AMOUNT <span>&#8377;{totalPrice}</span>
               </p>
               <button
                 className=" text-sm bg-pink-600

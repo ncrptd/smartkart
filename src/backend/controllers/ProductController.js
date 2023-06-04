@@ -1,4 +1,4 @@
-import { Response } from "miragejs";
+import { Response } from 'miragejs';
 
 /**
  * All the routes related to Product are present here.
@@ -11,6 +11,7 @@ import { Response } from "miragejs";
  * */
 
 export const getAllProductsHandler = function () {
+  console.log(this.db.products);
   return new Response(200, {}, { products: this.db.products });
 };
 

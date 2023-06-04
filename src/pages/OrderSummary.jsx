@@ -11,15 +11,17 @@ export default function OrderSummary() {
         <div className=" md:flex md:shadow-lg md:p-20">
           {' '}
           <div className="p-4  flex flex-col gap-4 md:w-2/4 ">
-            <h2 className="text-green-500 text-2xl text-center">
-              Order Confirmed
-            </h2>
             <p>
-              <span className="font-bold">Payment id:</span> {orderDetails?.id}
+              <span className="font-bold">Payment id:</span>{' '}
+              <span className="font-semibold text-green-500">
+                {orderDetails?.id}
+              </span>
             </p>
             <p>
-              <span className="font-bold">Total Amount:</span> &#36;{' '}
-              {orderDetails?.totalPrice}
+              <span className="font-bold ">Total Amount:</span>{' '}
+              <span className="font-semibold text-green-500">
+                &#8377;{orderDetails?.totalPrice}
+              </span>
             </p>
             <p className="font-bold">Order will be delivered in 2 days</p>
             <div>

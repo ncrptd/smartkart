@@ -40,7 +40,7 @@ export default function CartCard({ product }) {
         >
           <h2 className="text-2xl font-bold mb-2">{title}</h2>
           <p className="text-2xl ">
-            &#36;{price}{' '}
+            &#8377;{price}{' '}
             <span className="font-thin text-lg line-through">
               {original_price}
             </span>

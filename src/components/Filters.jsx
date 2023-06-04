@@ -39,9 +39,9 @@ export default function Filters() {
       <div>
         <p className="font-bold">Price</p>
         <div className="flex justify-between">
-          <span>50</span>
-          <span>150</span>
-          <span>200</span>
+          <span>500</span>
+          <span>1000</span>
+          <span>4000</span>
         </div>
         <input
           onChange={(e) => {
@@ -50,8 +50,8 @@ export default function Filters() {
           value={priceFilter}
           className="w-full"
           type="range"
-          min={50}
-          max={200}
+          min={500}
+          max={4000}
         />
       </div>
       {/* Category filter  */}

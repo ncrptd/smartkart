@@ -1,6 +1,11 @@
 import { useAuth, useAuthDispatch } from '../contexts/AuthContext';
 import { useData } from '../contexts/DataContext';
-import { selectAddress, noAddress, paymentError } from '../alerts/alerts';
+import {
+  selectAddress,
+  noAddress,
+  paymentError,
+  orderPlaced,
+} from '../alerts/alerts';
 import { useNavigate } from 'react-router-dom';
 import { ACTIONS_AUTH } from '../reducer/authReducer';
 export default function CheckoutDetailsCard() {
@@ -25,7 +30,7 @@ export default function CheckoutDetailsCard() {
     )
   ).toFixed(2);
   const totalDiscount = (originalPrice - price).toFixed(2);
-  const deliveryCharge = 5;
+  const deliveryCharge = 50;
   const totalPrice = (price + deliveryCharge).toFixed(2);
 
   const loadScript = async (url) => {
@@ -72,6 +77,7 @@ export default function CheckoutDetailsCard() {
           },
         });
         cart.forEach((item) => removeFromCart(item._id));
+        orderPlaced();
         navigate('/orderSummary');
       },
       prefill: {
@@ -121,19 +127,19 @@ export default function CheckoutDetailsCard() {
       <div className="flex flex-col gap-2 font-semibold">
         <p className="flex justify-between">
           <span>Price ({cart?.length} items)</span>
-          <span>&#36;{originalPrice}</span>
+          <span>&#8377;{originalPrice}</span>
         </p>
         <p className="flex justify-between text-green-600">
           <span>Discount</span>
-          <span>-&#36;{totalDiscount}</span>
+          <span>-&#8377;{totalDiscount}</span>
         </p>
         <p className="flex justify-between">
           <span>Delivery Charges</span>
-          <span>&#36;{deliveryCharge}</span>
+          <span>&#8377;{deliveryCharge}</span>
         </p>
         <p className="flex justify-between font-bold">
           <span>Total Amount</span>
-          <span>&#36;{totalPrice}</span>
+          <span>&#8377;{totalPrice}</span>
         </p>
         <hr />
         <p className="uppercase font-bold text-center my-4">Deliver to</p>
