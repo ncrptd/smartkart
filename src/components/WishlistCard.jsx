@@ -39,7 +39,7 @@ export default function WishlistCard({ product }) {
       </div>
       <div className="py-2 px-4 text-slate-700">
         <p className="font-semibold text-lg mb-2"> {product?.title}</p>
-        <p className="font-bold text-2xl">&#36; {product?.price}</p>
+        <p className="font-bold text-2xl">&#8377; {product?.price}</p>
       </div>
       {inCart ? (
         <Link

@@ -54,7 +54,7 @@ export default function ProductDetailsCard({ product }) {
         <h1 className="font-bold text-4xl">{product?.title}</h1>
         <p className="font-bold text-pink-400">{product?.numReviews} reviews</p>
         <p className="mb-2 font-bold">
-          <span>&#36;</span>
+          <span>&#8377;</span>
           {product?.price}
         </p>
 
