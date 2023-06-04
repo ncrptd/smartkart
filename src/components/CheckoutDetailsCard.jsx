@@ -1,7 +1,8 @@
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth, useAuthDispatch } from '../contexts/AuthContext';
 import { useData } from '../contexts/DataContext';
-import { selectAddress, noAddress, orderPlaced } from '../alerts/alerts';
+import { selectAddress, noAddress, paymentError } from '../alerts/alerts';
 import { useNavigate } from 'react-router-dom';
+import { ACTIONS_AUTH } from '../reducer/authReducer';
 export default function CheckoutDetailsCard() {
   const navigate = useNavigate();
 
@@ -9,16 +10,16 @@ export default function CheckoutDetailsCard() {
   const { cart } = state;
 
   const { state: authState } = useAuth();
-  const { addressList, selectedAddress, orderedItems } = authState;
-
+  const { addressList, selectedAddress, userDetails } = authState;
+  const authDispatch = useAuthDispatch();
   const price = Number(
-    orderedItems
+    cart
       ?.reduce((acc, curr) => (acc += Number(curr.price) * Number(curr.qty)), 0)
       .toFixed(2)
   );
 
   const originalPrice = Number(
-    orderedItems.reduce(
+    cart.reduce(
       (acc, curr) => (acc += Number(curr.original_price) * Number(curr.qty)),
       0
     )
@@ -26,6 +27,65 @@ export default function CheckoutDetailsCard() {
   const totalDiscount = (originalPrice - price).toFixed(2);
   const deliveryCharge = 5;
   const totalPrice = (price + deliveryCharge).toFixed(2);
+
+  const loadScript = async (url) => {
+    return new Promise((resolve) => {
+      const script = document.createElement('script');
+      script.src = url;
+
+      script.onload = () => {
+        resolve(true);
+      };
+
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  };
+
+  const displayRazorpay = async () => {
+    const res = await loadScript(
+      'https://checkout.razorpay.com/v1/checkout.js'
+    );
+
+    if (!res) {
+      paymentError('Razorpay SDK failed to load, check you connection');
+      return;
+    }
+
+    const options = {
+      key: 'rzp_test_SR2urKhQGjFxHb',
+      amount: totalPrice * 100,
+      currency: 'INR',
+      name: 'SmartKart',
+      description: 'Thank you for shopping with us',
+      image:
+        'https://res.cloudinary.com/dwghy6c1x/image/upload/v1685879182/logo_t17dtw.jpg',
+      handler: function (response) {
+        authDispatch({
+          type: ACTIONS_AUTH.PLACE_ORDER,
+          payload: {
+            items: cart,
+            id: response.razorpay_payment_id,
+            totalPrice: totalPrice,
+          },
+        });
+        cart.forEach((item) => removeFromCart(item._id));
+        navigate('/orderSummary');
+      },
+      prefill: {
+        name: userDetails?.name,
+        email: userDetails?.email,
+        contact: '9876545210',
+      },
+      theme: {
+        color: '#2B51E1',
+      },
+    };
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  };
   const orderHandler = () => {
     if (addressList.length < 1) {
       noAddress();
@@ -33,9 +93,7 @@ export default function CheckoutDetailsCard() {
     } else if (!selectedAddress) {
       selectAddress();
     } else {
-      cart.forEach((item) => removeFromCart(item._id));
-      orderPlaced();
-      navigate('/orderSummary');
+      displayRazorpay();
     }
   };
   return (
@@ -47,7 +105,7 @@ export default function CheckoutDetailsCard() {
         <span>Item</span> <span>Qty</span>
       </div>
       <div>
-        {orderedItems.map((item) => (
+        {cart.map((item) => (
           <p
             className="flex justify-between text-base font-semibold"
             key={item?._id}
@@ -62,7 +120,7 @@ export default function CheckoutDetailsCard() {
       <hr />
       <div className="flex flex-col gap-2 font-semibold">
         <p className="flex justify-between">
-          <span>Price ({orderedItems?.length} items)</span>
+          <span>Price ({cart?.length} items)</span>
           <span>&#36;{originalPrice}</span>
         </p>
         <p className="flex justify-between text-green-600">

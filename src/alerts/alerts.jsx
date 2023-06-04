@@ -11,3 +11,4 @@ export const selectAddress = () => toast('Please select an Address');
 export const noAddress = () => toast('No Address Found');
 export const signedUp = () => toast('Signed up successfully');
 export const orderPlaced = () => toast('Order Placed successfully');
+export const paymentError = (msg) => toast.error(msg);

@@ -2,30 +2,29 @@ import { useAuth } from '../contexts/AuthContext';
 
 export default function OrderSummary() {
   const { state: authState } = useAuth();
-  const { selectedAddress, orderedItems } = authState;
-  const price = Number(
-    orderedItems
-      ?.reduce((acc, curr) => (acc += Number(curr.price) * Number(curr.qty)), 0)
-      .toFixed(2)
-  );
-  const deliveryCharge = 5;
-
-  const totalPrice = (price + deliveryCharge).toFixed(2);
+  const { selectedAddress, orderDetails } = authState;
 
   return (
     <section className="p-4 ">
       <h1 className="font-bold text-center text-2xl">Order Summary</h1>
-      {selectedAddress && orderedItems.length >= 1 ? (
+      {selectedAddress && orderDetails?.items.length >= 1 ? (
         <div className=" md:flex md:shadow-lg md:p-20">
           {' '}
-          <div className="p-4 font-semibold flex flex-col gap-4 md:w-2/4 ">
+          <div className="p-4  flex flex-col gap-4 md:w-2/4 ">
             <h2 className="text-green-500 text-2xl text-center">
               Order Confirmed
             </h2>
-            <p>Total Amount: &#36;{totalPrice}</p>
+            <p>
+              <span className="font-bold">Payment id:</span> {orderDetails?.id}
+            </p>
+            <p>
+              <span className="font-bold">Total Amount:</span> &#36;{' '}
+              {orderDetails?.totalPrice}
+            </p>
+            <p className="font-bold">Order will be delivered in 2 days</p>
             <div>
-              Order Will be delivered to:
-              <p className="text-sm mt-4 text-slate-600">
+              <span className="font-bold"> Order Will be delivered to:</span>
+              <p className="text-sm mt-4 text-slate-600 ">
                 <span>{selectedAddress?.address}, </span>
                 <span>{selectedAddress?.city}, </span>
                 <span>{selectedAddress?.state}, </span>
@@ -41,7 +40,7 @@ export default function OrderSummary() {
             </div>
           </div>
           <div className="md:w-2/4">
-            {orderedItems.map((item) => (
+            {orderDetails.items.map((item) => (
               <div
                 className="flex space-x-8 p-2 font-semibold shadow-lg md:w-3/6"
                 key={item?.id}

@@ -30,7 +30,7 @@ export const initialAuthState = {
   editAddressForm: null,
   addressList: [DUMMY_ADDRESS],
   selectedAddress: null,
-  orderedItems: [],
+  orderDetails: { items: [], totalPrice: null, id: null },
 };
 
 export default function authReducer(state, action) {
@@ -73,7 +73,14 @@ export default function authReducer(state, action) {
       return { ...state, addressList: payload.updatedAddressList };
     }
     case ACTIONS_AUTH.PLACE_ORDER: {
-      return { ...state, orderedItems: payload.orderedItems };
+      return {
+        ...state,
+        orderDetails: {
+          items: payload.items,
+          id: payload.id,
+          totalPrice: payload.totalPrice,
+        },
+      };
     }
     case ACTIONS_AUTH.SELECT_ADDRESS: {
       return { ...state, selectedAddress: payload.selectedAddress };
