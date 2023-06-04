@@ -21,9 +21,9 @@ function ProductsList() {
     }
     return products;
   }
-  function getCategoryFilteredData(products, CATEGORY_FILTER) {
-    const selectedCategory = Object.keys(CATEGORY_FILTER).filter(
-      (category) => CATEGORY_FILTER[category]
+  function getCategoryFilteredData(products, categoryFilter) {
+    const selectedCategory = Object.keys(categoryFilter).filter(
+      (category) => categoryFilter[category]
     );
     if (selectedCategory.length > 0) {
       return products.filter((product) =>

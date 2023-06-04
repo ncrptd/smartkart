@@ -5,7 +5,7 @@ export default function Filters() {
   const dispatch = useDataDispatch();
   const { state } = useData();
   const { categoryFilter, priceFilter, ratingsFilter, sortBy } = state;
-  const handleCATEGORY_FILTER = (categoryName, checked) => {
+  const handleCategoryFilter = (categoryName, checked) => {
     dispatch({
       type: ACTIONS.CATEGORY_FILTER,
       payload: { category: categoryName, checked: checked },
@@ -65,9 +65,7 @@ export default function Filters() {
               id={category}
               value={category}
               checked={categoryFilter[category]}
-              onChange={(e) =>
-                handleCATEGORY_FILTER(category, e.target.checked)
-              }
+              onChange={(e) => handleCategoryFilter(category, e.target.checked)}
             />
             <label htmlFor={category}>{category} Clothing</label>
           </div>
