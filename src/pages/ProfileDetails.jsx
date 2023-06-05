@@ -1,11 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Profile from '../components/Profile';
 import Address from '../components/Address';
+import { useLocation } from 'react-router-dom';
 export default function ProfileDetails() {
   const [show, setShow] = useState(0);
   const styles = `bg-pink-500  text-white
 px-2 py-1 rounded-lg `;
-
+  const location = useLocation();
+  useEffect(() => {
+    if (location?.state?.from) {
+      setShow(1);
+    }
+  }, [location?.state?.from]);
   return (
     <div className="container mx-auto flex flex-col items-center mt-10 p-4 md:w-3/6 ">
       <h1 className="text-center font-4xl font-bold">Account</h1>

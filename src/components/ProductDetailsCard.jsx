@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { useData } from '../contexts/DataContext';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Loader from './Loader';
 import { useAuth } from '../contexts/AuthContext';
 export default function ProductDetailsCard({ product }) {
@@ -19,6 +19,7 @@ export default function ProductDetailsCard({ product }) {
   });
   const inWishlist = wishlist.some((item) => item._id === product?._id);
   const location = useLocation();
+  const navigate = useNavigate();
   return product ? (
     <div className="shadow-xl rounded-xl  flex flex-col lg:w-2/4 lg:flex-row gap-6 p-4 h-full">
       <div className="relative shadow-lg  h-96 w-full">
@@ -28,11 +29,20 @@ export default function ProductDetailsCard({ product }) {
           className="rounded-xl object-cover h-full w-full"
         />
         <div
-          onClick={() => {
-            inWishlist
-              ? removeFromWishlistHandler(product._id)
-              : addToWishlistHandler(product);
+          onClick={(e) => {
+            e.stopPropagation();
+            if (!isLoggedIn && navigate('/wishlist'));
+            if (inWishlist) {
+              removeFromWishlistHandler(product?._id);
+            } else {
+              addToWishlistHandler(product);
+            }
           }}
+          // onClick={() => {
+          //   inWishlist
+          //     ? removeFromWishlistHandler(product._id)
+          //     : addToWishlistHandler(product);
+          // }}
         >
           <FontAwesomeIcon
             icon={faHeart}

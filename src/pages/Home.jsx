@@ -16,11 +16,11 @@ function Home() {
   return (
     <div>
       {categories.length >= 1 ? (
-        <>
+        <div className="h-screen">
           <Banner />
           <Categories />
           <Footer />
-        </>
+        </div>
       ) : (
         <Loader />
       )}

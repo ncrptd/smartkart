@@ -33,20 +33,17 @@ function ProductCard({ product }) {
           className="rounded-t-xl object-cover h-full w-full"
           loading="lazy"
         />
-        <div
-          onClick={(e) => {
-            e.stopPropagation();
-            if (!isLoggedIn && navigate('/wishlist'));
-            if (inWishlist) {
-              removeFromWishlistHandler(product?._id);
-              // removedFromWishlist();
-            } else {
-              addToWishlistHandler(product);
-              // addedToWishlist();
-            }
-          }}
-        >
+        <Link to={isLoggedIn ? '' : '/login'} state={{ from: location }}>
           <FontAwesomeIcon
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              if (inWishlist) {
+                removeFromWishlistHandler(product?._id);
+              } else if (!inWishlist) {
+                addToWishlistHandler(product);
+              }
+            }}
             icon={faHeart}
             className={`p-2 rounded-full cursor-pointer inline-block absolute top-2 right-2 ${
               inWishlist
@@ -54,7 +51,7 @@ function ProductCard({ product }) {
                 : 'bg-slate-300 text-slate-600'
             }`}
           />
-        </div>
+        </Link>
         <p
           className="absolute bottom-2 left-2 py-1 px-2 bg-pink-600 text-white rounded-lg 
         "
@@ -74,7 +71,7 @@ function ProductCard({ product }) {
             <Link
               to="/cart"
               className="text-white
-           py-1 px-4 block w-full bg-fuchsia-600"
+           py-1 px-4 block w-full bg-slate-600"
             >
               Go to Cart
             </Link>

@@ -8,6 +8,7 @@ import {
 } from '../alerts/alerts';
 import { useNavigate } from 'react-router-dom';
 import { ACTIONS_AUTH } from '../reducer/authReducer';
+import { Link } from 'react-router-dom';
 export default function CheckoutDetailsCard() {
   const navigate = useNavigate();
 
@@ -95,7 +96,6 @@ export default function CheckoutDetailsCard() {
   const orderHandler = () => {
     if (addressList.length < 1) {
       noAddress();
-      navigate('/profileDetails');
     } else if (!selectedAddress) {
       selectAddress();
     } else {
@@ -163,13 +163,15 @@ export default function CheckoutDetailsCard() {
           </>
         )}
       </div>
-      <button
+      <Link
+        to={addressList.length < 1 && '/profileDetails'}
+        state={{ from: true }}
         className="bg-pink-600 text-white
        py-1 px-4 block w-2/4 mx-auto text-base text-center hover:bg-pink-500 mt-4 "
         onClick={orderHandler}
       >
         Place order
-      </button>
+      </Link>
     </div>
   );
 }

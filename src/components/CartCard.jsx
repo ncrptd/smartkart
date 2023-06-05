@@ -46,7 +46,7 @@ export default function CartCard({ product }) {
             </span>
           </p>
           <p className="font-bold mt-2">{discount}% OFF</p>
-          <div className="flex gap-4 items-center font-base">
+          <div className="flex gap-4 items-center font-bold">
             <p>Quantity</p>
             <div className="flex space-x-2 text-lg ">
               <button onClick={() => decrementHandler(product)}>-</button>{' '}
