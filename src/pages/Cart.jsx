@@ -25,7 +25,7 @@ export default function Cart() {
   return (
     <main className="p-6 ">
       {cart?.length < 1 ? (
-        <p className="text-center font-bold uppercase">Cart is Empty</p>
+        <h1 className="text-center font-bold uppercase">Cart is Empty</h1>
       ) : (
         <div
           className="container mx-auto md:flex gap-4  md:px-32 items-start
