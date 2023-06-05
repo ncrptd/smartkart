@@ -60,7 +60,7 @@ export default function CheckoutDetailsCard() {
     }
 
     const options = {
-      key: 'rzp_test_M7jr3sNuOwTIPE',
+      key: 'rzp_test_LvRAnyDaMgKuD2',
       amount: totalPrice * 100,
       currency: 'INR',
       name: 'SmartKart',
