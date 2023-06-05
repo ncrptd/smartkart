@@ -23,7 +23,8 @@ function ProductCard({ product }) {
     <div className=" shadow-lg rounded-t-xl text-center overflow-hidden flex flex-col justify-between p-2 text-lg md:text-sm md:w-1/5 hover:bg-slate-100 hover:shadow-xl w-full">
       <div
         className="relative shadow-lg h-96 md:h-64 w-full cursor-pointer"
-        onClick={() => {
+        onClick={(e) => {
+          e.preventDefault();
           navigate(`/productDetails/${_id}`);
         }}
       >
@@ -33,17 +34,20 @@ function ProductCard({ product }) {
           className="rounded-t-xl object-cover h-full w-full"
           loading="lazy"
         />
-        <Link to={isLoggedIn ? '' : '/login'} state={{ from: location }}>
+        <Link
+          to={!isLoggedIn ? '/login' : ''}
+          state={{ from: location }}
+          onClick={(e) => {
+            e.stopPropagation();
+
+            if (inWishlist) {
+              removeFromWishlistHandler(product?._id);
+            } else if (isLoggedIn) {
+              addToWishlistHandler(product);
+            }
+          }}
+        >
           <FontAwesomeIcon
-            onClick={(e) => {
-              e.stopPropagation();
-              e.preventDefault();
-              if (inWishlist) {
-                removeFromWishlistHandler(product?._id);
-              } else if (!inWishlist) {
-                addToWishlistHandler(product);
-              }
-            }}
             icon={faHeart}
             className={`p-2 rounded-full cursor-pointer inline-block absolute top-2 right-2 ${
               inWishlist

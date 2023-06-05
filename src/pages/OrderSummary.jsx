@@ -54,10 +54,10 @@ export default function OrderSummary() {
                     className="object-cover h-full w-full"
                   />
                 </div>
-                <div className="w-2/4 flex flex-col gap-6 md:w-3/6 md:text-sm">
+                <div className="w-2/4 flex flex-col gap-6 md:w-3/6 md:text-sm text-slate-600">
                   <p>{item?.title}</p>
                   <p>Total Quantity: {item?.qty}</p>
-                  <p>Price: {item?.price}</p>
+                  <p>Price: &#8377;{item?.price}</p>
                 </div>
               </div>
             ))}

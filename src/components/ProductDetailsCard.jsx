@@ -19,7 +19,6 @@ export default function ProductDetailsCard({ product }) {
   });
   const inWishlist = wishlist.some((item) => item._id === product?._id);
   const location = useLocation();
-  const navigate = useNavigate();
   return product ? (
     <div className="shadow-xl rounded-xl  flex flex-col lg:w-2/4 lg:flex-row gap-6 p-4 h-full">
       <div className="relative shadow-lg  h-96 w-full">
@@ -28,31 +27,28 @@ export default function ProductDetailsCard({ product }) {
           alt={product?.title}
           className="rounded-xl object-cover h-full w-full"
         />
-        <div
+        <Link
+          to={!isLoggedIn ? '/login' : ''}
+          state={{ from: location }}
           onClick={(e) => {
             e.stopPropagation();
-            if (!isLoggedIn && navigate('/wishlist'));
+
             if (inWishlist) {
               removeFromWishlistHandler(product?._id);
-            } else {
+            } else if (isLoggedIn) {
               addToWishlistHandler(product);
             }
           }}
-          // onClick={() => {
-          //   inWishlist
-          //     ? removeFromWishlistHandler(product._id)
-          //     : addToWishlistHandler(product);
-          // }}
         >
           <FontAwesomeIcon
             icon={faHeart}
-            className={`p-2 rounded-full  inline-block absolute top-2 right-2 cursor-pointer ${
+            className={`p-2 rounded-full cursor-pointer inline-block absolute top-2 right-2 ${
               inWishlist
                 ? 'bg-pink-500 text-white'
                 : 'bg-slate-300 text-slate-600'
             }`}
           />
-        </div>
+        </Link>
         <p
           className="absolute bottom-2 left-2 py-1 px-2 bg-pink-600 text-white rounded-lg 
     "
@@ -88,7 +84,7 @@ export default function ProductDetailsCard({ product }) {
           <Link
             to="/cart"
             className="text-white
-       py-1 px-4 block w-full bg-fuchsia-600 text-center"
+       py-1 px-4 block w-full bg-slate-600 text-center"
           >
             Go to Cart
           </Link>
