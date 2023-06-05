@@ -50,7 +50,7 @@ export default function CartCard({ product }) {
             <p>Quantity</p>
             <div className="flex space-x-2 text-lg ">
               <button onClick={() => decrementHandler(product)}>-</button>{' '}
-              <p className="border-2 rounded-full p-1">{qty}</p>{' '}
+              <p className="border-2 rounded-full p-1">{qty >= 1 ? qty : 1}</p>{' '}
               <button onClick={() => incrementHandler(product)}>+</button>
             </div>
           </div>

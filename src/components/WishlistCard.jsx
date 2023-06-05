@@ -56,7 +56,9 @@ export default function WishlistCard({ product }) {
           >
             -
           </button>{' '}
-          <p className=" flex justify-center items-center">{cartItem?.qty}</p>{' '}
+          <p className=" flex justify-center items-center">
+            {cartItem?.qty >= 1 ? cartItem.qty : 1}
+          </p>{' '}
           <button
             className="flex justify-center item-center"
             onClick={() => incrementHandler(cartItem)}

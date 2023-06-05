@@ -102,6 +102,7 @@ export default function DataProvider({ children }) {
     if (product?.qty <= 1) {
       removeFromCart(product?._id);
       removedFromCart();
+      return;
     }
     try {
       const { encodedToken } = JSON.parse(localStorage.getItem('user'));

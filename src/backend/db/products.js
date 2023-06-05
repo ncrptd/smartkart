@@ -25,7 +25,7 @@ export const products = [
     category: 'Women',
     imageUrl:
       'https://res.cloudinary.com/dwghy6c1x/image/upload/v1684297577/Women_s_Skinny_Jeans_mkzb7a.webp',
-    rating: 4.8,
+    rating: '3.0',
     numReviews: '25k',
     colors: ['blue', 'black', 'grey'],
     sizes: ['24', '26', '28', '30'],
@@ -39,7 +39,7 @@ export const products = [
     category: 'Women',
     imageUrl:
       'https://res.cloudinary.com/dwghy6c1x/image/upload/v1684297577/Unisex_Hoodie_rvyf2f.webp',
-    rating: 4.2,
+    rating: 2.2,
     numReviews: '5k',
     colors: ['black', 'grey', 'navy'],
     sizes: ['S', 'M', 'L', 'XL'],

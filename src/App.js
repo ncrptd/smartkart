@@ -63,11 +63,7 @@ function App() {
           </Route>
         </Routes>
       </div>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={2000}
-        style={{ color: '#ec4899' }}
-      />
+      <ToastContainer position="bottom-right" autoClose={2000} theme="light" />
     </main>
   );
 }

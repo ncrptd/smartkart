@@ -36,7 +36,6 @@ export default function Cart() {
               <CartCard key={product._id} product={product} />
             ))}
           </div>
-          {/* price details  */}
 
           <div
             className="rounded-xl shadow-lg mt-6 px-4 py-12  md:p-4 md:mt-0 md:flex md:flex-col md:justify-between md:text-2xl lg:w-full  
