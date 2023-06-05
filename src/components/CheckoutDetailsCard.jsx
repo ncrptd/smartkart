@@ -31,7 +31,7 @@ export default function CheckoutDetailsCard() {
   ).toFixed(2);
   const totalDiscount = (originalPrice - price).toFixed(2);
   const deliveryCharge = 50;
-  const totalPrice = (price + deliveryCharge).toFixed(2);
+  const totalPrice = Number((price + deliveryCharge).toFixed(2));
 
   const loadScript = async (url) => {
     return new Promise((resolve) => {
@@ -60,7 +60,7 @@ export default function CheckoutDetailsCard() {
     }
 
     const options = {
-      key: 'rzp_test_SR2urKhQGjFxHb',
+      key: 'rzp_test_M7jr3sNuOwTIPE',
       amount: totalPrice * 100,
       currency: 'INR',
       name: 'SmartKart',
@@ -81,9 +81,9 @@ export default function CheckoutDetailsCard() {
         navigate('/orderSummary');
       },
       prefill: {
-        name: userDetails?.name,
-        email: userDetails?.email,
-        contact: '9876545210',
+        name: 'rockey',
+        email: 'email.com',
+        contact: '9876543210',
       },
       theme: {
         color: '#2B51E1',
