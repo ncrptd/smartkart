@@ -81,8 +81,8 @@ export default function CheckoutDetailsCard() {
         navigate('/orderSummary');
       },
       prefill: {
-        name: 'rockey',
-        email: 'email.com',
+        name: userDetails?.name,
+        email: userDetails?.email,
         contact: '9876543210',
       },
       theme: {
