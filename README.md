@@ -11,7 +11,8 @@ This is an ecommerce website for clothes built using React.js and Tailwind CSS. 
 
 
 ## Demo Video
-https://www.loom.com/share/b9d45b8982454e109bb1086d544781e9
+
+https://github.com/ncrptd/smartkart/assets/85108386/3e6c3f50-1b58-4c74-be39-06355e25b93f
 
 
 
