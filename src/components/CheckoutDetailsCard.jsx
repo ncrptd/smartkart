@@ -33,7 +33,6 @@ export default function CheckoutDetailsCard() {
   const totalDiscount = (originalPrice - price).toFixed(2);
   const deliveryCharge = 50;
   const totalPrice = Number((price + deliveryCharge).toFixed(2));
-
   const loadScript = async (url) => {
     return new Promise((resolve) => {
       const script = document.createElement('script');
@@ -62,7 +61,7 @@ export default function CheckoutDetailsCard() {
 
     const options = {
       key: 'rzp_test_LvRAnyDaMgKuD2',
-      amount: totalPrice * 100,
+      amount: (totalPrice * 100).toFixed(2),
       currency: 'INR',
       name: 'SmartKart',
       description: 'Thank you for shopping with us',
