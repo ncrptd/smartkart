@@ -36,7 +36,14 @@ function App() {
               path="/productDetails/:productId"
               element={<ProductDetails />}
             />
-            <Route path="/profileDetails" element={<ProfileDetails />} />
+            <Route
+              path="/profileDetails"
+              element={
+                <RequiresAuth>
+                  <ProfileDetails />
+                </RequiresAuth>
+              }
+            />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route
