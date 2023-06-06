@@ -7,8 +7,14 @@
 ![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)
 ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 
-
 This is an ecommerce website for clothes built using React.js and Tailwind CSS. The website includes a landing page with featured categories, a product listing page with filters, a product detail page, cart management, wishlist management, search functionality, sign-up and login pages, address management, and checkout.
+
+
+## Demo Video
+
+https://github.com/ncrptd/smartkart/assets/85108386/3e6c3f50-1b58-4c74-be39-06355e25b93f
+
+
 
 ## Getting Started
 
