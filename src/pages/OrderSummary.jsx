@@ -2,12 +2,14 @@ import { useAuth } from '../contexts/AuthContext';
 
 export default function OrderSummary() {
   const { state: authState } = useAuth();
-  const { selectedAddress, orderDetails } = authState;
-
+  const { selectedAddressId, orderDetails, addressList } = authState;
+  const deliveryAddress = addressList.find(
+    (address) => address?.id === selectedAddressId
+  );
   return (
     <section className="p-4 ">
       <h1 className="font-bold text-center text-2xl">Order Summary</h1>
-      {selectedAddress && orderDetails?.items.length >= 1 ? (
+      {deliveryAddress && orderDetails?.items.length >= 1 ? (
         <div className=" md:flex md:shadow-lg md:p-20">
           {' '}
           <div className="p-4  flex flex-col gap-4 md:w-2/4 ">
@@ -27,16 +29,16 @@ export default function OrderSummary() {
             <div>
               <span className="font-bold"> Order Will be delivered to:</span>
               <p className="text-sm mt-4 text-slate-600 ">
-                <span>{selectedAddress?.address}, </span>
-                <span>{selectedAddress?.city}, </span>
-                <span>{selectedAddress?.state}, </span>
-                <span>{selectedAddress?.pincode}, </span>
-                <span>{selectedAddress?.country}. </span>
+                <span>{deliveryAddress?.address}, </span>
+                <span>{deliveryAddress?.city}, </span>
+                <span>{deliveryAddress?.state}, </span>
+                <span>{deliveryAddress?.pincode}, </span>
+                <span>{deliveryAddress?.country}. </span>
               </p>
               <p className="text-sm">
-                <span>Phone Number: {selectedAddress?.mobile}, </span>
+                <span>Phone Number: {deliveryAddress?.mobile}, </span>
                 <span>
-                  Alternate Number: {selectedAddress?.alternateMobile}
+                  Alternate Number: {deliveryAddress?.alternateMobile}
                 </span>
               </p>
             </div>

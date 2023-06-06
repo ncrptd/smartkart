@@ -16,7 +16,8 @@ export default function CheckoutDetailsCard() {
   const { cart } = state;
 
   const { state: authState } = useAuth();
-  const { addressList, selectedAddress, userDetails } = authState;
+  const { addressList, selectedAddressId, userDetails } = authState;
+
   const authDispatch = useAuthDispatch();
   const price = Number(
     cart
@@ -33,6 +34,10 @@ export default function CheckoutDetailsCard() {
   const totalDiscount = (originalPrice - price).toFixed(2);
   const deliveryCharge = 50;
   const totalPrice = Number((price + deliveryCharge).toFixed(2));
+  const deliveryAddress = addressList.find(
+    (address) => address?.id === selectedAddressId
+  );
+
   const loadScript = async (url) => {
     return new Promise((resolve) => {
       const script = document.createElement('script');
@@ -95,8 +100,10 @@ export default function CheckoutDetailsCard() {
   const orderHandler = () => {
     if (addressList.length < 1) {
       noAddress();
-    } else if (!selectedAddress) {
+      return;
+    } else if (!deliveryAddress) {
       selectAddress();
+      return;
     } else {
       displayRazorpay();
     }
@@ -144,20 +151,20 @@ export default function CheckoutDetailsCard() {
         <p className="uppercase font-bold text-center my-4">Deliver to</p>
         <hr />
 
-        {selectedAddress && (
+        {deliveryAddress && (
           <>
             {' '}
             <div className="text-sm">
-              <p className="font-semibold">{selectedAddress?.name}</p>
-              <span>{selectedAddress?.address}, </span>
-              <span>{selectedAddress?.city}, </span>
-              <span>{selectedAddress?.state}, </span>
-              <span>{selectedAddress?.pincode}, </span>
-              <span>{selectedAddress?.country}. </span>
+              <p className="font-semibold">{deliveryAddress?.name}</p>
+              <span>{deliveryAddress?.address}, </span>
+              <span>{deliveryAddress?.city}, </span>
+              <span>{deliveryAddress?.state}, </span>
+              <span>{deliveryAddress?.pincode}, </span>
+              <span>{deliveryAddress?.country}. </span>
             </div>
             <p className="text-sm">
-              <span>Phone Number: {selectedAddress?.mobile}, </span>
-              <span>Alternate Number: {selectedAddress?.alternateMobile}</span>
+              <span>Phone Number: {deliveryAddress?.mobile}, </span>
+              <span>Alternate Number: {deliveryAddress?.alternateMobile}</span>
             </p>
           </>
         )}

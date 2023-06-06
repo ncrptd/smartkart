@@ -29,7 +29,7 @@ export const initialAuthState = {
   showAddressForm: false,
   editAddressForm: null,
   addressList: [DUMMY_ADDRESS],
-  selectedAddress: null,
+  selectedAddressId: null,
   orderDetails: { items: [], totalPrice: null, id: null },
 };
 
@@ -83,7 +83,7 @@ export default function authReducer(state, action) {
       };
     }
     case ACTIONS_AUTH.SELECT_ADDRESS: {
-      return { ...state, selectedAddress: payload.selectedAddress };
+      return { ...state, selectedAddressId: payload.addressId };
     }
 
     default: {

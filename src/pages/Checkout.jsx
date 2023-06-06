@@ -10,11 +10,11 @@ export default function Checkout() {
 
   const { state: authState } = useAuth();
   const dispatch = useAuthDispatch();
-  const { addressList, selectedAddress } = authState;
+  const { addressList, selectedAddressId } = authState;
   const addressSelectionHandler = (address) => {
     dispatch({
       type: ACTIONS_AUTH.SELECT_ADDRESS,
-      payload: { selectedAddress: address },
+      payload: { addressId: address?.id },
     });
   };
   const navigate = useNavigate();
@@ -29,6 +29,11 @@ export default function Checkout() {
       {cart.length >= 1 && (
         <>
           <div className="container mx-auto md:flex justify-between md:py-6 md:px-10 ">
+            {addressList.length <= 0 && (
+              <p className="font-semibold text-red-600 text-center uppercase">
+                No address found
+              </p>
+            )}
             <div className="w-full md:w-3/6 md:mr-6">
               {addressList.map((address) => (
                 <div
@@ -42,7 +47,7 @@ export default function Checkout() {
                         name="address"
                         value={address}
                         id={address?.id}
-                        checked={selectedAddress?.id === address?.id}
+                        checked={selectedAddressId === address?.id}
                         onChange={() => addressSelectionHandler(address)}
                       />
                       <p className="font-semibold">{address?.name}</p>
