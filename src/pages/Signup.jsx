@@ -112,7 +112,7 @@ export default function Signup() {
   return (
     <main className=" flex justify-center items-center bg-slate-100 p-6">
       <form
-        className="container mx-auto flex flex-col justify-center item-center bg-white px-8 py-2  md:w-2/5 rounded-2xl shadow-2xl text-base gap-2"
+        className="container mx-auto flex flex-col justify-center item-center bg-white px-8 py-2 md:w-2/5 rounded-2xl shadow-2xl text-base gap-2 "
         onSubmit={handleFormSubmit}
       >
         <label htmlFor="firstName ">FirstName</label>
@@ -123,7 +123,7 @@ export default function Signup() {
           value={formDetails.firstName}
           placeholder="John"
           onChange={handleFormDetails}
-          className="border-2 border-slate -400 rounded-sm p-2 focus:outline-gray-400"
+          className="border-2 border-slate -400 rounded-sm p-2 focus:outline-gray-400 "
         />
         <label htmlFor="lastName ">LastName</label>
         <input
@@ -153,10 +153,10 @@ export default function Signup() {
             value={formDetails.password}
             placeholder="*******"
             onChange={handleFormDetails}
-            className="border-2 border-slate -400 rounded-sm p-2 focus:outline-gray-400 w-full"
+            className="border-2 border-r-0 border-slate -400 rounded-sm p-2 focus:outline-gray-400 w-full"
           />
           <div
-            className="border-2 border-slate -400 rounded-sm p-2 focus:outline-gray-400"
+            className="border-2 border-l-0 border-slate -400 rounded-sm p-2 focus:outline-gray-400"
             onClick={() => {
               setShow((prev) => {
                 return { ...prev, pass: !prev.pass };
@@ -211,10 +211,10 @@ export default function Signup() {
             value={formDetails.confirmPassword}
             placeholder="*******"
             onChange={handleFormDetails}
-            className="border-2 border-slate -400 rounded-sm p-2 focus:outline-gray-400 w-full"
+            className="border-2 border-r-0 border-slate -400 rounded-sm p-2 focus:outline-gray-400 w-full"
           />
           <div
-            className="border-2 border-slate -400 rounded-sm p-2 focus:outline-gray-400"
+            className="border-2 border-l-0 border-slate -400 rounded-sm p-2 focus:outline-gray-400"
             onClick={() => {
               setShow((prev) => {
                 return { ...prev, cnfPass: !prev.cnfPass };
