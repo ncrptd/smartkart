@@ -107,10 +107,10 @@ export default function Login() {
             value={formDetails.password}
             placeholder="*******"
             onChange={handleFormDetails}
-            className="border-2 border-slate -400 rounded-sm p-2 focus:outline-gray-400 w-full"
+            className="border-2 border-r-0 border-slate -400 rounded-sm p-2 focus:outline-gray-400 w-full"
           />
           <div
-            className="border-2 border-slate -400 rounded-sm p-2 focus:outline-gray-400"
+            className="border-2 border-l-0 border-slate -400 rounded-sm p-2 focus:outline-gray-400"
             onClick={() => {
               setShow((prev) => {
                 return !prev;
